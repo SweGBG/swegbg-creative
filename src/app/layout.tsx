@@ -3,6 +3,7 @@ import { site } from "@/lib/site";
 import "@/styles/base.css";
 import "@/styles/hero.css";
 import "@/styles/sections.css";
+import "@/styles/work.css";
 
 export const metadata: Metadata = {
   title: site.title,

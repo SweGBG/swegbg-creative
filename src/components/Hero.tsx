@@ -1,7 +1,8 @@
 "use client";
 
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
+import WorkDialog from "./WorkDialog";
 
 /*
   Day/night hero: a sun photo sets, a moon photo rises (25 s loop, pure CSS).
@@ -51,6 +52,7 @@ function star(x: number, y: number, k: number, big: boolean) {
 
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
+  const [work, setWork] = useState(false);
 
   useEffect(() => {
     const hero = root.current;
@@ -218,7 +220,14 @@ export default function Hero() {
         <Headline lines={site.heroLines} />
         <p className="lead">{site.lead}</p>
         <div className="btns">
-          <a className="btn main" href="#build">
+          <a
+            className="btn main"
+            href="#build"
+            onClick={(e) => {
+              e.preventDefault();
+              setWork(true);
+            }}
+          >
             See the craft
           </a>
           <a className="btn ghost" href={site.contactHref}>
@@ -226,6 +235,7 @@ export default function Hero() {
           </a>
         </div>
       </div>
+      <WorkDialog open={work} onClose={() => setWork(false)} />
     </header>
   );
 }
