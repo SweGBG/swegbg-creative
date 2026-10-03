@@ -65,7 +65,7 @@
 /* Text */
 .hero-body { position: relative; z-index: 3; margin-block: auto 0; padding: 3rem 0 4.5rem; text-align: center; will-change: transform;
   --ink: #fff0c8; --ink2: #2a0b00; --shd: rgba(6, 10, 44, .9); }
-h1 { font: 700 clamp(2.9rem, 9.6vw, 7.6rem) / .98 var(--display); letter-spacing: -.01em; margin: 0 0 1.5rem; color: var(--ink);
+h1 { font: 700 clamp(2.9rem, min(9.6vw, 13svh), 7.6rem) / .98 var(--display); letter-spacing: -.01em; margin: 0 0 1.5rem; color: var(--ink);
   text-shadow: 0 0 36px var(--shd), 0 0 14px var(--shd); }
 .h1line { display: block; }
 h1 .w { display: inline-block; white-space: nowrap; }
@@ -150,29 +150,55 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   animation: aurays 26s linear infinite, aubreathe 6s ease-in-out infinite; }
 @keyframes aurays { to { background-position: -100% 0; } }
 
-/* Full moon, cut out of the photo and shown smaller (sharper): position/size set by --sx, --sy, --sd */
-.aurora { --sx: 50.3%; --sy: 27%; --sd: 17%; }
-@media (max-aspect-ratio: 3/4) { .aurora { --sd: 11%; --sy: 24%; } }
-.au-sun { position: absolute; left: var(--sx); top: var(--sy); width: var(--sd); translate: -50% -50%; pointer-events: none; filter: saturate(1.08) brightness(1.06); }
-.au-moon, .au-disc, .au-corona { position: absolute; left: var(--sx); top: var(--sy); aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; pointer-events: none; mix-blend-mode: screen; }
-/* wide warm halo that breathes */
-.au-moon { width: calc(var(--sd) * 2.5); background: radial-gradient(circle, rgba(255, 170, 80, .42) 20%, rgba(255, 130, 50, .2) 32%, rgba(255, 100, 40, .08) 46%, transparent 64%); animation: aumoon 5s ease-in-out infinite; }
-@keyframes aumoon { 0%, 100% { opacity: .7; scale: .97; } 50% { opacity: 1; scale: 1.05; } }
-/* light on the disc itself: a hot core that shifts and flickers softly, plus a bright rim */
-.au-disc { width: calc(var(--sd) * .97);
-  background: radial-gradient(circle at var(--hx, 44%) var(--hy, 40%), rgba(255, 240, 200, .38), rgba(255, 190, 110, .2) 40%, rgba(255, 140, 60, .1) 62%, transparent 71%);
-  box-shadow: 0 0 2.4vw .5vw rgba(255, 160, 70, .5), inset 0 0 1.4vw rgba(255, 220, 160, .3);
-  animation: audisc 9s ease-in-out infinite, auflick 3.2s ease-in-out infinite; }
-@property --hx { syntax: "<percentage>"; inherits: false; initial-value: 44%; }
-@property --hy { syntax: "<percentage>"; inherits: false; initial-value: 40%; }
-@keyframes audisc { 0%, 100% { --hx: 42%; --hy: 38%; } 33% { --hx: 56%; --hy: 44%; } 66% { --hx: 46%; --hy: 56%; } }
-@keyframes auflick { 0%, 100% { opacity: .85; } 40% { opacity: 1; } 55% { opacity: .9; } 70% { opacity: 1; } }
-/* faint corona rays turning slowly around the disc */
-.au-corona { width: calc(var(--sd) * 1.7); opacity: .32;
-  background: repeating-conic-gradient(from 0deg, rgba(255, 170, 90, .5) 0 2deg, transparent 2deg 9deg, rgba(255, 130, 60, .35) 9deg 10deg, transparent 10deg 17deg);
-  -webkit-mask: radial-gradient(circle, transparent 28%, #000 31%, transparent 68%); mask: radial-gradient(circle, transparent 28%, #000 31%, transparent 68%);
-  animation: aucorona 60s linear infinite, aumoon 5s ease-in-out infinite; }
-@keyframes aucorona { to { rotate: 360deg; } }
+/* ---------- SweGBG emblem (materializes like Proviant): position/size via --sx, --sy, --sd ---------- */
+.aurora { --sx: 50.3%; --sy: 27%; --sd: 24%; }
+@media (max-aspect-ratio: 3/4) { .aurora { --sd: 16%; --sy: 25%; } }
+/* short screens (small laptops): smaller emblem, a bit higher, so it never touches the headline */
+@media (max-height: 780px) and (min-aspect-ratio: 3/4) { .aurora { --sy: 23%; } .hx { width: min(var(--sd), 26svh); } .hero-body { padding-bottom: 3rem; } }
+.hx { position: absolute; left: var(--sx); top: var(--sy); width: min(var(--sd), 40svh); aspect-ratio: 1; translate: -50% -50%; pointer-events: none; }
+.hx-halo { position: absolute; inset: -40%; border-radius: 50%; background: radial-gradient(circle, rgba(240, 179, 71, .3) 0, rgba(240, 179, 71, .12) 30%, rgba(79, 195, 247, .06) 48%, transparent 66%);
+  animation: hxhalo 6s ease-in-out infinite, fadeIn 2.4s .6s both; }
+@keyframes hxhalo { 0%, 100% { opacity: .7; scale: .96; } 50% { opacity: 1; scale: 1.05; } }
+@keyframes fadeIn { from { opacity: 0; } }
+
+/* the emblem itself: blurred, overexposed and colourless -> sharp and gilded */
+.hx-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; animation: hxmat 2.4s .5s cubic-bezier(.22, 1, .36, 1) both; filter: drop-shadow(0 0 18px rgba(240, 179, 71, .35)); }
+@keyframes hxmat {
+  0% { opacity: 0; filter: blur(22px) brightness(2.4) saturate(0); transform: scale(1.12); clip-path: circle(6% at 50% 50%); }
+  45% { opacity: 1; filter: blur(7px) brightness(1.6) saturate(.4); clip-path: circle(55% at 50% 50%); }
+  100% { opacity: 1; filter: drop-shadow(0 0 18px rgba(240, 179, 71, .35)); transform: none; clip-path: circle(75% at 50% 50%); }
+}
+.hx-ring { stroke: #f0b347; transform-origin: 200px 200px; }
+.hx-ring.r1 { stroke-width: 1; stroke-dasharray: 2 7; opacity: .7; animation: hxspin 90s linear infinite; }
+.hx-ring.r2 { stroke-width: 1.4; stroke-dasharray: 70 16 6 16; opacity: .45; animation: hxspin 130s linear infinite reverse; }
+@keyframes hxspin { to { transform: rotate(360deg); } }
+.hx-text { transform-origin: 200px 200px; animation: hxspin 70s linear infinite reverse; }
+.hx-text text { font: 500 13px var(--mono); letter-spacing: 3px; fill: rgba(240, 179, 71, .8); }
+.hx-hex { stroke-linejoin: round; }
+.hx-hex.outer { stroke: url(#hxGold); stroke-width: 3; fill: rgba(8, 12, 24, .55); }
+.hx-hex.inner { stroke: rgba(240, 179, 71, .4); stroke-width: 1.2; }
+.hx-mono path { stroke: url(#hxGold); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: hxdraw 1.4s 1.9s cubic-bezier(.65, 0, .35, 1) forwards; }
+.hx-mono path + path { animation-delay: 2.25s; }
+@keyframes hxdraw { to { stroke-dashoffset: 0; } }
+.hx-dot { fill: #f0b347; animation: fadeIn .6s 3.2s both, hxdot 2.4s 3.8s ease-in-out infinite; transform-origin: 200px 292px; }
+@keyframes hxdot { 50% { transform: scale(1.5); opacity: .6; } }
+
+/* gold dust gathering into the emblem */
+.hx-dust { position: absolute; inset: 0; }
+.hx-dust i { position: absolute; left: 50%; top: 50%; width: var(--s); height: var(--s); border-radius: 50%; background: #ffe2a3; box-shadow: 0 0 8px 2px rgba(240, 179, 71, .75); opacity: 0;
+  animation: hxgather 1.9s var(--dl) cubic-bezier(.6, 0, .3, 1) both; }
+@keyframes hxgather { 0% { opacity: 0; transform: translate(var(--x), var(--y)) scale(1.6); } 20% { opacity: 1; } 85% { opacity: .9; } 100% { opacity: 0; transform: translate(0, 0) scale(.2); } }
+/* a sheen that crosses the emblem now and then */
+.hx-gloss { position: absolute; inset: 14%; border-radius: 50%; mix-blend-mode: screen;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 244, 214, .35) 48%, transparent 58%) 0 0 / 300% 100%;
+  -webkit-mask: radial-gradient(circle, #000 55%, transparent 72%); mask: radial-gradient(circle, #000 55%, transparent 72%); animation: hxgloss 7s 3s ease-in-out infinite; }
+@keyframes hxgloss { 0% { background-position: 120% 0; } 30%, 100% { background-position: -120% 0; } }
+/* lasting sparkles */
+.hx-sparks { position: absolute; inset: -10%; }
+.hx-sparks i { position: absolute; width: 10px; height: 10px; opacity: 0; animation: hxtwinkle var(--t) calc(3s + var(--d)) ease-in-out infinite; }
+.hx-sparks i::before, .hx-sparks i::after { content: ""; position: absolute; left: 50%; top: 50%; translate: -50% -50%; background: #ffe2a3; border-radius: 2px; box-shadow: 0 0 6px rgba(240, 179, 71, .9); }
+.hx-sparks i::before { width: 1.5px; height: 100%; } .hx-sparks i::after { width: 100%; height: 1.5px; }
+@keyframes hxtwinkle { 0%, 70%, 100% { opacity: 0; transform: scale(.3) rotate(0); } 80% { opacity: 1; transform: scale(1) rotate(45deg); } }
 
 /* Water below the horizon (~77%), with the moon's reflection in the middle: a moving shimmer of the aurora and moon colours */
 .au-water { position: absolute; left: 0; right: 0; top: 77%; bottom: 0; mix-blend-mode: screen; pointer-events: none; opacity: .55;
@@ -197,14 +223,14 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   .lang { background: rgba(6, 9, 17, .7); }
   .btn.ghost { background: rgba(6, 9, 17, .55); }
   /* fewer, cheaper aurora layers: no blend modes, no rays/corona/water shimmer */
-  .au-rays, .au-corona, .au-water { display: none; }
+  .au-rays, .au-water, .hx-gloss { display: none; }
   .au-band { mix-blend-mode: normal; opacity: .55; animation-name: aud1, none; will-change: auto; }
   .au-band.b2 { animation-name: aud2, none; }
   .au-band.b3 { display: none; }
-  .au-moon, .au-disc { mix-blend-mode: normal; }
-  .au-disc { box-shadow: 0 0 22px 4px rgba(255, 160, 70, .45); animation: none; }
+  .hx-svg { filter: none; }
   .aurora { filter: none; }
   /* letters rise without a per-letter blur */
   h1 .l { animation-name: rise-m; }
   @keyframes rise-m { from { opacity: 0; transform: translateY(.45em); } to { opacity: 1; transform: none; } }
 }
+@media (prefers-reduced-motion: reduce) { .hx-mono path { stroke-dashoffset: 0; } }

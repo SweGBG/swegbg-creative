@@ -3,6 +3,7 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import WorkDialog from "./WorkDialog";
+import HeroEmblem from "./HeroEmblem";
 import LangSwitch from "./LangSwitch";
 import AgencyMark, { SwegbgMark } from "./AgencyMark";
 import { useLang } from "@/lib/LangContext";
@@ -182,7 +183,7 @@ export default function Hero() {
     <header className="hero" ref={root}>
       <div className="hero-bg">
         {site.heroScene === "aurora" ? (
-          /* Blood moon over the archipelago; the northern lights, moon glow and water are animated in CSS */
+          /* Northern lights over the archipelago with the SweGBG emblem; lights, water and emblem are animated in CSS */
           <div className="aurora">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img className="au-img" alt="" src="/img/aurora-sky.webp" />
@@ -190,12 +191,8 @@ export default function Hero() {
             <div className="au-band b2" />
             <div className="au-band b3" />
             <div className="au-rays" />
-            <div className="au-moon" />
-            <div className="au-corona" />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img className="au-sun" alt="" src="/img/aurora-moon.webp" />
-            <div className="au-disc" />
             <div className="au-water" />
+            <HeroEmblem />
           </div>
         ) : (
           <>
