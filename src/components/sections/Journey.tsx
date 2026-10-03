@@ -1,23 +1,20 @@
+"use client";
+
 import Reveal from "../Reveal";
 import SectionHead from "../SectionHead";
-
-const CARDS = [
-  { n: "01", t: "Idea", d: "We talk through what you want to build and who it is for. No jargon." },
-  { n: "02", t: "Prototype", d: "A clickable first version fast, so you can feel it before it is finished." },
-  { n: "03", t: "Launch", d: "Your domain, your hosting, your analytics. Live and measured." },
-  { n: "04", t: "Grow", d: "New features, new pages, new ideas. The foundation is ready for them." },
-];
+import { useLang } from "@/lib/LangContext";
 
 export default function Journey() {
+  const { t } = useLang();
   return (
     <section id="journey" className="sec journey">
       <Reveal className="wrap">
-        <SectionHead kicker="05 — Journey" title="From spark to launch." />
+        <SectionHead kicker={t.journey.kicker} title={t.journey.title} />
       </Reveal>
       <div className="wrap stack">
-        {CARDS.map((c, i) => (
-          <article key={c.n} className="sc" style={{ ["--i" as string]: i }}>
-            <span className="big-n" aria-hidden="true">{c.n}</span>
+        {t.journey.cards.map((c, i) => (
+          <article key={i} className="sc" style={{ ["--i" as string]: i }}>
+            <span className="big-n" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
             <div>
               <h3>{c.t}</h3>
               <p>{c.d}</p>

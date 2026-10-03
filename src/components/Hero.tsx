@@ -3,6 +3,9 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import WorkDialog from "./WorkDialog";
+import LangSwitch from "./LangSwitch";
+import { useLang } from "@/lib/LangContext";
+import { useContact } from "./ContactDialog";
 
 /*
   Day/night hero: a sun photo sets, a moon photo rises (25 s loop, pure CSS).
@@ -26,10 +29,14 @@ function Headline({ lines }: { lines: string[] }) {
               </span>
             ));
             i += word.length;
+            // The very last word gets the old swegbg.com glitch on hover.
+            const glitch = li === lines.length - 1 && wi === line.split(" ").length - 1;
             return (
               <Fragment key={wi}>
                 {wi > 0 ? " " : null}
-                <span className="w">{letters}</span>
+                <span className={glitch ? "w gl" : "w"} data-text={glitch ? word : undefined}>
+                  {letters}
+                </span>
               </Fragment>
             );
           })}
@@ -53,6 +60,8 @@ function star(x: number, y: number, k: number, big: boolean) {
 export default function Hero() {
   const root = useRef<HTMLElement>(null);
   const [work, setWork] = useState(false);
+  const { t } = useLang();
+  const openContact = useContact();
 
   useEffect(() => {
     const hero = root.current;
@@ -208,17 +217,21 @@ export default function Hero() {
       </div>
 
       <div className="wrap nav">
-        <a className="logo" href="#">
-          {site.brand}
+        <a className="logo" href="#" aria-label={site.brand}>
+          <span className="logo-dot" aria-hidden="true" />
+          <span>SWE<b>GBG</b></span>
         </a>
-        <a className="call" href="#contact">
-          Start a project
-        </a>
+        <div className="nav-r">
+          <LangSwitch />
+          <a className="call" href="#contact" onClick={(e) => { e.preventDefault(); openContact(); }}>
+            {t.nav.start}
+          </a>
+        </div>
       </div>
 
       <div className="wrap hero-body">
-        <Headline lines={site.heroLines} />
-        <p className="lead">{site.lead}</p>
+        <Headline key={t.hero.lines.join()} lines={t.hero.lines} />
+        <p className="lead">{t.hero.lead}</p>
         <div className="btns">
           <a
             className="btn main"
@@ -228,10 +241,10 @@ export default function Hero() {
               setWork(true);
             }}
           >
-            See the craft
+            {t.hero.craft}
           </a>
-          <a className="btn ghost" href={site.contactHref}>
-            Let&apos;s talk
+          <a className="btn ghost" href="#contact" onClick={(e) => { e.preventDefault(); openContact(); }}>
+            {t.hero.talk}
           </a>
         </div>
       </div>

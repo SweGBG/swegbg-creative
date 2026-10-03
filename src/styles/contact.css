@@ -1,0 +1,79 @@
+/* Contact form dialog (opens from every "Start a project" / "Let's talk") */
+dialog.contact { margin: auto; width: min(620px, calc(100% - 1.5rem)); max-height: calc(100svh - 1.5rem); overflow: auto; padding: 0; border: 1px solid rgba(240, 179, 71, .28); border-radius: 20px; color: var(--fg);
+  background: radial-gradient(80% 60% at 100% 0%, rgba(240, 179, 71, .13), transparent 65%), radial-gradient(70% 60% at 0% 100%, rgba(79, 195, 247, .1), transparent 65%), var(--panel);
+  box-shadow: 0 40px 120px -20px rgba(0, 0, 0, .85), 0 0 0 1px rgba(240, 179, 71, .05); overscroll-behavior: contain; }
+dialog.contact::backdrop { background: rgba(4, 7, 16, .78); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+dialog.contact[open] { animation: ctopen .55s cubic-bezier(.2, .9, .2, 1); }
+dialog.contact[open]::backdrop { animation: wback .4s ease both; }
+@keyframes ctopen { from { opacity: 0; transform: translateY(30px) scale(.96); filter: blur(6px); } }
+
+.ct-in { position: relative; isolation: isolate; padding: clamp(1.3rem, 4vw, 2.2rem); }
+/* faint hexagons in the corner, same pattern as the Build section */
+.ct-hex { position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .09;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='97' viewBox='0 0 56 97'%3E%3Cpath d='M28 1 54 16v32L28 63 2 48V16zM28 63v34' fill='none' stroke='%23f0b347' stroke-width='1'/%3E%3C/svg%3E") 0 0 / 42px 73px;
+  -webkit-mask: radial-gradient(60% 55% at 100% 0%, #000, transparent 75%); mask: radial-gradient(60% 55% at 100% 0%, #000, transparent 75%); animation: cthex 30s linear infinite; }
+@keyframes cthex { to { background-position: 42px 73px; } }
+.ct-x { position: absolute; top: 1rem; right: 1rem; }
+
+.ct-head { margin-bottom: 1.4rem; padding-right: 3rem; }
+.ct-head h2 { margin: 0 0 .5rem; font: 700 clamp(1.6rem, 4.5vw, 2.1rem)/1.05 var(--display); }
+.ct-sub { margin: 0; color: var(--muted); font-size: .95rem; }
+
+.ct-form { display: grid; gap: .85rem; }
+.ct-form > *:not(.ct-head):not(.hp):not(.ct-msg), .ct-row > * { animation: ctin .6s calc(.12s + var(--i, 0) * 60ms) cubic-bezier(.2, .8, .2, 1) backwards; }
+@keyframes ctin { from { opacity: 0; transform: translateY(12px); } }
+.ct-row { display: grid; gap: .85rem; }
+@media (min-width: 560px) { .ct-row { grid-template-columns: 1fr 1fr; } }
+
+/* Floating-label fields with a gold underline that draws in on focus */
+.fld { position: relative; display: block; }
+.fld input, .fld textarea { width: 100%; padding: 1.35rem .95rem .55rem; border: 1px solid var(--line); border-radius: 10px; background: rgba(6, 9, 17, .55); color: var(--fg);
+  font: 400 1rem/1.4 var(--body); outline: none; resize: vertical; transition: border-color .3s, background .3s, box-shadow .3s; }
+.fld textarea { min-height: 7.5rem; }
+.fld > span { position: absolute; left: .95rem; top: 1rem; font: 500 .95rem var(--body); color: var(--muted); pointer-events: none; transform-origin: 0 0; transition: transform .25s cubic-bezier(.2, .8, .2, 1), color .25s; }
+.fld input:focus + span, .fld input:not(:placeholder-shown) + span, .fld textarea:focus + span, .fld textarea:not(:placeholder-shown) + span { transform: translateY(-.62rem) scale(.74); color: var(--glow); }
+.fld::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 0; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--glow), var(--cyan)); transform: scaleX(0); transition: transform .45s cubic-bezier(.2, .8, .2, 1); }
+.fld:focus-within::after { transform: scaleX(1); }
+.fld input:focus, .fld textarea:focus { border-color: rgba(240, 179, 71, .55); background: rgba(6, 9, 17, .75); box-shadow: 0 0 0 4px rgba(240, 179, 71, .08); }
+.fld-ph { position: absolute; left: .95rem; right: .95rem; top: 1.38rem; font: italic 400 .9rem/1.4 var(--body); color: rgba(154, 163, 181, .55); pointer-events: none; opacity: 0; transition: opacity .25s; }
+.fld textarea:focus:placeholder-shown ~ .fld-ph { opacity: 1; }
+
+/* Project type chips */
+.ct-types { margin: .2rem 0 0; padding: 0; border: 0; }
+.ct-types legend { margin-bottom: .55rem; padding: 0; font: 500 .72rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); }
+.ct-types div { display: flex; flex-wrap: wrap; gap: .45rem; }
+.ct-types button { position: relative; padding: .5rem .9rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(6, 9, 17, .45); color: var(--muted); font: 500 .82rem/1 var(--body); cursor: pointer;
+  transition: border-color .25s, color .25s, background .25s, transform .3s cubic-bezier(.3, 1.6, .5, 1); }
+.ct-types button:hover { border-color: rgba(240, 179, 71, .5); color: var(--fg); transform: translateY(-2px); }
+.ct-types button[aria-pressed="true"] { border-color: var(--glow); background: rgba(240, 179, 71, .16); color: var(--glow); }
+.ct-types button[aria-pressed="true"]::before { content: "✓ "; }
+
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.ct-foot { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-top: .4rem; }
+.ct-send { display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; }
+.ct-send svg { transition: transform .35s cubic-bezier(.3, 1.6, .5, 1); }
+.ct-send:hover svg { transform: translateX(4px); }
+.ct-send:disabled { opacity: .75; cursor: progress; }
+.spin { width: .9rem; height: .9rem; border-radius: 50%; border: 2px solid rgba(12, 10, 6, .3); border-top-color: #0c0a06; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.ct-note { margin: 0; flex: 1 1 14rem; font: 400 .74rem/1.4 var(--mono); color: var(--muted); }
+.ct-msg { margin: 0; min-height: 1.2em; font-size: .85rem; color: #ff8a8a; opacity: 0; transform: translateY(-4px); transition: opacity .25s, transform .25s; }
+.ct-msg.on { opacity: 1; transform: none; animation: shake .4s; }
+@keyframes shake { 25% { translate: -4px 0; } 50% { translate: 4px 0; } 75% { translate: -2px 0; } }
+
+/* Success state */
+.ct-done { display: grid; justify-items: center; gap: .6rem; padding: 1.5rem 0 .5rem; text-align: center; }
+.ct-done h2 { margin: .4rem 0 0; font: 700 clamp(1.5rem, 4vw, 1.9rem)/1.1 var(--display); animation: ctin .6s .5s backwards; }
+.ct-done p { margin: 0; max-width: 34ch; color: var(--muted); animation: ctin .6s .6s backwards; }
+.ct-check { width: 4.2rem; height: 4.2rem; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.ct-check circle { stroke: rgba(240, 179, 71, .35); stroke-width: 2; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw .7s .1s cubic-bezier(.65, 0, .35, 1) forwards; }
+.ct-check path { stroke: var(--glow); stroke-width: 3.5; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw .45s .65s cubic-bezier(.65, 0, .35, 1) forwards; filter: drop-shadow(0 0 8px rgba(240, 179, 71, .6)); }
+.ct-done-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: 1rem; animation: ctin .6s .7s backwards; }
+.ct-done-btns .btn { border: 0; cursor: pointer; }
+.ct-done-btns .btn.ghost { border: 1px solid rgba(233, 228, 216, .3); color: var(--fg); background: transparent; text-shadow: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.contact[open], .ct-hex, .ct-form > *, .ct-row > *, .ct-done *, .ct-msg.on { animation: none !important; }
+  .ct-check circle, .ct-check path { stroke-dashoffset: 0; }
+}

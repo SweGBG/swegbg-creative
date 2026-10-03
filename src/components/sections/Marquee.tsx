@@ -1,5 +1,8 @@
+"use client";
+
+import { useLang } from "@/lib/LangContext";
+
 const A = ["Next.js", "React", "TypeScript", "App Router", "Server Components", "Tailwind CSS", "Supabase", "PostgreSQL", "Vercel", "GitHub"];
-const B = ["Core Web Vitals", "SEO", "Accessibility", "Booking flows", "Admin panels", "Design systems", "CSS animation", "Edge", "Analytics", "Your own infrastructure"];
 
 function Row({ items, reverse }: { items: string[]; reverse?: boolean }) {
   const list = [...items, ...items];
@@ -17,10 +20,11 @@ function Row({ items, reverse }: { items: string[]; reverse?: boolean }) {
 }
 
 export default function Marquee() {
+  const { t } = useLang();
   return (
-    <section className="sec mqs" aria-label="Tools and craft">
+    <section className="sec mqs" aria-label={t.marquee.aria}>
       <Row items={A} />
-      <Row items={B} reverse />
+      <Row items={t.marquee.b} reverse />
     </section>
   );
 }

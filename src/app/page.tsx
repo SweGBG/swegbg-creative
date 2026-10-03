@@ -6,7 +6,7 @@ import Marquee from "@/components/sections/Marquee";
 import Founder from "@/components/sections/Founder";
 import Journey from "@/components/sections/Journey";
 import Cta from "@/components/sections/Cta";
-import { site } from "@/lib/site";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -21,9 +21,7 @@ export default function Home() {
         <Journey />
         <Cta />
       </main>
-      <footer className="foot">
-        <div className="wrap">{site.footer}</div>
-      </footer>
+      <Footer />
     </>
   );
 }

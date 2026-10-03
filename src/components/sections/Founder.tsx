@@ -1,50 +1,37 @@
+"use client";
+
 import Reveal from "../Reveal";
 import SectionHead from "../SectionHead";
+import { useLang } from "@/lib/LangContext";
 
-const BARS = [
-  { l: "Idea", h: 12 },
-  { l: "MVP", h: 26 },
-  { l: "Launch", h: 44 },
-  { l: "Traction", h: 66 },
-  { l: "Scale", h: 92 },
-];
+const HEIGHTS = [12, 26, 44, 66, 92];
+const STATS = [100, 0, 3];
 
 export default function Founder() {
+  const { t } = useLang();
   return (
     <section id="grow" className="sec grow">
       <Reveal className="wrap">
-        <SectionHead
-          kicker="04 — Grow"
-          title="Built for founders, owned by founders."
-          sub="You start lean, keep full control and add features as your business grows."
-        />
+        <SectionHead kicker={t.grow.kicker} title={t.grow.title} sub={t.grow.sub} />
         <div className="grow-grid">
           <div className="stats">
-            <div className="stat" style={{ ["--to" as string]: 100 }}>
-              <span className="num" aria-hidden="true" />
-              <span className="sr">100</span>
-              <small>Lighthouse score we aim for</small>
-            </div>
-            <div className="stat" style={{ ["--to" as string]: 0 }}>
-              <span className="num" aria-hidden="true" />
-              <span className="sr">0</span>
-              <small>Lock-in. The code is yours</small>
-            </div>
-            <div className="stat" style={{ ["--to" as string]: 3 }}>
-              <span className="num" aria-hidden="true" />
-              <span className="sr">3</span>
-              <small>Accounts you own: GitHub, Vercel, Supabase</small>
-            </div>
+            {STATS.map((n, i) => (
+              <div key={i} className="stat" style={{ ["--to" as string]: n }}>
+                <span className="num" aria-hidden="true" />
+                <span className="sr">{n}</span>
+                <small>{t.grow.stats[i]}</small>
+              </div>
+            ))}
           </div>
-          <figure className="chart" aria-label="Illustrative growth chart">
+          <figure className="chart" aria-label={t.grow.chartAria}>
             <div className="bars">
-              {BARS.map((b, i) => (
-                <div key={b.l} className="bar" style={{ ["--h" as string]: `${b.h}%`, ["--i" as string]: i }}>
-                  <span>{b.l}</span>
+              {HEIGHTS.map((h, i) => (
+                <div key={i} className="bar" style={{ ["--h" as string]: `${h}%`, ["--i" as string]: i }}>
+                  <span>{t.grow.bars[i]}</span>
                 </div>
               ))}
             </div>
-            <figcaption>Illustrative</figcaption>
+            <figcaption>{t.grow.caption}</figcaption>
           </figure>
         </div>
       </Reveal>

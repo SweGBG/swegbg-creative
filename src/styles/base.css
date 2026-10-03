@@ -1,9 +1,10 @@
 :root {
-  --bg: #0a1330; --fg: #e8eeff; --muted: #a3b3d9; --line: #1f3262; --panel: #0f1d46; --panel2: #18306a;
-  --ember: #ff6a3d; --glow: #ffb35c; --deep: #060b1f; --sun: #f6c945; --violet: #8b7bff; --cyan: #5ee6ff; --ok: #5eead4;
-  --display: "Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
-  --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  /* Palette and type carried over from the original swegbg.com (gold + electric blue on near-black) */
+  --bg: #080c18; --fg: #e9e4d8; --muted: #9aa3b5; --line: rgba(201, 146, 42, .2); --panel: #0d1320; --panel2: #16203a;
+  --ember: #c9922a; --glow: #f0b347; --gold: #c9922a; --deep: #060911; --sun: #f0b347; --violet: #4fc3f7; --cyan: #4fc3f7; --ok: #5eead4;
+  --display: "Chakra Petch", "Trebuchet MS", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 html { scroll-behavior: smooth; }
 *, *::before, *::after { box-sizing: border-box; }
