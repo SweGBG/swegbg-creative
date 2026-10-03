@@ -3,7 +3,8 @@ import type { L } from "./i18n";
 
 export const site = {
   brand: "SweGBG",
-  title: "Be Creative With Your Passion",
+  url: "https://www.swegbg.com",
+  title: "SweGBG | Var kreativ med din passion",
   description:
     "Skräddarsydda hemsidor och webbappar i Next.js från Göteborg, för dig som vågar starta något.",
 };

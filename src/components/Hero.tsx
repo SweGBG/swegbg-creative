@@ -4,6 +4,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import WorkDialog from "./WorkDialog";
 import LangSwitch from "./LangSwitch";
+import AgencyMark from "./AgencyMark";
 import { useLang } from "@/lib/LangContext";
 import { useContact } from "./ContactDialog";
 
@@ -217,9 +218,10 @@ export default function Hero() {
       </div>
 
       <div className="wrap nav">
-        <a className="logo" href="#" aria-label={site.brand}>
+        <a className="logo" href="#" aria-label={`${site.brand} Agency`}>
           <span className="logo-dot" aria-hidden="true" />
           <span>SWE<b>GBG</b></span>
+          <AgencyMark className="logo-agency" />
         </a>
         <div className="nav-r">
           <LangSwitch />

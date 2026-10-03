@@ -5,6 +5,10 @@
 .nav { display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 0; position: relative; z-index: 3; }
 .logo { display: inline-flex; align-items: center; gap: .55rem; font: 700 1.15rem var(--display); letter-spacing: .04em; text-decoration: none; }
 .logo b { color: var(--glow); font-weight: 700; }
+/* AGENCY wordmark after SWEGBG: thin strokes at the same cap height, divided by a hairline */
+.logo-agency { height: .72em; width: auto; margin-left: .1rem; padding-left: .65rem; box-sizing: content-box; border-left: 1px solid rgba(240, 179, 71, .35); color: rgba(233, 228, 216, .82); overflow: visible; transition: color .3s; }
+.logo-agency .agency-dot { fill: var(--glow); }
+.logo:hover .logo-agency { color: #fff; }
 .logo-dot { width: .5rem; height: .5rem; border-radius: 50%; background: var(--glow); box-shadow: 0 0 12px var(--glow), 0 0 24px var(--gold); animation: dotp 2s ease-in-out infinite; }
 @keyframes dotp { 50% { opacity: .5; transform: scale(.7); } }
 .nav .call { font: 500 .85rem var(--mono); letter-spacing: .04em; text-decoration: none; border-bottom: 1px solid var(--sun); padding-bottom: 3px; transition: color .3s, border-color .3s; }
