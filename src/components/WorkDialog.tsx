@@ -21,7 +21,7 @@ function Arrow() {
 /** Big card for the featured (first) project. */
 function Featured({ p, lang, w }: { p: Project; lang: Lang; w: Dict["work"] }) {
   return (
-    <article className="proj">
+    <article className="proj" style={{ ["--bg" as string]: (p.theme ?? ["#0c0a09", "#ff5a1f"])[0], ["--ac" as string]: (p.theme ?? ["#0c0a09", "#ff5a1f"])[1] }}>
       <a className="proj-shot" href={p.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${w.open} ${p.name}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {p.image ? <img src={p.image} alt={`${p.name} ${w.preview}`} width="1100" height="688" /> : null}

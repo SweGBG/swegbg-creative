@@ -14,9 +14,9 @@ dialog.work::backdrop { background: rgba(4, 7, 22, .82); }
 .work-x { width: 2.6rem; height: 2.6rem; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: transparent; color: var(--fg); cursor: pointer; transition: border-color .25s, background .25s, transform .4s cubic-bezier(.3, 1.6, .5, 1); }
 .work-x:hover { border-color: var(--glow); background: rgba(240, 179, 71, .12); transform: rotate(90deg); }
 
-/* Project card, dressed in Coal is King's black, flame and brass */
-.proj { position: relative; display: grid; gap: 1.4rem; overflow: hidden; padding: clamp(1rem, 2.4vw, 1.5rem); border-radius: 16px; background: linear-gradient(160deg, #14110e, #0c0a09); border: 1px solid rgba(212, 169, 79, .28); }
-.proj::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, #d6391f, #ff5a1f, #d4a94f); }
+/* Featured project card, dressed in the project's own colours (--bg / --ac from site.ts theme) */
+.proj { position: relative; display: grid; gap: 1.4rem; overflow: hidden; padding: clamp(1rem, 2.4vw, 1.5rem); border-radius: 16px; background: radial-gradient(80% 90% at 100% 0%, color-mix(in srgb, var(--ac) 14%, transparent), transparent 60%), linear-gradient(160deg, color-mix(in srgb, var(--bg) 85%, #fff 4%), var(--bg)); border: 1px solid color-mix(in srgb, var(--ac) 35%, transparent); }
+.proj::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, transparent, var(--ac), color-mix(in srgb, var(--ac) 60%, #fff), var(--ac), transparent); }
 @media (min-width: 760px) { .proj { grid-template-columns: 1.15fr 1fr; align-items: center; gap: 2rem; } }
 .proj-shot { position: relative; display: block; overflow: hidden; border-radius: 10px; border: 1px solid rgba(239, 229, 209, .12); aspect-ratio: 1100 / 688; background: #0c0a09; }
 .proj-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.1s cubic-bezier(.22, 1, .36, 1); }
@@ -26,7 +26,7 @@ dialog.work::backdrop { background: rgba(4, 7, 22, .82); }
 .proj-live { position: absolute; top: .7rem; left: .7rem; display: inline-flex; align-items: center; gap: .45rem; padding: .3rem .7rem; border-radius: 999px; background: rgba(12, 10, 9, .85); border: 1px solid rgba(239, 229, 209, .15); font: 500 .8rem/1 var(--body); color: #efe5d1; }
 .proj-live i { width: 8px; height: 8px; border-radius: 50%; background: #5ee08a; animation: livep 2s ease-out infinite; }
 @keyframes livep { 0% { box-shadow: 0 0 0 0 rgba(94, 224, 138, .6); } 100% { box-shadow: 0 0 0 9px rgba(94, 224, 138, 0); } }
-.proj-kind { margin: 0 0 .3rem; font: italic 400 1rem/1.2 Georgia, "Times New Roman", serif; color: #d4a94f; }
+.proj-kind { margin: 0 0 .3rem; font: italic 400 1rem/1.2 Georgia, "Times New Roman", serif; color: var(--ac); }
 .proj-body h3 { margin: 0 0 .7rem; font: 800 clamp(2.2rem, 5vw, 3.2rem)/.95 var(--display); letter-spacing: -.02em; color: #efe5d1; }
 .proj-blurb { margin: 0 0 1rem; color: rgba(239, 229, 209, .72); max-width: 38ch; }
 .proj-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin: 0 0 1.4rem; padding: 0; list-style: none; }
@@ -38,9 +38,9 @@ dialog.work::backdrop { background: rgba(4, 7, 22, .82); }
 .pbtn:hover { transform: translateY(-2px); }
 .pbtn svg { transition: transform .4s cubic-bezier(.22, 1, .36, 1); }
 .pbtn:hover svg { transform: translate(3px, -3px); }
-.pbtn-main { background: #ff5a1f; color: #1a0a04; }
-.pbtn-main::before { background: linear-gradient(0deg, #fff1d2, #d4a94f); }
-.pbtn-main:hover { box-shadow: 0 0 34px rgba(255, 90, 31, .5); }
+.pbtn-main { background: var(--ac); color: #1a0a04; }
+.pbtn-main::before { background: linear-gradient(0deg, #fff8e6, color-mix(in srgb, var(--ac) 70%, #fff)); }
+.pbtn-main:hover { box-shadow: 0 0 34px color-mix(in srgb, var(--ac) 55%, transparent); }
 
 /* ---- More builds: filter + mini cards ---- */
 .work-bar { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: .8rem 1.2rem; margin: 2.2rem 0 1rem; }

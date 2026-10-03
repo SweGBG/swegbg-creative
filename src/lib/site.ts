@@ -36,6 +36,20 @@ export type Project = {
 // The FIRST project is featured as the big card, so put the newest one on top.
 export const projects: Project[] = [
   {
+    name: "Proviant",
+    kind: { sv: "Delikatessbutik", en: "Delicatessen" },
+    blurb: {
+      sv: "Etiketten materialiseras ur gulddamm, smakens DNA som dubbelhelix, prislappar på snöre och vaxsigill. Ren CSS-animation.",
+      en: "The label materializes out of gold dust, the DNA of taste as a double helix, price tags on twine and wax seals. Pure CSS animation.",
+    },
+    image: "/img/work-proviant.webp",
+    imageFit: "shot",
+    theme: ["#170a0d", "#c9a45c"],
+    liveUrl: "https://proviant-pi.vercel.app",
+    tags: ["Next.js", "CSS animation", "SV/EN"],
+    group: "demo",
+  },
+  {
     name: "Coal is King",
     kind: { sv: "Kolgrill, Stockholm", en: "Charcoal grill, Stockholm" },
     blurb: {
@@ -75,18 +89,6 @@ export const projects: Project[] = [
     theme: ["#0d1320", "#f0b347"],
     liveUrl: "https://swegbgtrading.vercel.app",
     tags: ["Next.js", "Supabase", "Stripe"],
-    group: "demo",
-  },
-  {
-    name: "Green Land",
-    kind: { sv: "Gårdsbutiksdemo", en: "Farm shop demo" },
-    blurb: {
-      sv: "Eget sortiment, färdiga matlådor och ett komplett beställningsflöde, redo för valfri kassa.",
-      en: "Product range, ready-made food boxes and a full order flow, ready for any checkout.",
-    },
-    theme: ["#0e1a12", "#7fd18b"],
-    liveUrl: "https://greenland-gamma-peach.vercel.app",
-    tags: ["Next.js", "Tailwind"],
     group: "demo",
   },
   {
