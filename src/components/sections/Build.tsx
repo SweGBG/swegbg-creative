@@ -4,6 +4,7 @@ import Reveal from "../Reveal";
 import SectionHead from "../SectionHead";
 import { useLang } from "@/lib/LangContext";
 import { useContact } from "../ContactDialog";
+import HexThreads from "../HexThreads";
 
 /*
   "Your website here": the terminal builds a site for the visitor's own business,
@@ -38,6 +39,7 @@ export default function Build() {
     <section id="build" className="sec build">
       <div className="hex" aria-hidden="true">
         <i />
+        <HexThreads />
       </div>
       <Reveal className="wrap">
         <SectionHead

@@ -4,6 +4,9 @@ import type { L } from "./i18n";
 export const site = {
   brand: "SweGBG",
   url: "https://www.swegbg.com",
+  // Hero background: "aurora" = blood moon + animated northern lights,
+  // "daynight" = the sun sets and the moon rises (25 s loop).
+  heroScene: "aurora" as "aurora" | "daynight",
   title: "SweGBG | Var kreativ med din passion",
   description:
     "Skräddarsydda hemsidor och webbappar i Next.js från Göteborg, för dig som vågar starta något.",

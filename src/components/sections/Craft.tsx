@@ -20,7 +20,7 @@ export default function Craft() {
         <SectionHead kicker={t.craft.kicker} title={t.craft.title} />
         <div className="cards">
           {t.craft.cards.map((c, i) => (
-            <SpotCard key={i}>
+            <SpotCard key={i} index={i}>
               {ICONS[i]}
               <h3>{c.t}</h3>
               <p>{c.d}</p>

@@ -4,7 +4,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import WorkDialog from "./WorkDialog";
 import LangSwitch from "./LangSwitch";
-import AgencyMark from "./AgencyMark";
+import AgencyMark, { SwegbgMark } from "./AgencyMark";
 import { useLang } from "@/lib/LangContext";
 import { useContact } from "./ContactDialog";
 
@@ -70,11 +70,13 @@ export default function Hero() {
     const q = <T extends HTMLElement>(s: string) => hero.querySelector(s) as T;
     const bg = q(".hero-bg"), shade = q(".shade"), sun = q(".sunbox"), moon = q(".moonbox"),
       body = q(".hero-body"), h1 = q("h1"), d2 = q(".dusk2"), fx = q("#stars"), nfx = q("#nstars"),
-      sh = q(".shoots"), scene = q(".scene"), ng = q(".ng");
+      sh = q(".shoots"), scene = q(".scene"), ng = q(".ng"), aur = hero.querySelector<HTMLElement>(".aurora");
     const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+    const dayNight = !!sun; // the aurora scene has no sun/moon/star layers
 
     /* ---- stars (day band + night sky) ---- */
     const buildStars = () => {
+      if (!dayNight) return;
       fx.textContent = "";
       nfx.textContent = "";
       const H = hero.offsetHeight, W = hero.offsetWidth;
@@ -117,16 +119,20 @@ export default function Hero() {
       const k = 1 - p * 0.62;
       bg.style.scale = String(1 + p * 0.35);
       shade.style.opacity = String(p * 0.22);
-      sun.style.translate = `0 ${p * 28 + SUN.dy}%`;
-      sun.style.scale = String(k * SUN.sc);
-      moon.style.translate = `0 ${p * 28 + MOON.dy}%`;
-      moon.style.scale = String(k * MOON.sc);
+      if (dayNight) {
+        sun.style.translate = `0 ${p * 28 + SUN.dy}%`;
+        sun.style.scale = String(k * SUN.sc);
+        moon.style.translate = `0 ${p * 28 + MOON.dy}%`;
+        moon.style.scale = String(k * MOON.sc);
+        d2.style.opacity = String(p * 0.9);
+        fx.style.opacity = String(c01((p - 0.2) * 1.4));
+      } else {
+        aur?.style.setProperty("--p", p.toFixed(3));
+      }
       body.style.translate = `0 ${-p * 60}px`;
       body.style.scale = String(1 - p * 0.04);
       body.style.opacity = String(Math.max(0, 1 - p * 1.4));
       h1.style.scale = `${1 + p * 0.22} 1`;
-      d2.style.opacity = String(p * 0.9);
-      fx.style.opacity = String(c01((p - 0.2) * 1.4));
       sh.style.opacity = String(c01((p - 0.4) * 2));
     };
     const tick = (t: number) => {
@@ -174,6 +180,24 @@ export default function Hero() {
   return (
     <header className="hero" ref={root}>
       <div className="hero-bg">
+        {site.heroScene === "aurora" ? (
+          /* Blood moon over the archipelago; the northern lights, moon glow and water are animated in CSS */
+          <div className="aurora">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="au-img" alt="" src="/img/aurora-sky.webp" />
+            <div className="au-band b1" />
+            <div className="au-band b2" />
+            <div className="au-band b3" />
+            <div className="au-rays" />
+            <div className="au-moon" />
+            <div className="au-corona" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="au-sun" alt="" src="/img/aurora-moon.webp" />
+            <div className="au-disc" />
+            <div className="au-water" />
+          </div>
+        ) : (
+          <>
         <div className="scene">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="sky" alt="" src="/img/sky-day.webp" />
@@ -200,6 +224,8 @@ export default function Hero() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img alt="" src="/img/fg-night.webp" />
         </div>
+          </>
+        )}
         <div className="shade" />
       </div>
 
@@ -220,8 +246,8 @@ export default function Hero() {
       <div className="wrap nav">
         <a className="logo" href="#" aria-label={`${site.brand} Agency`}>
           <span className="logo-dot" aria-hidden="true" />
-          <span>SWE<b>GBG</b></span>
-          <AgencyMark className="logo-agency" />
+          <SwegbgMark className="logo-mark" />
+          <AgencyMark className="logo-mark logo-agency" />
         </a>
         <div className="nav-r">
           <LangSwitch />
