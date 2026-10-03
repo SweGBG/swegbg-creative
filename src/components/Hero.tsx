@@ -73,6 +73,7 @@ export default function Hero() {
       sh = q(".shoots"), scene = q(".scene"), ng = q(".ng"), aur = hero.querySelector<HTMLElement>(".aurora");
     const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
     const dayNight = !!sun; // the aurora scene has no sun/moon/star layers
+    const light = matchMedia("(max-width: 760px), (pointer: coarse)").matches; // phones: skip the costly scaling
 
     /* ---- stars (day band + night sky) ---- */
     const buildStars = () => {
@@ -117,7 +118,7 @@ export default function Hero() {
       if (Math.abs(p - shown) < 0.0004) return;
       shown = p;
       const k = 1 - p * 0.62;
-      bg.style.scale = String(1 + p * 0.35);
+      if (!light) bg.style.scale = String(1 + p * 0.35);
       shade.style.opacity = String(p * 0.22);
       if (dayNight) {
         sun.style.translate = `0 ${p * 28 + SUN.dy}%`;
@@ -132,7 +133,7 @@ export default function Hero() {
       body.style.translate = `0 ${-p * 60}px`;
       body.style.scale = String(1 - p * 0.04);
       body.style.opacity = String(Math.max(0, 1 - p * 1.4));
-      h1.style.scale = `${1 + p * 0.22} 1`;
+      if (!light) h1.style.scale = `${1 + p * 0.22} 1`;
       sh.style.opacity = String(c01((p - 0.4) * 2));
     };
     const tick = (t: number) => {

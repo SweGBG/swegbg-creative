@@ -44,6 +44,7 @@ export default function HexThreads() {
           {/* faint trace of the route */}
           <path d={t.d} className="ht-trace" />
           {/* the travelling spark */}
+          <path d={t.d} pathLength={100} className="ht-glow" style={{ animationDuration: `${t.dur}s`, animationDelay: `${t.delay}s` }} />
           <path d={t.d} pathLength={100} className="ht-spark" style={{ animationDuration: `${t.dur}s`, animationDelay: `${t.delay}s` }} />
         </g>
       ))}

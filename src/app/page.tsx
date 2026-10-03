@@ -7,6 +7,7 @@ import Founder from "@/components/sections/Founder";
 import Journey from "@/components/sections/Journey";
 import Cta from "@/components/sections/Cta";
 import Footer from "@/components/Footer";
+import PauseOffscreen from "@/components/PauseOffscreen";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <Cta />
       </main>
       <Footer />
+      <PauseOffscreen />
     </>
   );
 }

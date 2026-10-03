@@ -106,6 +106,11 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
   const [filter, setFilter] = useState<Filter>("all");
   const { lang, t } = useLang();
   const w = t.work;
+  // Live mini-previews load whole websites: skip them on phones to keep the panel smooth.
+  const [canLive, setCanLive] = useState(false);
+  useEffect(() => {
+    setCanLive(!matchMedia("(max-width: 760px), (pointer: coarse)").matches);
+  }, []);
   const [featured, ...rest] = projects;
   const list = rest.filter((p) => filter === "all" || p.group === filter);
   const count = (f: Filter) => (f === "all" ? rest.length : rest.filter((p) => p.group === f).length);
@@ -166,7 +171,7 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
             {/* key forces the entrance animation to replay when the filter changes */}
             <div className="minis" key={filter}>
               {list.map((p, i) => (
-                <Mini key={p.name} p={p} i={i} live={open} lang={lang} w={w} />
+                <Mini key={p.name} p={p} i={i} live={open && canLive} lang={lang} w={w} />
               ))}
             </div>
           </>

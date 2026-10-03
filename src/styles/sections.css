@@ -30,10 +30,13 @@
 .hex-threads { position: absolute; inset: 0; overflow: visible; }
 .ht path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
 .ht-trace { stroke: rgba(240, 179, 71, .1); stroke-width: 1.2; }
-.ht-spark { stroke: var(--glow); stroke-width: 1.8; stroke-dasharray: 9 91; stroke-dashoffset: 100; filter: drop-shadow(0 0 3px rgba(240, 179, 71, .9)) drop-shadow(0 0 8px rgba(240, 179, 71, .5));
-  animation: htrun linear infinite; }
+/* spark = a soft wide glow stroke + a bright core (no filters, cheap to animate) */
+.ht-spark, .ht-glow { stroke-dasharray: 9 91; stroke-dashoffset: 100; animation: htrun linear infinite; }
+.ht-spark { stroke: #ffd98a; stroke-width: 1.8; }
+.ht-glow { stroke: rgba(240, 179, 71, .28); stroke-width: 6; }
 .ht-cyan .ht-trace { stroke: rgba(79, 195, 247, .09); }
-.ht-cyan .ht-spark { stroke: var(--cyan); filter: drop-shadow(0 0 3px rgba(79, 195, 247, .9)) drop-shadow(0 0 8px rgba(79, 195, 247, .5)); }
+.ht-cyan .ht-spark { stroke: #a8e6ff; }
+.ht-cyan .ht-glow { stroke: rgba(79, 195, 247, .25); }
 @keyframes htrun { 0% { stroke-dashoffset: 100; opacity: 0; } 8% { opacity: 1; } 85% { opacity: 1; } 100% { stroke-dashoffset: -9; opacity: 0; } }
 @keyframes hexglow { 0% { --gx: 15%; --gy: 25%; } 35% { --gx: 70%; --gy: 20%; } 70% { --gx: 85%; --gy: 75%; } 100% { --gx: 30%; --gy: 80%; } }
 .build-grid { display: grid; gap: 1.5rem; }
@@ -172,7 +175,7 @@
 .cn-tr { top: .7rem; right: .7rem; } .cn-tr::before { top: 0; right: 0; --dir: 270deg; } .cn-tr::after { top: 0; right: 0; }
 .cn-br { bottom: .7rem; right: .7rem; } .cn-br::before { bottom: 0; right: 0; --dir: 270deg; } .cn-br::after { bottom: 0; right: 0; --dir: 0deg; }
 .cn-bl { bottom: .7rem; left: .7rem; } .cn-bl::before { bottom: 0; left: 0; } .cn-bl::after { bottom: 0; left: 0; --dir: 0deg; }
-@keyframes cnpulse { 0%, 100% { opacity: .3; scale: .85; filter: none; } 50% { opacity: .95; scale: 1.08; filter: drop-shadow(0 0 4px rgba(240, 179, 71, .7)); } }
+@keyframes cnpulse { 0%, 100% { opacity: .3; scale: .85; } 50% { opacity: .95; scale: 1.08; } }
 .cn-tl { transform-origin: 0 0; } .cn-tr { transform-origin: 100% 0; } .cn-br { transform-origin: 100% 100%; } .cn-bl { transform-origin: 0 100%; }
 .rv:not([data-in]) .card { opacity: 0; transform: translateY(40px); }
 .rv[data-in] .card { animation: up .8s var(--d) cubic-bezier(.2, .8, .2, 1) backwards; }
@@ -288,4 +291,18 @@
   .pv-url .dev { opacity: 0 !important; } .pv-url .prod, .pv-live, .pv-cap, .yb-page > *, .yb-feat { opacity: 1 !important; transform: none; filter: none; } .hex i, .hex-threads { display: none; }
   .i-gauge b { --g: 100; }
   .mq { overflow-x: auto; }
+}
+
+
+/* ---------- Performance ---------- */
+/* Sections that are off screen pause their animations (class set by PauseOffscreen) */
+.off *, .off *::before, .off *::after { animation-play-state: paused !important; }
+@media (max-width: 760px), (pointer: coarse) {
+  .ht:nth-child(n + 7) { display: none; }          /* 6 threads instead of 14 */
+  .hex i { animation: none; display: none; }       /* no moving light mask over the grid */
+  .card { transform: translateY(var(--lift)); }    /* no 3D tilt on touch */
+}
+@media (max-width: 480px) {
+  .bars { gap: .45rem; padding-inline: .6rem; }
+  .bar span { font-size: .6rem; letter-spacing: -.02em; }  /* labels no longer collide */
 }
