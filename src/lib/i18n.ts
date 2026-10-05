@@ -109,6 +109,10 @@ const sv = {
     more: "Fler demos",
     badge: "Demo",
     live: "Live-demo",
+    apps: "Appar",
+    appBadge: "Gratis app",
+    download: "Ladda ner för Windows",
+    dlNote: "Installeraren är osignerad – Windows kan fråga en gång (Mer info → Kör ändå).",
     preview: "förhandsvisning",
   },
 };
@@ -222,6 +226,10 @@ const en: Dict = {
     more: "More demos",
     badge: "Demo",
     live: "Live demo",
+    apps: "Apps",
+    appBadge: "Free app",
+    download: "Download for Windows",
+    dlNote: "The installer is unsigned – Windows may ask once (More info → Run anyway).",
     preview: "preview",
   },
 };

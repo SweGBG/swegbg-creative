@@ -110,3 +110,27 @@ export const projects: Project[] = [
     group: "demo",
   },
 ];
+
+/** Desktop apps shown under "Appar" in the craft panel. */
+export type App = { name: string; kind: L; blurb: L; features: { t: L; d: L }[]; downloadUrl: string; image: string; tags: string[]; theme: [string, string] };
+
+export const apps: App[] = [
+  {
+    name: "SweGBGPlayer",
+    kind: { sv: "Windows-app · tre appar i en", en: "Windows app · three apps in one" },
+    blurb: {
+      sv: "Mediaspelare med inbyggd musik-grabber och undertexter som laddas ner automatiskt. Gratis att ladda ner.",
+      en: "Media player with a built-in music grabber and subtitles that download automatically. Free to download.",
+    },
+    features: [
+      { t: { sv: "Mediaspelare", en: "Media player" }, d: { sv: "MP4, MKV, AVI, MOV, MP3, FLAC m.fl. med spellista", en: "MP4, MKV, AVI, MOV, MP3, FLAC and more, with playlist" } },
+      { t: { sv: "Undertexter", en: "Subtitles" }, d: { sv: "Hittas och laddas automatiskt, även via hash-sök", en: "Found and loaded automatically, incl. hash search" } },
+      { t: { sv: "Music Grabber", en: "Music Grabber" }, d: { sv: "Klistra in en länk, få MP3 eller MP4 direkt i spellistan", en: "Paste a link, get MP3 or MP4 straight into the playlist" } },
+    ],
+    downloadUrl: "https://github.com/SweGBG/SweGBGPlayer/releases/latest/download/SweGBGPlayer-Setup.exe",
+    image: "/img/app-swegbgplayer.webp",
+    tags: ["Electron", "Windows 10/11", "v2.1"],
+    theme: ["#12131f", "#ef4a64"],
+  },
+];
+

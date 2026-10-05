@@ -92,3 +92,21 @@ dialog.work::backdrop { background: rgba(4, 7, 22, .82); }
 
 @media (prefers-reduced-motion: reduce) { .mini, .mini-view img, .mini-view::after, .mini-open { animation: none; transition: none; } }
 @media (prefers-reduced-motion: reduce) { dialog.work[open], dialog.work[open]::backdrop, .proj-live i { animation: none; } .proj-shot img, .proj-shot::after { transition: none; } }
+
+/* ---- Apps ---- */
+.app + .app { margin-top: 1rem; }
+.app-shot { aspect-ratio: 1280 / 680; }
+.app-shot img { object-position: top center; }
+.app-shot::after { background: linear-gradient(105deg, transparent 35%, color-mix(in srgb, var(--ac) 28%, transparent) 50%, transparent 65%); }
+.app-pill i { background: var(--ac); animation-name: appp; }
+@keyframes appp { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ac) 60%, transparent); } 100% { box-shadow: 0 0 0 9px transparent; } }
+.app-feats { counter-reset: f; display: grid; gap: .55rem; margin: 0 0 1.1rem; padding: 0; list-style: none; }
+.app-feats li { counter-increment: f; display: grid; grid-template-columns: 2rem 1fr; column-gap: .7rem; align-items: center; padding: .55rem .75rem; border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--ac) 22%, transparent); background: color-mix(in srgb, var(--ac) 6%, transparent);
+  animation: minin .6s calc(.2s + var(--i) * 90ms) cubic-bezier(.2, .9, .2, 1) backwards; }
+.app-feats li::before { content: "0" counter(f); grid-row: span 2; display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--ac) 55%, transparent); color: var(--ac); font: 600 .72rem/1 var(--mono); }
+.app-feats b { font: 600 .95rem/1.2 var(--display); color: #efe5d1; }
+.app-feats span { font-size: .82rem; line-height: 1.35; color: rgba(239, 229, 209, .62); }
+.pbtn-dl:hover svg { transform: translateY(3px); }
+.app-note { margin: .8rem 0 0; font-size: .74rem; line-height: 1.4; color: rgba(239, 229, 209, .45); max-width: 44ch; }
