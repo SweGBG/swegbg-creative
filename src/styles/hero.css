@@ -183,6 +183,23 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 .hx-dot { fill: #f0b347; animation: fadeIn .6s 3.2s both, hxdot 2.4s 3.8s ease-in-out infinite; transform-origin: 200px 292px; }
 @keyframes hxdot { 50% { transform: scale(1.5); opacity: .6; } }
 
+.aurora { --ew: 3.4; --emax: 96vw; }
+@media (max-aspect-ratio: 3/4) { .aurora { --ew: 8; --emax: 150vw; } }
+.hx-engrave { position: absolute; left: var(--sx); top: var(--sy); width: min(calc(var(--sd) * var(--ew)), calc(40svh * var(--ew)), var(--emax)); aspect-ratio: 1408 / 768;
+  translate: -50% -55%; pointer-events: none; opacity: .2;
+  background: url(/img/hero-engraving.webp) center / contain no-repeat;
+  -webkit-mask: radial-gradient(50% 58% at 50% 55%, #000 40%, rgba(0, 0, 0, .45) 72%, transparent 100%);
+  mask: radial-gradient(50% 58% at 50% 55%, #000 40%, rgba(0, 0, 0, .45) 72%, transparent 100%);
+  animation: engrIn 3s 1.1s cubic-bezier(.22, 1, .36, 1) both, engrBreathe 10s 4.1s ease-in-out infinite; }
+@keyframes engrIn { 0% { opacity: 0; scale: .94; } 100% { opacity: .2; scale: 1; } }
+@keyframes engrBreathe { 0%, 100% { opacity: .2; } 50% { opacity: .27; } }
+.hx-engrave::after { content: ""; position: absolute; inset: 0; overflow: hidden;
+  background: linear-gradient(100deg, transparent 40%, rgba(255, 236, 190, .95) 50%, transparent 60%) 0 0 / 250% 100% no-repeat;
+  -webkit-mask: url(/img/hero-engraving.webp) center / contain no-repeat; mask: url(/img/hero-engraving.webp) center / contain no-repeat;
+  animation: engrSheen 14s 5s ease-in-out infinite; }
+@keyframes engrSheen { 0% { background-position: 130% 0; } 25%, 100% { background-position: -130% 0; } }
+@media (pointer: coarse) { .hx-engrave::after { display: none; } }
+
 /* gold dust gathering into the emblem */
 .hx-dust { position: absolute; inset: 0; }
 .hx-dust i { position: absolute; left: 50%; top: 50%; width: var(--s); height: var(--s); border-radius: 50%; background: #ffe2a3; box-shadow: 0 0 8px 2px rgba(240, 179, 71, .75); opacity: 0;

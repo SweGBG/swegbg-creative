@@ -192,6 +192,7 @@ export default function Hero() {
             <div className="au-band b3" />
             <div className="au-rays" />
             <div className="au-water" />
+            <div className="hx-engrave" aria-hidden="true" />
             <HeroEmblem />
           </div>
         ) : (
