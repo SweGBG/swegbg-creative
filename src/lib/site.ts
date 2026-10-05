@@ -101,12 +101,17 @@ export const projects: Project[] = [
     group: "demo",
   },
   {
-    name: "Stalco",
-    kind: { sv: "Landningssida", en: "Landing page" },
-    blurb: { sv: "Koncept för en landningssida.", en: "One-page landing concept." },
-    theme: ["#141414", "#c9c9c9"],
+    name: "Stålco",
+    kind: { sv: "Verktygsbutik · B2B", en: "Tool store · B2B" },
+    blurb: {
+      sv: "Smedja möter ritning: hammaren slår gnistor ur loggan, kugghjul som filtrerar sortimentet och offertlista för företag.",
+      en: "Forge meets blueprint: the hammer strikes sparks from the logo, meshing gears filter the range, plus a B2B quote list.",
+    },
+    image: "/img/work-stalco.webp",
+    imageFit: "shot",
+    theme: ["#0e1621", "#f39c1e"],
     liveUrl: "https://stalco-theta.vercel.app",
-    tags: ["Next.js"],
+    tags: ["Next.js", "CSS animation", "SV/EN"],
     group: "demo",
   },
 ];
