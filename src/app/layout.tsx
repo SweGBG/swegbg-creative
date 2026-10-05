@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { site } from "@/lib/site";
 import { LangProvider } from "@/lib/LangContext";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LangProvider>
           <ContactProvider>{children}</ContactProvider>
         </LangProvider>
+        <Analytics />
       </body>
     </html>
   );
