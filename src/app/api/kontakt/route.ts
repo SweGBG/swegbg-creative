@@ -57,7 +57,8 @@ export async function POST(req: Request) {
 
   try {
     // 1) Notis till dig — text (fallback) + html (renderas rätt överallt).
-    await resend.emails.send({
+    // OBS: Resend kastar inte fel, den returnerar { error }. Måste kollas.
+    const notis = await resend.emails.send({
       from: FROM,
       to: TO,
       replyTo: email,
@@ -82,8 +83,14 @@ export async function POST(req: Request) {
       `,
     });
 
-    // 2) Auto-svar till kunden, på deras språk.
-    await resend.emails.send({
+    if (notis.error) {
+      console.error("Resend (notis):", notis.error);
+      return NextResponse.json({ error: "Kunde inte skicka" }, { status: 502 });
+    }
+
+    // 2) Auto-svar till kunden, på deras språk. Misslyckas det har du
+    // ändå fått förfrågan, så kunden får fortfarande "skickat".
+    const autosvar = await resend.emails.send({
       from: FROM,
       to: email,
       replyTo: TO,
@@ -118,8 +125,13 @@ export async function POST(req: Request) {
         `,
     });
 
+    if (autosvar.error) {
+      console.error("Resend (autosvar):", autosvar.error);
+    }
+
     return NextResponse.json({ ok: true });
-  } catch {
+  } catch (err) {
+    console.error("Resend:", err);
     return NextResponse.json({ error: "Kunde inte skicka" }, { status: 500 });
   }
 }
