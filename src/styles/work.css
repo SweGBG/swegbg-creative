@@ -45,12 +45,6 @@ dialog.work::backdrop { background: rgba(4, 7, 22, .82); }
 /* ---- More builds: filter + mini cards ---- */
 .work-bar { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: .8rem 1.2rem; margin: 2.2rem 0 1rem; }
 .work-bar h3 { margin: 0; font: 600 1.25rem/1.1 var(--display); letter-spacing: .01em; }
-.work-filter { display: flex; gap: .3rem; padding: .25rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(6, 9, 17, .5); }
-.work-filter button { padding: .45rem .9rem; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font: 500 .8rem/1 var(--mono); cursor: pointer; transition: background .3s, color .3s; }
-.work-filter button small { opacity: .55; margin-left: .2rem; }
-.work-filter button:hover { color: var(--fg); }
-.work-filter button[aria-pressed="true"] { background: var(--glow); color: #0c0a06; }
-.work-filter button[aria-pressed="true"] small { opacity: .7; }
 
 .minis { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 255px), 1fr)); }
 .mini { position: relative; display: flex; flex-direction: column; border-radius: 14px; border: 1px solid var(--line); background: linear-gradient(170deg, rgba(17, 24, 42, .9), rgba(10, 15, 27, .95));
@@ -89,8 +83,8 @@ dialog.work::backdrop { background: rgba(4, 7, 22, .82); }
 .mini-top { display: flex; align-items: center; justify-content: space-between; gap: .6rem; }
 .mini-top h4 { margin: 0; font: 600 1.05rem/1.2 var(--display); letter-spacing: .01em; transition: color .3s; }
 .mini:hover .mini-top h4 { color: var(--ac); }
+.work-count { font: 500 .8rem/1 var(--mono); color: var(--muted); padding: .35rem .7rem; border: 1px solid var(--line); border-radius: 999px; }
 .mini-badge { flex: none; padding: .2rem .5rem; border-radius: 999px; border: 1px solid var(--line); font: 500 .6rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-.mini-badge.client { border-color: rgba(240, 179, 71, .45); color: var(--glow); }
 .mini-kind { margin: 0; font: 400 .72rem var(--mono); color: var(--cyan); }
 .mini-blurb { margin: .1rem 0 0; font-size: .85rem; line-height: 1.5; color: var(--muted); }
 .mini-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin: auto 0 0; padding: .5rem 0 0; list-style: none; }

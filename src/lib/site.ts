@@ -19,7 +19,7 @@ export type Project = {
   liveUrl: string;
   tags: string[];
   /** "client" = real customer work, "demo" = concept / landing page demo. */
-  group: "client" | "demo";
+  group: "demo" | "demo";
   /**
    * Preview in the "See the craft" panel:
    * - image + "shot": a website screenshot (best, ~1100x688 webp in /public/img)
@@ -51,7 +51,7 @@ export const projects: Project[] = [
   },
   {
     name: "Coal is King",
-    kind: { sv: "Kolgrill, Stockholm", en: "Charcoal grill, Stockholm" },
+    kind: { sv: "Konceptsajt – kolgrill", en: "Concept site – charcoal grill" },
     blurb: {
       sv: "Komplett ombyggnad i Next.js: glödpartiklar, menykort med filter, bokningsformulär, SV/EN-växling och strukturerad data för sök.",
       en: "Full Next.js rebuild: ember particles, menu card with filters, booking form, SV/EN switch and structured data for search.",
@@ -61,11 +61,11 @@ export const projects: Project[] = [
     theme: ["#0c0a09", "#ff5a1f"],
     liveUrl: "https://coalisking2.vercel.app/",
     tags: ["Next.js", "TypeScript", "CSS animation", "SEO"],
-    group: "client",
+    group: "demo",
   },
   {
     name: "Atilli Berg",
-    kind: { sv: "Barberare, Göteborg", en: "Barber, Gothenburg" },
+    kind: { sv: "Konceptsajt – barberare", en: "Concept site – barber" },
     blurb: {
       sv: "Bokningssystem med adminpanel, kundregister, schemaläggning och automatiska påminnelser via mejl.",
       en: "Booking system with admin panel, client records, scheduling and automatic email reminders.",
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     theme: ["#1a1512", "#b8956a"],
     liveUrl: "https://barberare.vercel.app",
     tags: ["Next.js", "Supabase", "Resend"],
-    group: "client",
+    group: "demo",
   },
   {
     name: "SweGBG Trading",

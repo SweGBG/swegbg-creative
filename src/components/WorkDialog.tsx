@@ -5,9 +5,6 @@ import { projects, type Project } from "@/lib/site";
 import { useLang } from "@/lib/LangContext";
 import type { Dict, Lang } from "@/lib/i18n";
 
-type Filter = "all" | "client" | "demo";
-const FILTERS: Filter[] = ["all", "client", "demo"];
-
 const host = (u: string) => new URL(u).host;
 
 function Arrow() {
@@ -25,7 +22,7 @@ function Featured({ p, lang, w }: { p: Project; lang: Lang; w: Dict["work"] }) {
       <a className="proj-shot" href={p.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${w.open} ${p.name}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {p.image ? <img src={p.image} alt={`${p.name} ${w.preview}`} width="1100" height="688" /> : null}
-        <span className="proj-live"><i /> Live</span>
+        <span className="proj-live"><i /> {w.live}</span>
       </a>
       <div className="proj-body">
         <p className="proj-kind">{p.kind[lang]}</p>
@@ -86,7 +83,7 @@ function Mini({ p, i, live, lang, w }: { p: Project; i: number; live: boolean; l
       <div className="mini-body">
         <div className="mini-top">
           <h4>{p.name}</h4>
-          <span className={`mini-badge ${p.group}`}>{w.badge[p.group]}</span>
+          <span className="mini-badge">{w.badge}</span>
         </div>
         <p className="mini-kind">{p.kind[lang]}</p>
         <p className="mini-blurb">{p.blurb[lang]}</p>
@@ -103,7 +100,6 @@ function Mini({ p, i, live, lang, w }: { p: Project; i: number; live: boolean; l
 /** "See the craft" panel: native <dialog> (focus trap, Esc and inert background come for free). */
 export default function WorkDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
-  const [filter, setFilter] = useState<Filter>("all");
   const { lang, t } = useLang();
   const w = t.work;
   // Live mini-previews load whole websites: skip them on phones to keep the panel smooth.
@@ -112,8 +108,6 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
     setCanLive(!matchMedia("(max-width: 760px), (pointer: coarse)").matches);
   }, []);
   const [featured, ...rest] = projects;
-  const list = rest.filter((p) => filter === "all" || p.group === filter);
-  const count = (f: Filter) => (f === "all" ? rest.length : rest.filter((p) => p.group === f).length);
 
   useEffect(() => {
     const d = ref.current;
@@ -160,17 +154,10 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
           <>
             <div className="work-bar">
               <h3>{w.more}</h3>
-              <div className="work-filter" role="group" aria-label={w.filterAria}>
-                {FILTERS.map((f) => (
-                  <button key={f} aria-pressed={filter === f} onClick={() => setFilter(f)}>
-                    {w.filters[f]} <small>{count(f)}</small>
-                  </button>
-                ))}
-              </div>
+              <small className="work-count">{rest.length}</small>
             </div>
-            {/* key forces the entrance animation to replay when the filter changes */}
-            <div className="minis" key={filter}>
-              {list.map((p, i) => (
+            <div className="minis">
+              {rest.map((p, i) => (
                 <Mini key={p.name} p={p} i={i} live={open && canLive} lang={lang} w={w} />
               ))}
             </div>
