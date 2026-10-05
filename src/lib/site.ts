@@ -92,12 +92,17 @@ export const projects: Project[] = [
     group: "demo",
   },
   {
-    name: "Hitekk",
-    kind: { sv: "Landningssida", en: "Landing page" },
-    blurb: { sv: "Koncept för en landningssida.", en: "One-page landing concept." },
-    theme: ["#0b1220", "#4fc3f7"],
+    name: "HiTekk",
+    kind: { sv: "Elektronikbutik · e-handel", en: "Electronics store · e-commerce" },
+    blurb: {
+      sv: "Kretsbanor som tänds och ljudvågor ur loggan, kategorier som filtrerar, varukorg med fraktmätare och live-nedräkning.",
+      en: "Circuit traces that light up and sound waves from the logo, filtering categories, a cart with shipping meter and a live countdown.",
+    },
+    image: "/img/work-hitekk.webp",
+    imageFit: "shot",
+    theme: ["#060a14", "#5fb4ff"],
     liveUrl: "https://hitekk.vercel.app",
-    tags: ["Next.js"],
+    tags: ["Next.js", "CSS animation", "SV/EN"],
     group: "demo",
   },
   {
