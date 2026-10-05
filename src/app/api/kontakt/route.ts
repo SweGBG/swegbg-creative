@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { autosvar } from "@/lib/autosvar";
 
 // Avsändare måste ligga på verifierad domän (swegbg.com är verifierad i Resend).
 const FROM = "SweGBG Trading <kontakt@swegbg.com>";
@@ -90,43 +91,18 @@ export async function POST(req: Request) {
 
     // 2) Auto-svar till kunden, på deras språk. Misslyckas det har du
     // ändå fått förfrågan, så kunden får fortfarande "skickat".
-    const autosvar = await resend.emails.send({
+    const mail = autosvar({ namn, foretag, typ, meddelande, lang });
+    const autosvarRes = await resend.emails.send({
       from: FROM,
       to: email,
       replyTo: TO,
-      subject: isEn
-        ? "We've received your request — SweGBG Trading"
-        : "Vi har tagit emot din förfrågan — SweGBG Trading",
-      text: isEn
-        ? `Hi ${namn},\n\n` +
-          `Thanks for reaching out! We've received your request and will get back to you within 24 hours.\n\n` +
-          `Your message:\n"${meddelande}"\n\n` +
-          `Best regards,\nSweGBG Trading\nswegbg.com`
-        : `Hej ${namn},\n\n` +
-          `Tack för att du hörde av dig! Vi har tagit emot din förfrågan och återkommer inom 24 timmar.\n\n` +
-          `Ditt meddelande:\n"${meddelande}"\n\n` +
-          `Vänliga hälsningar,\nSweGBG Trading\nswegbg.com`,
-      html: isEn
-        ? `
-          <div style="font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6;color:#111">
-            <p>Hi ${esc(namn)},</p>
-            <p>Thanks for reaching out! We've received your request and will get back to you within 24 hours.</p>
-            <p style="color:#555"><em>Your message:</em><br>"${nl2br(meddelande)}"</p>
-            <p>Best regards,<br><strong>SweGBG Trading</strong><br>swegbg.com</p>
-          </div>
-        `
-        : `
-          <div style="font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6;color:#111">
-            <p>Hej ${esc(namn)},</p>
-            <p>Tack för att du hörde av dig! Vi har tagit emot din förfrågan och återkommer inom 24 timmar.</p>
-            <p style="color:#555"><em>Ditt meddelande:</em><br>"${nl2br(meddelande)}"</p>
-            <p>Vänliga hälsningar,<br><strong>SweGBG Trading</strong><br>swegbg.com</p>
-          </div>
-        `,
+      subject: mail.subject,
+      text: mail.text,
+      html: mail.html,
     });
 
-    if (autosvar.error) {
-      console.error("Resend (autosvar):", autosvar.error);
+    if (autosvarRes.error) {
+      console.error("Resend (autosvar):", autosvarRes.error);
     }
 
     return NextResponse.json({ ok: true });
