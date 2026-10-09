@@ -36,6 +36,20 @@ export type Project = {
 // The FIRST project is featured as the big card, so put the newest one on top.
 export const projects: Project[] = [
   {
+    name: "Botanicatural",
+    kind: { sv: "Hudvård · e-handel", en: "Skincare · e-commerce" },
+    blurb: {
+      sv: "Serumflaskan öppnas när du skrollar: en film som styrs bildruta för bildruta, ett typografiskt herbarium och ritualen lager för lager.",
+      en: "The serum bottle opens as you scroll: a film scrubbed frame by frame, a typographic herbarium and the ritual layer by layer.",
+    },
+    image: "/img/work-botanic.webp",
+    imageFit: "shot",
+    theme: ["#070906", "#c8a96e"],
+    liveUrl: "https://botanic-psi.vercel.app",
+    tags: ["Next.js", "Scroll film", "Canvas", "SV/EN"],
+    group: "demo",
+  },
+  {
     name: "Proviant",
     kind: { sv: "Delikatessbutik", en: "Delicatessen" },
     blurb: {
