@@ -13,6 +13,30 @@ export const site = {
   title: "SweGBG | Hemsidor byggda för hand i Göteborg",
   description:
     "Digitalt hantverk från Göteborg: hemsidor, bokningssystem och egna produktfilmer åt småföretag. Personligt, efter din budget, och allt du köper är ditt.",
+  github: "https://github.com/SweGBG",
+};
+
+/** Search engine texts per language (title ≈ 50–60 chars, description ≈ 140–160). */
+export const seo: Record<"sv" | "en", { title: string; description: string; ogAlt: string; keywords: string[] }> = {
+  sv: {
+    title: site.title,
+    description: site.description,
+    ogAlt: "SweGBG: Hemsidor byggda för hand i Göteborg",
+    keywords: [
+      "webbyrå Göteborg", "hemsida Göteborg", "webbutvecklare Göteborg", "bokningssystem",
+      "hemsida småföretag", "hemsida hantverkare", "Next.js", "SweGBG", "SweGBG Agency",
+    ],
+  },
+  en: {
+    title: "SweGBG | Hand-built websites from Gothenburg, Sweden",
+    description:
+      "Digital craftsmanship from Gothenburg: websites, booking systems and original product films for small businesses. Personal, within your budget, and you own everything.",
+    ogAlt: "SweGBG: Hand-built websites from Gothenburg",
+    keywords: [
+      "web agency Gothenburg", "web developer Gothenburg", "website Sweden", "booking system",
+      "small business website", "Next.js developer", "SweGBG", "SweGBG Agency",
+    ],
+  },
 };
 
 export type Project = {

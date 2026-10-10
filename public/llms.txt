@@ -1,0 +1,31 @@
+# SweGBG
+
+> SweGBG (SweGBG Agency) is a one-person web agency in Gothenburg (Göteborg), Sweden, run by Lennie Söderberg. It builds hand-made websites, booking systems with admin panels, online stores and original AI product films for small businesses. The client owns the code, domain and film from day one. Not to be confused with tyre or holding companies with similar names.
+
+- Website (Swedish): https://www.swegbg.com/
+- Website (English): https://www.swegbg.com/en
+- Contact: kontakt@swegbg.com, +46 72 875 86 10
+- Location: Göteborg, Sweden. Serves all of Sweden.
+- Languages: Swedish, English
+
+## Services
+
+- Websites and landing pages (from 4 999 SEK, up to five pages)
+- Booking systems: online booking, admin panel, client records, email reminders
+- Online stores and B2B quote flows
+- Original AI product films (MiniMax H3), no licensed stock footage
+- SEO and AEO (structured data so search engines and AI assistants understand the business)
+
+## Tech
+
+Next.js, TypeScript, React, Supabase, Resend, Vercel, Figma, Tailwind CSS, hand-written CSS animation.
+
+## Demo work
+
+- Botanicatural (skincare e-commerce): https://botanic-psi.vercel.app
+- Proviant (delicatessen): https://proviant-pi.vercel.app
+- Coal is King (restaurant): https://coalisking2.vercel.app/
+- Atilli Berg (barber booking system): https://barberare.vercel.app
+- IronDäck (tyre workshop with customer portal): https://verkstad-rose.vercel.app
+- HiTekk (electronics e-commerce): https://hitekk.vercel.app
+- Stålco (B2B tool store): https://stalco-theta.vercel.app

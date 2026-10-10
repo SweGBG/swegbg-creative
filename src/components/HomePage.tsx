@@ -10,7 +10,7 @@ import Start from "@/components/sections/Start";
 import Footer from "@/components/Footer";
 import PauseOffscreen from "@/components/PauseOffscreen";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <Hero />
