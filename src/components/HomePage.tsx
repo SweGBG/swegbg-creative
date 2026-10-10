@@ -6,6 +6,7 @@ import Process from "@/components/sections/Process";
 import Pricing from "@/components/sections/Pricing";
 import Ownership from "@/components/sections/Ownership";
 import About from "@/components/sections/About";
+import Faq from "@/components/sections/Faq";
 import Start from "@/components/sections/Start";
 import Footer from "@/components/Footer";
 import PauseOffscreen from "@/components/PauseOffscreen";
@@ -22,6 +23,7 @@ export default function HomePage() {
         <Pricing />
         <Ownership />
         <About />
+        <Faq />
         <Start />
       </main>
       <Footer />

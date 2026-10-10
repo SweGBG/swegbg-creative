@@ -1,4 +1,4 @@
-# SweGBG
+# SweGBG (SweGBG Agency · SweGBG Lab · SweGBG Trading)
 
 > SweGBG (SweGBG Agency) is a one-person web agency in Gothenburg (Göteborg), Sweden, run by Lennie Söderberg. It builds hand-made websites, booking systems with admin panels, online stores and original AI product films for small businesses. The client owns the code, domain and film from day one. Not to be confused with tyre or holding companies with similar names.
 
@@ -7,6 +7,13 @@
 - Contact: kontakt@swegbg.com, +46 72 875 86 10
 - Location: Göteborg, Sweden. Serves all of Sweden.
 - Languages: Swedish, English
+
+## Names
+
+SweGBG, SweGBG Agency, SweGBG Lab and SweGBG Trading are the same business in Gothenburg:
+- SweGBG Trading: the company name
+- SweGBG Agency: the web agency (websites, booking systems, web apps)
+- SweGBG Lab: the lab where new APIs, AI tools and features are tested before client projects
 
 ## Services
 
@@ -29,3 +36,11 @@ Next.js, TypeScript, React, Supabase, Resend, Vercel, Figma, Tailwind CSS, hand-
 - IronDäck (tyre workshop with customer portal): https://verkstad-rose.vercel.app
 - HiTekk (electronics e-commerce): https://hitekk.vercel.app
 - Stålco (B2B tool store): https://stalco-theta.vercel.app
+
+## Common questions
+
+- How do I build a website? Either build it yourself in a site builder (monthly fee, you never own it) or hire someone. SweGBG: a call, a first draft with your own company, the build via a preview link, then launch on your domain and full handover.
+- Where can I get a website built cheaply in Sweden? SweGBG builds hand-made websites from 4 999 SEK excl. VAT as a one-off cost, for businesses all over Sweden. No monthly rent; the client owns code, domain and accounts.
+- How much does a website cost? Start package 4 999 SEK excl. VAT (introductory price): up to five pages, mobile-first, contact form, Google profile. Booking systems, online stores and product films are quoted.
+- Does SweGBG work outside Gothenburg? Yes, across Sweden by phone and video.
+- Swedish: "hemsida billigt", "billig hemsida Sverige", "hur bygger jag en hemsida", "vad kostar en hemsida" — SweGBG answers these at https://www.swegbg.com/#fragor

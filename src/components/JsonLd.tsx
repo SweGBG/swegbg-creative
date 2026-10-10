@@ -1,4 +1,5 @@
-import { site, seo, projects } from "@/lib/site";
+import { site, seo, projects, brandNames } from "@/lib/site";
+import { dict } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
 
 /**
@@ -22,7 +23,9 @@ export default function JsonLd({ lang }: { lang: Lang }) {
         "@type": ["ProfessionalService", "Organization"],
         "@id": `${url}/#org`,
         name: "SweGBG",
-        alternateName: ["SweGBG Agency", "SweGBG Trading", "swegbg.com"],
+        alternateName: [...brandNames.slice(1), "swegbg.com"],
+        brand: brandNames.slice(1).map((name) => ({ "@type": "Brand", name })),
+        keywords: seo[lang].keywords.join(", "),
         url: `${url}/`,
         logo: `${url}/icon.svg`,
         image: `${url}/og.jpg`,
@@ -38,7 +41,7 @@ export default function JsonLd({ lang }: { lang: Lang }) {
         address: { "@type": "PostalAddress", addressLocality: "Göteborg", addressRegion: "Västra Götaland", addressCountry: "SE" },
         areaServed: [
           { "@type": "City", name: "Göteborg" },
-          { "@type": "Country", name: "Sverige" },
+          { "@type": "Country", name: sv ? "Sverige" : "Sweden" },
         ],
         founder: { "@id": `${url}/#lennie` },
         knowsAbout: ["Next.js", "TypeScript", "React", "Supabase", "Resend", "Vercel", "Figma", "Tailwind CSS", "SEO", "AEO", "CSS animation", "AI video"],
@@ -82,6 +85,7 @@ export default function JsonLd({ lang }: { lang: Lang }) {
         "@id": `${url}/#website`,
         url: `${url}/`,
         name: "SweGBG",
+        alternateName: brandNames.slice(1),
         inLanguage: ["sv-SE", "en-US"],
         publisher: { "@id": `${url}/#org` },
       },
@@ -95,6 +99,17 @@ export default function JsonLd({ lang }: { lang: Lang }) {
         isPartOf: { "@id": `${url}/#website` },
         about: { "@id": `${url}/#org` },
         primaryImageOfPage: `${url}/og.jpg`,
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${pageUrl}#faq`,
+        inLanguage: sv ? "sv-SE" : "en-US",
+        isPartOf: { "@id": `${pageUrl}#webpage` },
+        mainEntity: dict[lang].faq.items.map((it) => ({
+          "@type": "Question",
+          name: it.q,
+          acceptedAnswer: { "@type": "Answer", text: it.a },
+        })),
       },
       {
         "@type": "ItemList",

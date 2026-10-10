@@ -17,24 +17,36 @@ export const site = {
 };
 
 /** Search engine texts per language (title ≈ 50–60 chars, description ≈ 140–160). */
+/** Names the business goes by. All of them are the same company in Gothenburg. */
+export const brandNames = ["SweGBG", "SweGBG Agency", "SweGBG Lab", "SweGBG Trading"];
+
+/** Search engine texts per language (title ≈ 50–60 chars, description ≈ 140–160). */
 export const seo: Record<"sv" | "en", { title: string; description: string; ogAlt: string; keywords: string[] }> = {
   sv: {
     title: site.title,
-    description: site.description,
+    description:
+      "SweGBG Agency i Göteborg bygger hemsidor från 4 999 kr åt småföretag i hela Sverige: bokningssystem, webbutiker och egen AI-film. Du äger allt.",
     ogAlt: "SweGBG: Hemsidor byggda för hand i Göteborg",
     keywords: [
-      "webbyrå Göteborg", "hemsida Göteborg", "webbutvecklare Göteborg", "bokningssystem",
-      "hemsida småföretag", "hemsida hantverkare", "Next.js", "SweGBG", "SweGBG Agency",
+      ...brandNames,
+      "hemsida billigt", "billig hemsida", "hemsida billigt Sverige", "hemsida Sverige", "hemsida Göteborg",
+      "bygga hemsida", "hur bygger jag en hemsida", "var kan jag bygga en hemsida billigt", "skaffa hemsida",
+      "vad kostar en hemsida", "hemsida småföretag", "hemsida hantverkare", "hemsida företag",
+      "webbyrå Göteborg", "webbyrå Sverige", "webbutvecklare Göteborg", "webbdesign Göteborg",
+      "bokningssystem hemsida", "webbutik", "Next.js",
     ],
   },
   en: {
     title: "SweGBG | Hand-built websites from Gothenburg, Sweden",
     description:
-      "Digital craftsmanship from Gothenburg: websites, booking systems and original product films for small businesses. Personal, within your budget, and you own everything.",
+      "SweGBG Agency in Gothenburg builds websites from 4,999 SEK for small businesses across Sweden: booking systems, online stores and original AI film. You own it all.",
     ogAlt: "SweGBG: Hand-built websites from Gothenburg",
     keywords: [
-      "web agency Gothenburg", "web developer Gothenburg", "website Sweden", "booking system",
-      "small business website", "Next.js developer", "SweGBG", "SweGBG Agency",
+      ...brandNames,
+      "cheap website Sweden", "affordable website", "website Sweden", "website Gothenburg",
+      "how to build a website", "where to build a website cheap", "website cost Sweden",
+      "small business website", "web agency Gothenburg", "web agency Sweden", "web developer Gothenburg",
+      "booking system website", "Next.js developer",
     ],
   },
 };
