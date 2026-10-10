@@ -25,16 +25,16 @@ const hex = (R: number) =>
   }).join(" ");
 const RING_TEXT = "SWEGBG · WEB AGENCY · GÖTEBORG · EST. 2026 · ";
 
-export default function HeroEmblem() {
+export default function HeroEmblem({ children }: { children?: React.ReactNode }) {
   return (
-    <div className="hx" aria-hidden="true">
-      <span className="hx-halo" />
-      <div className="hx-dust">
+    <div className="hx">
+      <span className="hx-halo" aria-hidden="true" />
+      <div className="hx-dust" aria-hidden="true">
         {DUST.map((g, i) => (
           <i key={i} style={{ ["--x" as string]: g.x, ["--y" as string]: g.y, ["--dl" as string]: g.dl, ["--s" as string]: g.s }} />
         ))}
       </div>
-      <svg className="hx-svg" viewBox="0 0 400 400" fill="none">
+      <svg className="hx-svg" viewBox="0 0 400 400" fill="none" aria-hidden="true">
         <defs>
           <linearGradient id="hxGold" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#fff1c9" />
@@ -62,12 +62,13 @@ export default function HeroEmblem() {
         </g>
         <circle className="hx-dot" cx="200" cy="292" r="5" />
       </svg>
-      <span className="hx-gloss" />
-      <div className="hx-sparks">
+      <span className="hx-gloss" aria-hidden="true" />
+      <div className="hx-sparks" aria-hidden="true">
         {SPARKS.map((s, i) => (
           <i key={i} style={{ left: s.left, top: s.top, ["--d" as string]: s.d, ["--t" as string]: s.t }} />
         ))}
       </div>
+      {children}
     </div>
   );
 }

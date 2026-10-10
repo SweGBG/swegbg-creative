@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { apps, projects, type App, type Project } from "@/lib/site";
 import { useLang } from "@/lib/LangContext";
+import { useContact } from "./ContactDialog";
 import type { Dict, Lang } from "@/lib/i18n";
 
 const host = (u: string) => new URL(u).host;
@@ -148,6 +149,7 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
   const ref = useRef<HTMLDialogElement>(null);
   const { lang, t } = useLang();
   const w = t.work;
+  const openContact = useContact();
   // Live mini-previews load whole websites: skip them on phones to keep the panel smooth.
   const [canLive, setCanLive] = useState(false);
   useEffect(() => {
@@ -221,6 +223,21 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
             ))}
           </>
         ) : null}
+
+        <div className="work-own">
+          <span>{w.own}</span>
+          <button
+            type="button"
+            className="pbtn pbtn-main"
+            onClick={() => {
+              onClose();
+              openContact();
+            }}
+          >
+            <span>{w.ownBtn}</span>
+            <Arrow />
+          </button>
+        </div>
       </div>
     </dialog>
   );

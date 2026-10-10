@@ -23,7 +23,7 @@ function Headline({ lines }: { lines: string[] }) {
   return (
     <h1 aria-label={lines.join(" ")}>
       {lines.map((line, li) => (
-        <span key={li} className="h1line" aria-hidden="true">
+        <span key={li} className={li === 1 ? "h1line gold" : "h1line"} aria-hidden="true">
           {line.split(" ").map((word, wi) => {
             const letters = word.split("").map((ch, k) => (
               <span key={k} className="l" style={{ ["--i" as string]: i + k }}>
@@ -48,6 +48,13 @@ function Headline({ lines }: { lines: string[] }) {
   );
 }
 
+const ic = { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, "aria-hidden": true };
+const TRUST_ICONS = [
+  <svg key="a" {...ic}><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>,
+  <svg key="b" {...ic}><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>,
+  <svg key="c" {...ic}><circle cx="12" cy="12" r="10" /><path d="M12 6v6l4 2" /></svg>,
+];
+
 function star(x: number, y: number, k: number, big: boolean) {
   const e = document.createElement("i");
   const sz = big ? 2.4 + Math.random() * 1.4 : 0.9 + Math.random() * 1.3;
@@ -70,8 +77,8 @@ export default function Hero() {
     if (!hero) return;
     const q = <T extends HTMLElement>(s: string) => hero.querySelector(s) as T;
     const bg = q(".hero-bg"), shade = q(".shade"), sun = q(".sunbox"), moon = q(".moonbox"),
-      body = q(".hero-body"), h1 = q("h1"), d2 = q(".dusk2"), fx = q("#stars"), nfx = q("#nstars"),
-      sh = q(".shoots"), scene = q(".scene"), ng = q(".ng"), aur = hero.querySelector<HTMLElement>(".aurora");
+      body = q(".hero-body"), d2 = q(".dusk2"), fx = q("#stars"), nfx = q("#nstars"),
+      sh = q(".shoots"), scene = q(".scene"), cap = hero.querySelector<HTMLElement>(".hx-cap"), ng = q(".ng"), aur = hero.querySelector<HTMLElement>(".aurora");
     const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
     const dayNight = !!sun; // the aurora scene has no sun/moon/star layers
     const light = matchMedia("(max-width: 760px), (pointer: coarse)").matches; // phones: skip the costly scaling
@@ -134,7 +141,7 @@ export default function Hero() {
       body.style.translate = `0 ${-p * 60}px`;
       body.style.scale = String(1 - p * 0.04);
       body.style.opacity = String(Math.max(0, 1 - p * 1.4));
-      if (!light) h1.style.scale = `${1 + p * 0.22} 1`;
+      if (cap) cap.style.opacity = String(Math.max(0, 1 - p * 1.6));
       sh.style.opacity = String(c01((p - 0.4) * 2));
     };
     const tick = (t: number) => {
@@ -193,7 +200,12 @@ export default function Hero() {
             <div className="au-rays" />
             <div className="au-water" />
             <div className="hx-engrave" aria-hidden="true" />
-            <HeroEmblem />
+            <HeroEmblem>
+              <div className="hx-cap">
+                <p className="hero-kicker"><span aria-hidden="true" />{t.hero.kicker}<span aria-hidden="true" /></p>
+                <Headline key={t.hero.lines.join()} lines={t.hero.lines} />
+              </div>
+            </HeroEmblem>
           </div>
         ) : (
           <>
@@ -257,7 +269,6 @@ export default function Hero() {
       </div>
 
       <div className="wrap hero-body">
-        <Headline key={t.hero.lines.join()} lines={t.hero.lines} />
         <p className="lead">{t.hero.lead}</p>
         <div className="btns">
           <a
@@ -274,6 +285,14 @@ export default function Hero() {
             {t.hero.talk}
           </a>
         </div>
+        <ul className="trust">
+          {t.hero.trust.map((x, i) => (
+            <li key={x}>
+              {TRUST_ICONS[i]}
+              {x}
+            </li>
+          ))}
+        </ul>
       </div>
       <WorkDialog open={work} onClose={() => setWork(false)} />
     </header>

@@ -4,12 +4,15 @@ import type { L } from "./i18n";
 export const site = {
   brand: "SweGBG",
   url: "https://www.swegbg.com",
+  phone: "072-875 86 10",
+  phoneHref: "tel:+46728758610",
+  email: "kontakt@swegbg.com",
   // Hero background: "aurora" = blood moon + animated northern lights,
   // "daynight" = the sun sets and the moon rises (25 s loop).
   heroScene: "aurora" as "aurora" | "daynight",
-  title: "SweGBG | Var kreativ med din passion",
+  title: "SweGBG | Hemsidor byggda för hand i Göteborg",
   description:
-    "Skräddarsydda hemsidor och webbappar i Next.js från Göteborg, för dig som vågar starta något.",
+    "Digitalt hantverk från Göteborg: hemsidor, bokningssystem och egna produktfilmer åt småföretag. Personligt, efter din budget, och allt du köper är ditt.",
 };
 
 export type Project = {
@@ -143,8 +146,8 @@ export const apps: App[] = [
     name: "SweGBGPlayer",
     kind: { sv: "Windows-app · tre appar i en", en: "Windows app · three apps in one" },
     blurb: {
-      sv: "Mediaspelare med inbyggd musik-grabber och undertexter som laddas ner automatiskt. Gratis att ladda ner.",
-      en: "Media player with a built-in music grabber and subtitles that download automatically. Free to download.",
+      sv: "Jag bygger också skräddarsydda appar för ditt företag. SweGBGPlayer är ett exempel: en mediaspelare med inbyggd musik-grabber och automatiska undertexter, gratis att ladda ner och testa.",
+      en: "I also build custom apps for your business. SweGBGPlayer is one example: a media player with a built-in music grabber and automatic subtitles, free to download and try.",
     },
     features: [
       { t: { sv: "Mediaspelare", en: "Media player" }, d: { sv: "MP4, MKV, AVI, MOV, MP3, FLAC m.fl. med spellista", en: "MP4, MKV, AVI, MOV, MP3, FLAC and more, with playlist" } },

@@ -65,12 +65,20 @@
 /* Text */
 .hero-body { position: relative; z-index: 3; margin-block: auto 0; padding: 3rem 0 4.5rem; text-align: center; will-change: transform;
   --ink: #fff0c8; --ink2: #2a0b00; --shd: rgba(6, 10, 44, .9); }
-h1 { font: 700 clamp(2.9rem, min(9.6vw, 13svh), 7.6rem) / .98 var(--display); letter-spacing: -.01em; margin: 0 0 1.5rem; color: var(--ink);
-  text-shadow: 0 0 36px var(--shd), 0 0 14px var(--shd); }
-.h1line { display: block; }
-h1 .w { display: inline-block; white-space: nowrap; }
+.hero h1 { font: 600 clamp(1.45rem, min(3vw, 4.6svh), 2.6rem) / 1.08 var(--display); letter-spacing: -.01em; margin: 0; color: var(--ink, #fff0c8);
+  text-shadow: 0 0 36px rgba(6, 10, 44, .9), 0 0 14px rgba(6, 10, 44, .9); text-wrap: balance; }
+/* Kicker + headline sit right under the emblem (rendered inside .hx) */
+.hx-cap { position: absolute; left: 50%; top: calc(100% + clamp(8px, 1.8svh, 18px)); translate: -50% 0; width: max-content; max-width: 92vw;
+  display: flex; flex-direction: column; align-items: center; gap: clamp(8px, 1.4svh, 14px); text-align: center; pointer-events: auto; color: #fff0c8; }
+.hero-kicker { margin: 0; display: inline-flex; align-items: center; gap: 12px; font: 500 clamp(11px, 1.1vw, 13px) var(--mono); letter-spacing: .24em; text-transform: uppercase;
+  color: var(--glow); text-shadow: 0 0 12px rgba(6, 10, 44, .9); animation: fadeIn 1.2s 1.3s both; }
+.hero-kicker span { width: 22px; height: 1px; background: var(--glow); }
+.h1line { display: inline; } .h1line + .h1line::before { content: " "; }
+.h1line.gold { color: var(--glow); }
+@media (max-width: 640px) { .h1line { display: block; } .h1line + .h1line::before { content: none; } }
+.hero h1 .w { display: inline-block; white-space: nowrap; }
 /* Letters rise out of a blur, one after another: calm, no bounce or rotation. */
-h1 .l { display: inline-block; animation: rise-l 1s calc(.3s + var(--i) * 38ms) cubic-bezier(.2, .8, .2, 1) both; }
+.hero h1 .l { display: inline-block; animation: rise-l 1s calc(1.6s + var(--i) * 28ms) cubic-bezier(.2, .8, .2, 1) both; }
 @keyframes rise-l { from { opacity: 0; transform: translateY(.45em); filter: blur(10px); } to { opacity: 1; transform: none; filter: none; } }
 /* Glitch on hover (from the original swegbg.com): blue and red copies flicker over the word. */
 h1 .gl { position: relative; cursor: default; }
@@ -84,6 +92,10 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 .lead { margin: 0 auto 2rem; max-width: 34ch; font-size: clamp(1.1rem, 2.4vw, 1.4rem); font-weight: 500; color: var(--ink);
   text-shadow: 0 0 18px var(--shd), 0 0 8px var(--shd); animation: rise 1.2s .8s cubic-bezier(.2, .8, .2, 1) both; }
 .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; animation: rise 1.2s 1.05s cubic-bezier(.2, .8, .2, 1) both; }
+.trust { list-style: none; margin: 1.8rem 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 1.75rem; font-size: .9rem; color: #dfe3ec;
+  text-shadow: 0 0 10px var(--shd); animation: rise 1.2s 1.3s cubic-bezier(.2, .8, .2, 1) both; }
+.trust li { display: flex; align-items: center; gap: .5rem; }
+.trust svg { width: 18px; height: 18px; flex: none; color: var(--glow); }
 /* Buttons in the original swegbg.com style: square-ish, mono, gold with a light sweep */
 .btn { position: relative; overflow: hidden; display: inline-block; padding: .95rem 1.7rem; border-radius: 3px; font: 600 .86rem/1 var(--mono); letter-spacing: .03em; text-decoration: none; transition: transform .25s, box-shadow .3s, border-color .3s, color .3s, background .3s; }
 .btn.main { background: var(--glow); color: #0c0a06; }
@@ -251,3 +263,13 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   @keyframes rise-m { from { opacity: 0; transform: translateY(.45em); } to { opacity: 1; transform: none; } }
 }
 @media (prefers-reduced-motion: reduce) { .hx-mono path { stroke-dashoffset: 0; } }
+
+/* Phones: emblem a bit higher and the caption tighter, so the headline never meets the lead text */
+@media (max-width: 640px) {
+  .hero { min-height: max(100svh, 780px); }
+  .aurora { --sy: 20%; }
+  .hero h1 { font-size: clamp(1.2rem, 5.6vw, 1.45rem); }
+  .hero-body { padding-bottom: 3rem; }
+  .hero .lead { font-size: 1.02rem; margin-bottom: 1.5rem; }
+  .trust { margin-top: 1.3rem; }
+}

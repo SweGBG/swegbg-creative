@@ -18,6 +18,7 @@ import "@/styles/hero.css";
 import "@/styles/sections.css";
 import "@/styles/work.css";
 import "@/styles/contact.css";
+import "@/styles/home.css";
 
 // Share preview (SMS, Messenger, LinkedIn, Slack …): public/og.jpg, 1200x630.
 // To update it, take a new 1200x630 screenshot of the hero and replace the file.
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     title: site.title,
     description: site.description,
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "SweGBG: Var kreativ med din passion" }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "SweGBG: Hemsidor byggda för hand" }],
   },
   twitter: {
     card: "summary_large_image",
