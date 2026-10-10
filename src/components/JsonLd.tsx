@@ -46,7 +46,8 @@ export default function JsonLd({ lang }: { lang: Lang }) {
         founder: { "@id": `${url}/#lennie` },
         knowsAbout: ["Next.js", "TypeScript", "React", "Supabase", "Resend", "Vercel", "Figma", "Tailwind CSS", "SEO", "AEO", "CSS animation", "AI video"],
         knowsLanguage: ["sv", "en"],
-        sameAs: [site.github],
+        sameAs: [site.googleProfile, site.github],
+        hasMap: site.googleProfile,
         contactPoint: {
           "@type": "ContactPoint",
           contactType: "customer service",
