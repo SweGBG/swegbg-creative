@@ -76,8 +76,10 @@
 
 /* 06 About */
 .about { overflow: hidden; }
-.about-engrave { position: absolute; right: -5%; top: 50%; width: min(760px, 70%); aspect-ratio: 1408 / 768; translate: 0 -50%; opacity: .12; pointer-events: none;
-  background: url(/img/hero-engraving.webp) center / contain no-repeat; }
+.about-engrave { position: absolute; right: -4%; top: 50%; width: min(820px, 72%); aspect-ratio: 1408 / 768; translate: 0 -50%; opacity: .2; pointer-events: none;
+  background: url(/img/about-engraving.webp) center / contain no-repeat;
+  -webkit-mask: radial-gradient(58% 62% at 50% 52%, #000 55%, transparent 100%); mask: radial-gradient(58% 62% at 50% 52%, #000 55%, transparent 100%); }
+@media (max-width: 760px) { .about-engrave { width: 120%; right: -35%; opacity: .12; } }
 .about-in { position: relative; max-width: 44rem; display: flex; flex-direction: column; gap: 1.1rem; }
 .about-in .shead { margin-bottom: .5rem; }
 .about-in > p { margin: 0; font-size: 1.1rem; color: #c9cfdb; }
@@ -113,3 +115,6 @@
   .rv:not([data-in]) .ws-card, .rv:not([data-in]) .steps4 li { opacity: 1; }
   .ws-card, .teaser-stack img, .plan-btn, .btn-line { transition: none; }
 }
+
+/* 03 Process: step label above each title in the pipeline */
+.pn-n { display: block; margin-bottom: .45rem; font: 600 .78rem var(--mono); letter-spacing: .16em; color: var(--glow); }
