@@ -91,6 +91,20 @@ export const projects: Project[] = [
     group: "demo",
   },
   {
+    name: "SweProtein",
+    kind: { sv: "Konceptsajt – proteinshake", en: "Concept site – protein shake" },
+    blurb: {
+      sv: "Konceptsajt för kunder. Allt kan anpassas efter din produkt och ditt varumärke.",
+      en: "Concept site for clients. Everything can be adapted to your product and brand.",
+    },
+    image: "/img/work-sweprotein.webp",
+    imageFit: "shot",
+    theme: ["#170c12", "#ff3d8b"],
+    liveUrl: "https://sweprotein.vercel.app",
+    tags: ["Next.js", "Egenproducerad AI-film", "Figma", "CSS-animation", "SV/EN"],
+    group: "demo",
+  },
+  {
     name: "Proviant",
     kind: { sv: "Delikatessbutik", en: "Delicatessen" },
     blurb: {
