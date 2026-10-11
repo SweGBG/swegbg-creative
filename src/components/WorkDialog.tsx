@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { apps, projects, type App, type Project } from "@/lib/site";
+import { apps, projects, FEATURED_COUNT, type App, type Project } from "@/lib/site";
 import { useLang } from "@/lib/LangContext";
 import { useContact } from "./ContactDialog";
 import type { Dict, Lang } from "@/lib/i18n";
@@ -17,9 +17,9 @@ function Arrow() {
 }
 
 /** Big card for the featured (first) project. */
-function Featured({ p, lang, w }: { p: Project; lang: Lang; w: Dict["work"] }) {
+function Featured({ p, lang, w, flip }: { p: Project; lang: Lang; w: Dict["work"]; flip?: boolean }) {
   return (
-    <article className="proj" style={{ ["--bg" as string]: (p.theme ?? ["#0c0a09", "#ff5a1f"])[0], ["--ac" as string]: (p.theme ?? ["#0c0a09", "#ff5a1f"])[1] }}>
+    <article className={flip ? "proj proj-flip" : "proj"} style={{ ["--bg" as string]: (p.theme ?? ["#0c0a09", "#ff5a1f"])[0], ["--ac" as string]: (p.theme ?? ["#0c0a09", "#ff5a1f"])[1] }}>
       <a className="proj-shot" href={p.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${w.open} ${p.name}`}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         {p.image ? <img src={p.image} alt={`${p.name} ${w.preview}`} width="1100" height="688" /> : null}
@@ -155,7 +155,8 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
   useEffect(() => {
     setCanLive(!matchMedia("(max-width: 760px), (pointer: coarse)").matches);
   }, []);
-  const [featured, ...rest] = projects;
+  const featured = projects.slice(0, FEATURED_COUNT);
+  const rest = projects.slice(FEATURED_COUNT);
 
   useEffect(() => {
     const d = ref.current;
@@ -196,7 +197,13 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
           </button>
         </header>
 
-        {featured ? <Featured p={featured} lang={lang} w={w} /> : null}
+        {featured.length ? (
+          <div className="projs">
+            {featured.map((p, i) => (
+              <Featured key={p.name} p={p} lang={lang} w={w} flip={i % 2 === 1} />
+            ))}
+          </div>
+        ) : null}
 
         {rest.length ? (
           <>

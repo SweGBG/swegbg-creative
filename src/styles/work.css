@@ -110,3 +110,10 @@ dialog.work::backdrop { background: rgba(4, 7, 22, .82); }
 .app-feats span { font-size: .82rem; line-height: 1.35; color: rgba(239, 229, 209, .62); }
 .pbtn-dl:hover svg { transform: translateY(3px); }
 .app-note { margin: .8rem 0 0; font-size: .74rem; line-height: 1.4; color: rgba(239, 229, 209, .45); max-width: 44ch; }
+/* Two big featured cards stacked; the second mirrors the layout (image on the right). */
+.projs { display: grid; gap: clamp(1rem, 2vw, 1.4rem); }
+@media (min-width: 760px) {
+  .proj-flip { grid-template-columns: 1fr 1.15fr; }
+  .proj-flip .proj-shot { order: 2; }
+  .proj-flip { background: radial-gradient(80% 90% at 0% 0%, color-mix(in srgb, var(--ac) 14%, transparent), transparent 60%), linear-gradient(200deg, color-mix(in srgb, var(--bg) 85%, #fff 4%), var(--bg)); }
+}

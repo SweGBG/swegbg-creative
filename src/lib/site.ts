@@ -74,7 +74,8 @@ export type Project = {
 };
 
 // Add more projects here and they show up in the "See the craft" panel.
-// The FIRST project is featured as the big card, so put the newest one on top.
+// The first FEATURED_COUNT projects get big cards (newest on top); the rest become mini cards.
+export const FEATURED_COUNT = 2;
 export const projects: Project[] = [
   {
     name: "SweProtein",
