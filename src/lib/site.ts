@@ -77,20 +77,6 @@ export type Project = {
 // The FIRST project is featured as the big card, so put the newest one on top.
 export const projects: Project[] = [
   {
-    name: "Botanicatural",
-    kind: { sv: "Hudvård · e-handel", en: "Skincare · e-commerce" },
-    blurb: {
-      sv: "Demosajt för hudvård och e-handel, byggd kring en produktfilm vi själva producerat med AI (MiniMax H3), så ingen licensad stockfilm och inga upphovsrättsproblem. Filmen styrs av scrollen och varvas med Figma-designade bildlager. Konceptet anpassas efter din produkt och ditt varumärke.",
-      en: "E-commerce demo for skincare, built around a product film we produce ourselves with AI (MiniMax H3), so no licensed stock footage and no copyright issues. The film is driven by scroll and layered with imagery designed in Figma. The concept adapts to your product and brand.",
-    },
-    image: "/img/work-botanic.webp",
-    imageFit: "shot",
-    theme: ["#070906", "#c8a96e"],
-    liveUrl: "https://botanic-psi.vercel.app",
-    tags: ["Next.js", "Egenproducerad AI-film", "Figma", "Videoredigering", "SV/EN"],
-    group: "demo",
-  },
-  {
     name: "SweProtein",
     kind: { sv: "Konceptsajt – proteinshake", en: "Concept site – protein shake" },
     blurb: {
@@ -102,6 +88,20 @@ export const projects: Project[] = [
     theme: ["#170c12", "#ff3d8b"],
     liveUrl: "https://sweprotein.vercel.app",
     tags: ["Next.js", "Egenproducerad AI-film", "Figma", "CSS-animation", "SV/EN"],
+    group: "demo",
+  },
+  {
+    name: "Botanicatural",
+    kind: { sv: "Hudvård · e-handel", en: "Skincare · e-commerce" },
+    blurb: {
+      sv: "Demosajt för hudvård och e-handel, byggd kring en produktfilm vi själva producerat med AI (MiniMax H3), så ingen licensad stockfilm och inga upphovsrättsproblem. Filmen styrs av scrollen och varvas med Figma-designade bildlager. Konceptet anpassas efter din produkt och ditt varumärke.",
+      en: "E-commerce demo for skincare, built around a product film we produce ourselves with AI (MiniMax H3), so no licensed stock footage and no copyright issues. The film is driven by scroll and layered with imagery designed in Figma. The concept adapts to your product and brand.",
+    },
+    image: "/img/work-botanic.webp",
+    imageFit: "shot",
+    theme: ["#070906", "#c8a96e"],
+    liveUrl: "https://botanic-psi.vercel.app",
+    tags: ["Next.js", "Egenproducerad AI-film", "Figma", "Videoredigering", "SV/EN"],
     group: "demo",
   },
   {
