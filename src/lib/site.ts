@@ -78,6 +78,20 @@ export type Project = {
 export const FEATURED_COUNT = 2;
 export const projects: Project[] = [
   {
+    name: "Pizzeria dell'Anima",
+    kind: { sv: "Premiumkoncept – pizzeria", en: "Premium concept – pizzeria" },
+    blurb: {
+      sv: "Premiumkoncept för restaurang. Heron är en film vi producerat själva med AI (MiniMax H3) som spolas fram med scrollen – från deg till färdig pizza, utan licensad stockfilm. Skräddarsydda animationer i Figma, CSS och TypeScript, med snabb laddning även på mobil. Meny, bordsbokning och öppettider ingår, och allt anpassas efter din verksamhet.",
+      en: "Premium restaurant concept. The hero is a film we produce ourselves with AI (MiniMax H3), scrubbed by your scroll – from dough to finished pizza, with no licensed stock footage. Custom animations in Figma, CSS and TypeScript, fast-loading on phones too. Menu, table booking and opening hours are included, and everything adapts to your business.",
+    },
+    image: "/img/work-pizzeria.webp",
+    imageFit: "shot",
+    theme: ["#0e0c0b", "#e2412b"],
+    liveUrl: "https://pizzeria-dellanima.vercel.app",
+    tags: ["Next.js", "TypeScript", "Egenproducerad AI-film", "Figma", "CSS-animation", "SV/EN"],
+    group: "demo",
+  },
+  {
     name: "SweProtein",
     kind: { sv: "Konceptsajt – proteinshake", en: "Concept site – protein shake" },
     blurb: {
