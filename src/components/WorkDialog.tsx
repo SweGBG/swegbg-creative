@@ -163,6 +163,7 @@ function Hand({ cards, active, onPick, w, lang }: { cards: Project[]; active: nu
               role="tab"
               aria-selected={active === i}
               className={`pcard${active === i ? " on" : ""}${red ? " red" : ""}`}
+              data-suit={suit}
               style={{ ["--o" as string]: i - mid, ["--i" as string]: i, ["--bg" as string]: bg, ["--ac" as string]: ac }}
               onClick={() => onPick(i)}
             >

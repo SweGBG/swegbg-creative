@@ -124,34 +124,51 @@ dialog.work::backdrop { background: rgba(4, 7, 22, .82); }
 .hand { position: relative; height: calc(var(--cw) * 1.4 + 3.2rem); }
 .pcard {
   position: absolute; left: 50%; bottom: .4rem; width: var(--cw); aspect-ratio: 5 / 7; margin-left: calc(var(--cw) / -2);
-  display: flex; flex-direction: column; align-items: center; padding: 1.55rem .55rem .6rem; border: 0; border-radius: 12px; cursor: pointer;
-  background: linear-gradient(170deg, #fffdf7, #f3ead6); color: #1b1714; text-align: center;
-  box-shadow: 0 0 0 1px rgba(27, 23, 20, .12), 0 1px 0 rgba(255, 255, 255, .8) inset, -6px 10px 22px -8px rgba(0, 0, 0, .55);
+  display: flex; flex-direction: column; align-items: center; padding: 1.55rem .55rem .6rem; border: 0; border-radius: 12px; cursor: pointer; isolation: isolate; overflow: hidden;
+  /* cream card tinted by the project's accent, with a faint diagonal weave */
+  background:
+    radial-gradient(130% 55% at 50% 0%, color-mix(in srgb, var(--ac) 22%, transparent), transparent 70%),
+    radial-gradient(90% 45% at 50% 100%, color-mix(in srgb, var(--ac) 14%, transparent), transparent 70%),
+    repeating-linear-gradient(45deg, color-mix(in srgb, var(--ac) 7%, transparent) 0 2px, transparent 2px 9px),
+    linear-gradient(170deg, #fffdf7, #f4ecdb);
+  color: #1b1714; text-align: center;
+  box-shadow:
+    inset 0 0 0 4px #fffdf7, inset 0 0 0 5.5px color-mix(in srgb, var(--ac) 60%, transparent),
+    0 0 0 1px rgba(27, 23, 20, .14), -6px 10px 22px -8px rgba(0, 0, 0, .55);
   transform-origin: 50% 170%;
   transform: translateX(calc(var(--o) * var(--spread))) rotate(calc(var(--o) * var(--ang)));
   transition: transform .55s cubic-bezier(.22, 1, .36, 1), box-shadow .4s;
   z-index: calc(10 + var(--i));
 }
+/* big faint suit watermark */
+.pcard::after { content: attr(data-suit); position: absolute; z-index: -1; right: -.12em; bottom: -.28em; font-size: calc(var(--cw) * .9); line-height: 1; color: var(--ac); opacity: .1; pointer-events: none; }
+/* holographic foil sweep on hover / pick */
+.pcard::before {
+  content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; border-radius: inherit; mix-blend-mode: soft-light;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, .85) 42%, color-mix(in srgb, var(--ac) 60%, #7ff) 48%, rgba(255, 210, 120, .7) 54%, transparent 66%) no-repeat;
+  background-size: 250% 100%; background-position: 160% 0; transition: background-position 1s cubic-bezier(.22, 1, .36, 1);
+}
+.pcard:hover::before, .pcard.on::before { background-position: -60% 0; }
 dialog.work[open] .pcard { animation: deal .8s calc(.15s + var(--i) * 70ms) cubic-bezier(.22, 1, .36, 1) backwards; }
 @keyframes deal { from { transform: translateY(70px) rotate(0deg); opacity: 0; } }
 .pcard:hover, .pcard:focus-visible { transform: translateX(calc(var(--o) * var(--spread))) translateY(-18px) rotate(calc(var(--o) * var(--ang))); outline: none; }
 .pcard.on {
   transform: translateX(calc(var(--o) * var(--spread))) translateY(-34px) rotate(calc(var(--o) * var(--ang) * .5)) scale(1.06);
-  box-shadow: 0 0 0 2px var(--ac), 0 0 30px -4px color-mix(in srgb, var(--ac) 70%, transparent), -6px 18px 30px -10px rgba(0, 0, 0, .7);
+  box-shadow: inset 0 0 0 4px #fffdf7, inset 0 0 0 5.5px var(--ac), 0 0 0 2px var(--ac), 0 0 34px -2px color-mix(in srgb, var(--ac) 75%, transparent), -6px 18px 30px -10px rgba(0, 0, 0, .7);
   z-index: 30;
 }
-.pc-corner { position: absolute; display: grid; justify-items: center; line-height: .9; font-family: var(--display); color: #1b1714; }
-.pcard.red .pc-corner { color: #c8301e; }
+.pc-corner { position: absolute; z-index: 2; display: grid; justify-items: center; line-height: .9; font-family: var(--display); color: color-mix(in srgb, var(--ac) 70%, #1b1714); }
 .pc-corner b { font-size: calc(var(--cw) * .1); font-weight: 800; }
 .pc-corner i { font-style: normal; font-size: calc(var(--cw) * .1); }
 .pc-corner.tl { top: .45rem; left: .5rem; }
 .pc-corner.br { bottom: .45rem; right: .5rem; transform: rotate(180deg); }
-.pc-face { position: relative; width: 100%; flex: 1; min-height: 0; overflow: hidden; border-radius: 7px; background: var(--bg); box-shadow: 0 0 0 2px var(--ac), 0 0 0 4px #fffdf7, 0 0 0 5px rgba(27, 23, 20, .18); }
+.pc-face { position: relative; z-index: 1; width: 100%; flex: 1; min-height: 0; overflow: hidden; border-radius: 7px; background: var(--bg); box-shadow: 0 0 0 2px var(--ac), 0 0 0 4px #fffdf7, 0 0 0 5px color-mix(in srgb, var(--ac) 40%, transparent), 0 6px 14px -6px color-mix(in srgb, var(--ac) 60%, transparent); }
+.pc-face::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--bg) 55%, transparent)); pointer-events: none; }
 .pc-face img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; transition: transform .8s cubic-bezier(.22, 1, .36, 1); }
 .pcard:hover .pc-face img, .pcard.on .pc-face img { transform: scale(1.08); }
 .pc-ph { display: grid; place-items: center; height: 100%; font: 800 2.4rem var(--display); color: var(--ac); }
-.pc-name { margin-top: .55rem; font: 800 calc(var(--cw) * .088)/1.05 var(--display); letter-spacing: -.01em; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.pc-kind { margin: .15rem 0 .9rem; font: italic 400 calc(var(--cw) * .066)/1.1 Georgia, serif; color: color-mix(in srgb, var(--ac) 75%, #1b1714); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-name { position: relative; z-index: 1; margin-top: .55rem; font: 800 calc(var(--cw) * .088)/1.05 var(--display); letter-spacing: -.01em; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pc-kind { position: relative; z-index: 1; margin: .15rem 0 .9rem; font: italic 400 calc(var(--cw) * .066)/1.1 Georgia, serif; color: color-mix(in srgb, var(--ac) 75%, #1b1714); max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .proj-picked .proj { animation: pickin .6s cubic-bezier(.22, 1, .36, 1); }
 @keyframes pickin { from { opacity: 0; transform: translateY(18px); } }
 @media (max-width: 560px) { .hand-wrap { --cw: 92px; --spread: 30px; --ang: 3.5deg; } .hand { overflow: visible; } .pc-kind { display: none; } .pc-name { margin-bottom: .9rem; } }
