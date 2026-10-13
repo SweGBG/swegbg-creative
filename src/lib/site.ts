@@ -116,7 +116,7 @@ export const projects: Project[] = [
     image: "/img/work-pizzeria.webp",
     imageFit: "shot",
     theme: ["#0e0c0b", "#e2412b"],
-    liveUrl: "https://pizzeria-dellanima.vercel.app",
+    liveUrl: "https://pizza-orcin-eight.vercel.app",
     tags: ["Next.js", "TypeScript", "Egenproducerad AI-film", "Figma", "CSS-animation", "SV/EN"],
     group: "demo",
   },
