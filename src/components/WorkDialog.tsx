@@ -144,6 +144,45 @@ function Mini({ p, i, live, lang, w }: { p: Project; i: number; live: boolean; l
   );
 }
 
+const SUITS = ["\u2660", "\u2665", "\u2666", "\u2663"]; // ♠ ♥ ♦ ♣
+
+/** The featured projects dealt as a fanned hand of playing cards. Picking a card shows it big below. */
+function Hand({ cards, active, onPick, w, lang }: { cards: Project[]; active: number; onPick: (i: number) => void; w: Dict["work"]; lang: Lang }) {
+  const mid = (cards.length - 1) / 2;
+  return (
+    <div className="hand-wrap">
+      <div className="hand" role="tablist" aria-label={w.hand}>
+        {cards.map((p, i) => {
+          const [bg, ac] = p.theme ?? ["#0c0a09", "#ff5a1f"];
+          const suit = SUITS[i % 4];
+          const red = i % 4 === 1 || i % 4 === 2;
+          return (
+            <button
+              key={p.name}
+              type="button"
+              role="tab"
+              aria-selected={active === i}
+              className={`pcard${active === i ? " on" : ""}${red ? " red" : ""}`}
+              style={{ ["--o" as string]: i - mid, ["--i" as string]: i, ["--bg" as string]: bg, ["--ac" as string]: ac }}
+              onClick={() => onPick(i)}
+            >
+              <span className="pc-corner tl" aria-hidden="true"><b>{String(i + 1).padStart(2, "0")}</b><i>{suit}</i></span>
+              <span className="pc-face">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                {p.image ? <img src={p.image} alt="" loading="lazy" /> : <span className="pc-ph">{p.name.charAt(0)}</span>}
+              </span>
+              <span className="pc-name">{p.name}</span>
+              <span className="pc-kind">{p.kind[lang]}</span>
+              <span className="pc-corner br" aria-hidden="true"><b>{String(i + 1).padStart(2, "0")}</b><i>{suit}</i></span>
+            </button>
+          );
+        })}
+      </div>
+      <p className="hand-hint">{w.hand}</p>
+    </div>
+  );
+}
+
 /** "See the craft" panel: native <dialog> (focus trap, Esc and inert background come for free). */
 export default function WorkDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -156,6 +195,7 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
     setCanLive(!matchMedia("(max-width: 760px), (pointer: coarse)").matches);
   }, []);
   const featured = projects.slice(0, FEATURED_COUNT);
+  const [pick, setPick] = useState(0);
   const rest = projects.slice(FEATURED_COUNT);
 
   useEffect(() => {
@@ -198,11 +238,12 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
         </header>
 
         {featured.length ? (
-          <div className="projs">
-            {featured.map((p, i) => (
-              <Featured key={p.name} p={p} lang={lang} w={w} flip={i % 2 === 1} />
-            ))}
-          </div>
+          <>
+            <Hand cards={featured} active={pick} onPick={setPick} w={w} lang={lang} />
+            <div className="projs proj-picked">
+              <Featured key={featured[pick].name} p={featured[pick]} lang={lang} w={w} />
+            </div>
+          </>
         ) : null}
 
         {rest.length ? (
