@@ -92,11 +92,11 @@ function AppCard({ a, lang, w }: { a: App; lang: Lang; w: Dict["work"] }) {
 }
 
 /** Mini card: a tiny browser window with the site inside. */
-function Mini({ p, i, live, lang, w }: { p: Project; i: number; live: boolean; lang: Lang; w: Dict["work"] }) {
+function Mini({ p, i, live, lang, w, cls = "" }: { p: Project; i: number; live: boolean; lang: Lang; w: Dict["work"]; cls?: string }) {
   const [bg, ac] = p.theme ?? ["#0d1320", "#f0b347"];
   const fit = p.image ? p.imageFit ?? "shot" : "live";
   return (
-    <article className="mini" style={{ ["--bg" as string]: bg, ["--ac" as string]: ac, ["--i" as string]: i }}>
+    <article className={`mini${cls}`} style={{ ["--bg" as string]: bg, ["--ac" as string]: ac, ["--i" as string]: i }}>
       <a className="mini-frame" href={p.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${w.open} ${p.name} (${host(p.liveUrl)})`}>
         <span className="mini-bar" aria-hidden="true">
           <i /><i /><i />
@@ -144,6 +144,8 @@ function Mini({ p, i, live, lang, w }: { p: Project; i: number; live: boolean; l
   );
 }
 
+/** How many featured projects get big cards on phones (the rest join the mini cards). */
+const MOBILE_BIG = 2;
 const SUITS = ["\u2660", "\u2665", "\u2666", "\u2663"]; // ♠ ♥ ♦ ♣
 
 /** The featured projects dealt as a fanned hand of playing cards. Picking a card shows it big below. */
@@ -240,20 +242,33 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
 
         {featured.length ? (
           <>
-            <Hand cards={featured} active={pick} onPick={setPick} w={w} lang={lang} />
-            <div className="projs proj-picked">
-              <Featured key={featured[pick].name} p={featured[pick]} lang={lang} w={w} />
+            {/* Desktop: the featured projects as a fanned hand of playing cards */}
+            <div className="d-only">
+              <Hand cards={featured} active={pick} onPick={setPick} w={w} lang={lang} />
+              <div className="projs proj-picked">
+                <Featured key={featured[pick].name} p={featured[pick]} lang={lang} w={w} />
+              </div>
+            </div>
+            {/* Phones: the classic layout – two big cards, the rest of the hand as mini cards below */}
+            <div className="projs m-only">
+              {featured.slice(0, MOBILE_BIG).map((p, i) => (
+                <Featured key={p.name} p={p} lang={lang} w={w} flip={i % 2 === 1} />
+              ))}
             </div>
           </>
         ) : null}
 
-        {rest.length ? (
+        {rest.length || featured.length > MOBILE_BIG ? (
           <>
             <div className="work-bar">
               <h3>{w.more}</h3>
-              <small className="work-count">{rest.length}</small>
+              <small className="work-count d-only">{rest.length}</small>
+              <small className="work-count m-only">{rest.length + Math.max(0, featured.length - MOBILE_BIG)}</small>
             </div>
             <div className="minis">
+              {featured.slice(MOBILE_BIG).map((p, i) => (
+                <Mini key={`m-${p.name}`} p={p} i={i} live={false} lang={lang} w={w} cls=" m-only" />
+              ))}
               {rest.map((p, i) => (
                 <Mini key={p.name} p={p} i={i} live={open && canLive} lang={lang} w={w} />
               ))}

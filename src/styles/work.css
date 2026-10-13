@@ -173,3 +173,7 @@ dialog.work[open] .pcard { animation: deal .8s calc(.15s + var(--i) * 70ms) cubi
 @keyframes pickin { from { opacity: 0; transform: translateY(18px); } }
 @media (max-width: 560px) { .hand-wrap { --cw: 92px; --spread: 30px; --ang: 3.5deg; } .hand { overflow: visible; } .pc-kind { display: none; } .pc-name { margin-bottom: .9rem; } }
 @media (prefers-reduced-motion: reduce) { dialog.work[open] .pcard, .proj-picked .proj { animation: none; } .pcard { transition: none; } }
+
+/* Card hand on desktop only; phones keep the classic big cards + minis */
+@media (max-width: 759.98px) { .d-only { display: none !important; } }
+@media (min-width: 760px) { .m-only { display: none !important; } }
