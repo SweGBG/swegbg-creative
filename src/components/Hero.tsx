@@ -88,6 +88,39 @@ export default function Hero() {
     setWhy(true);
   };
 
+  /* Keep the text block clear of the emblem caption: if the lead would slide up under the
+     headline/tagline (longer English copy, short laptop screens), grow the hero just enough. */
+  useEffect(() => {
+    const hero = root.current;
+    if (!hero) return;
+    const GAP = 28;
+    const fit = () => {
+      const cap = hero.querySelector<HTMLElement>(".hx-cap");
+      const body = hero.querySelector<HTMLElement>(".hero-body");
+      if (!cap || !body || scrollY > 10) return; // the scroll effect scales the hero, so only measure at the top
+      hero.style.minHeight = "";
+      for (let i = 0; i < 4; i++) {
+        const capBottom = cap.getBoundingClientRect().bottom - hero.getBoundingClientRect().top;
+        const textTop = body.offsetTop + parseFloat(getComputedStyle(body).paddingTop);
+        const short = GAP - (textTop - capBottom);
+        if (short <= 1) break;
+        hero.style.minHeight = `${hero.offsetHeight + Math.ceil(short)}px`;
+      }
+    };
+    fit();
+    document.fonts?.ready.then(fit);
+    let raf = 0;
+    const onResize = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(fit);
+    };
+    addEventListener("resize", onResize);
+    return () => {
+      removeEventListener("resize", onResize);
+      cancelAnimationFrame(raf);
+    };
+  }, [t]);
+
   useEffect(() => {
     const hero = root.current;
     if (!hero) return;
