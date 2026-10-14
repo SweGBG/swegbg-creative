@@ -192,7 +192,24 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 .hx-mono path { stroke: url(#hxGold); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: hxdraw 1.4s 1.9s cubic-bezier(.65, 0, .35, 1) forwards; }
 .hx-mono path + path { animation-delay: 2.25s; }
 @keyframes hxdraw { to { stroke-dashoffset: 0; } }
-.hx-dot { fill: #f0b347; animation: fadeIn .6s 3.2s both, hxdot 2.4s 3.8s ease-in-out infinite; transform-origin: 200px 292px; }
+/* Coat-of-arms details */
+.hx-hex.beads { stroke: #f0b347; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: .1 7; opacity: .55; }
+.hx-rivets circle { fill: url(#hxGold); }
+.hx-crown path { stroke: url(#hxGold); stroke-width: 1.8; stroke-linejoin: round; fill: rgba(240, 179, 71, .12); stroke-dasharray: 1; stroke-dashoffset: 1; animation: hxdraw 1s 1.6s cubic-bezier(.65, 0, .35, 1) forwards; }
+.hx-crown circle { fill: #f6d58a; animation: fadeIn .5s 2.5s both; }
+/* Banner: unfurls from the centre once SG is drawn, then SWEGBG AGENCY draws itself letter by letter */
+.hx-ribbon { transform-origin: 200px 266px; animation: rbOpen 1s 3.2s cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes rbOpen { from { transform: scaleX(0); opacity: 0; } 30% { opacity: 1; } }
+.rb-band { fill: #0b1020; stroke: url(#hxGold); stroke-width: 2.4; stroke-linejoin: round; }
+.rb-edge { stroke: rgba(240, 179, 71, .35); stroke-width: .8; }
+.rb-tail { fill: #080c18; stroke: url(#hxGold); stroke-width: 2; stroke-linejoin: round; }
+.rb-fold { fill: #4a3410; stroke: url(#hxGold); stroke-width: 1.2; stroke-linejoin: round; }
+.hx-word path { stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: hxdraw .55s calc(3.75s + var(--d) * 90ms) cubic-bezier(.65, 0, .35, 1) forwards; }
+.hx-word .w-ink path { stroke: #fff0c8; }
+.hx-word .w-gold path { stroke: url(#hxGold); }
+@media (prefers-reduced-motion: reduce) { .hx-word path, .hx-crown path { stroke-dashoffset: 0; } }
+.hx-dot { fill: #f0b347; animation: fadeIn .6s 4.9s both, hxdot 2.4s 5.5s ease-in-out infinite; transform-origin: 200px 300px; }
 @keyframes hxdot { 50% { transform: scale(1.5); opacity: .6; } }
 
 .aurora { --ew: 3.4; --emax: 96vw; }
