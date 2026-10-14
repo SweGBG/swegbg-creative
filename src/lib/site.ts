@@ -4,8 +4,6 @@ import type { L } from "./i18n";
 export const site = {
   brand: "SweGBG",
   url: "https://www.swegbg.com",
-  phone: "072-875 86 10",
-  phoneHref: "tel:+46728758610",
   email: "kontakt@swegbg.com",
   // Hero background: "aurora" = blood moon + animated northern lights,
   // "daynight" = the sun sets and the moon rises (25 s loop).

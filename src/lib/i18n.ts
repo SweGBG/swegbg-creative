@@ -97,9 +97,8 @@ const sv = {
   start: {
     kicker: "08 — Starta",
     title: "Har du en passion? Vi bygger den.",
-    sub: "Ring, mejla eller skicka en förfrågan. Jag hör av mig inom 24 timmar, helt utan förpliktelser.",
+    sub: "Mejla eller skicka en förfrågan. Jag hör av mig inom 24 timmar, helt utan förpliktelser.",
     btn: "Skicka en förfrågan",
-    call: "Ring",
     mail: "Mejla",
   },
   footer: "© 2026 SweGBG Trading · Göteborg",
@@ -242,9 +241,8 @@ const en: Dict = {
   start: {
     kicker: "08 — Start",
     title: "Got a passion? Let's build it.",
-    sub: "Call, email or send a request. I'll get back to you within 24 hours, no strings attached.",
+    sub: "Email or send a request. I'll get back to you within 24 hours, no strings attached.",
     btn: "Send a request",
-    call: "Call",
     mail: "Email",
   },
   footer: "© 2026 SweGBG Trading · Gothenburg",

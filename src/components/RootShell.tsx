@@ -65,7 +65,7 @@ export function buildMetadata(lang: Lang): Metadata {
       description: s.description,
       images: ["/og.jpg"],
     },
-    formatDetection: { telephone: true, email: true, address: false },
+    formatDetection: { telephone: false, email: true, address: false },
     // Paste the code from Google Search Console here (or set the env var in Vercel)
     // if you verify with the "HTML tag" method instead of DNS.
     verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION

@@ -35,7 +35,6 @@ export default function JsonLd({ lang }: { lang: Lang }) {
           : "SweGBG is a web agency in Gothenburg, Sweden, building websites and web apps in Next.js. Not to be confused with tyre or holding companies with similar names.",
         slogan: sv ? "Hemsidor byggda för hand. Inte ur en mall." : "Websites built by hand. Not from a template.",
         email: site.email,
-        telephone: "+46728758610",
         priceRange: "4999 SEK+",
         currenciesAccepted: "SEK",
         address: { "@type": "PostalAddress", addressLocality: "Göteborg", addressRegion: "Västra Götaland", addressCountry: "SE" },
@@ -52,7 +51,6 @@ export default function JsonLd({ lang }: { lang: Lang }) {
           "@type": "ContactPoint",
           contactType: "customer service",
           email: site.email,
-          telephone: "+46728758610",
           availableLanguage: ["Swedish", "English"],
         },
         hasOfferCatalog: {

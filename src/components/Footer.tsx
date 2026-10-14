@@ -13,7 +13,6 @@ export default function Footer() {
         </span>
         <span>{t.footer}</span>
         <span className="foot-links">
-          <a href={site.phoneHref}>{site.phone}</a>
           <a href={`mailto:${site.email}`}>{site.email}</a>
         </span>
       </div>

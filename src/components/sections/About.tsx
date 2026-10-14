@@ -21,7 +21,6 @@ export default function About() {
           </p>
           <p>{a.p3}</p>
           <div className="about-links">
-            <a href={site.phoneHref}>{site.phone}</a>
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </div>
           <p className="about-sign">{a.sign}</p>
