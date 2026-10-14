@@ -66,9 +66,9 @@ const sv = {
     sub: "Hos Shopify, Wix och liknande plattformar hyr du din sajt. Slutar du betala försvinner den. Hos mig köper du den en gång, och den är din från dag ett.",
     motto: "Din passion. Ditt företag. Din sida.",
     rentT: "Hyra hos en plattform",
-    rent: ["Månadsavgift så länge sidan finns", "Pausar du företaget, försvinner sidan", "Designen låst till plattformens mallar"],
+    rent: ["Månadsavgift så länge sidan finns", "Pausar du företaget, försvinner sidan", "Designen låst till plattformens mallar", "Sajten kan aldrig säljas vidare, den är ju inte din"],
     ownT: "Äga med SweGBG",
-    ownL: ["Ingen månadshyra, du betalar bara din domän", "Pausar du företaget finns sidan kvar, orörd", "Gör om designen när du vill, med vem du vill"],
+    ownL: ["Ingen månadshyra, du betalar bara din domän", "Pausar du företaget finns sidan kvar, orörd", "Gör om designen när du vill, med vem du vill", "Sälj den vidare om du vill. Upp till dig, som det ska vara"],
     items: [
       { t: "Koden", d: "I ditt eget GitHub-konto." },
       { t: "Domänen", d: "Registrerad i ditt namn." },
@@ -216,9 +216,9 @@ const en: Dict = {
     sub: "With Shopify, Wix and similar platforms you rent your site. Stop paying and it's gone. With me you buy it once, and it's yours from day one.",
     motto: "Your passion. Your business. Your site.",
     rentT: "Renting on a platform",
-    rent: ["A monthly fee for as long as the site exists", "Pause your business and the site disappears", "Design locked to the platform's templates"],
+    rent: ["A monthly fee for as long as the site exists", "Pause your business and the site disappears", "Design locked to the platform's templates", "You can never sell the site on, it was never yours"],
     ownT: "Owning with SweGBG",
-    ownL: ["No monthly rent, you only pay for your domain", "Pause your business and the site stays, untouched", "Redesign whenever you like, with whoever you like"],
+    ownL: ["No monthly rent, you only pay for your domain", "Pause your business and the site stays, untouched", "Redesign whenever you like, with whoever you like", "Sell it on if you want. Up to you, as it should be"],
     items: [
       { t: "The code", d: "In your own GitHub account." },
       { t: "The domain", d: "Registered in your name." },
