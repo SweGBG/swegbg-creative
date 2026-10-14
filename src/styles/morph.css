@@ -1,0 +1,64 @@
+/* Morph gallery: demo screenshots dissolve into each other through noise (WebGL), used in "See the craft" */
+.mg-wrap { border: 1px solid var(--line); border-radius: 16px; overflow: hidden; background: linear-gradient(180deg, #070a14, #0b1120);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .04); }
+.mg { position: relative; width: 100%; overflow: hidden; background: #05070f; outline: none; touch-action: pan-y; }
+.mg:focus-visible { outline: 2px solid var(--glow); outline-offset: 3px; }
+.mg-canvas, .mg-fallback { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.mg-canvas { transition: opacity .4s ease; }
+.mg-fallback { object-fit: cover; object-position: top; max-width: none; transition: opacity .7s; }
+.mg-shade { position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(180deg, transparent 70%, rgba(7, 10, 20, .85)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .03); }
+
+.mg-arrow { position: absolute; top: 50%; z-index: 4; display: grid; place-items: center; width: 44px; height: 44px; translate: 0 -50%;
+  border-radius: 50%; border: 1px solid rgba(255, 255, 255, .22); background: rgba(255, 255, 255, .08); color: #fff; cursor: pointer;
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background .25s, border-color .25s, color .25s; }
+.mg-arrow:hover { background: var(--glow); border-color: var(--glow); color: #140d02; }
+.mg-arrow:disabled { opacity: .25; pointer-events: none; }
+.mg-prev { left: 1rem; } .mg-next { right: 1rem; }
+
+/* Info panel under the canvas, tinted by the active demo's accent */
+.mg-info { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1.5rem 2rem; align-items: end; padding: 1.4rem 1.6rem 1.5rem;
+  border-top: 1px solid color-mix(in srgb, var(--ac) 35%, transparent);
+  background: radial-gradient(70% 140% at 0% 0%, color-mix(in srgb, var(--ac) 14%, transparent), transparent 70%); }
+.mg-info::before { content: ""; position: absolute; left: 0; top: -1px; height: 2px; width: 100%; background: linear-gradient(90deg, var(--ac), transparent 60%); transform-origin: left; animation: mgBar 6.5s linear both; }
+@keyframes mgBar { from { transform: scaleX(0); } }
+.mg-info > * > * { animation: mgIn .7s calc(.25s + var(--k, 0) * 70ms) cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes mgIn { from { opacity: 0; translate: 0 10px; filter: blur(5px); } }
+.mg-kind { margin: 0 0 .35rem; font: 600 .72rem var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ac); --k: 0; }
+.mg-name { margin: 0; font: 700 clamp(1.5rem, 3.2vw, 2.2rem)/1 var(--display); color: #fff; --k: 1; }
+.mg-blurb { margin: .6rem 0 0; max-width: 62ch; font-size: .93rem; line-height: 1.55; color: var(--muted); --k: 2;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.mg-tags { display: flex; flex-wrap: wrap; gap: .35rem; margin: .8rem 0 0; padding: 0; list-style: none; --k: 3; }
+.mg-tags li { padding: .28rem .55rem; border-radius: 999px; font: 500 .68rem var(--mono); color: #dfe3ec; border: 1px solid rgba(255, 255, 255, .12); background: rgba(255, 255, 255, .03); }
+.mg-side { display: flex; flex-direction: column; align-items: flex-end; gap: 1rem; }
+.mg-cta { display: flex; align-items: center; gap: .9rem; --k: 1; }
+.mg-cta a { display: inline-flex; align-items: center; gap: .5rem; padding: .75rem 1.15rem; border-radius: 4px; font: 600 .8rem var(--mono); white-space: nowrap;
+  text-decoration: none; color: #120c02; background: var(--ac); box-shadow: 0 10px 30px -12px var(--ac); transition: filter .25s, transform .25s; }
+.mg-cta a:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.mg-cta small { font: 500 .72rem var(--mono); letter-spacing: .1em; color: rgba(255, 255, 255, .5); }
+
+/* Thumbnail strip in the panel */
+.mg-thumbs { display: flex; gap: .4rem; margin: 0; padding: 0; list-style: none; --k: 2; }
+.mg-thumbs button { display: block; padding: 0; border: 2px solid transparent; border-radius: 6px; overflow: hidden; background: none; cursor: pointer; opacity: .5; transition: opacity .25s, border-color .25s; }
+.mg-thumbs button:hover { opacity: .85; }
+.mg-thumbs button.on { opacity: 1; border-color: var(--ac); }
+.mg-thumbs img { display: block; width: 58px; height: 36px; max-width: none; object-fit: cover; object-position: top; }
+.mg-dots { display: none; }
+.mg-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (max-width: 759.98px) {
+  .mg-wrap { border-radius: 12px; }
+  .mg-thumbs { display: none; }
+  .mg-arrow { width: 34px; height: 34px; }
+  .mg-prev { left: .5rem; } .mg-next { right: .5rem; }
+  .mg-info { grid-template-columns: 1fr; padding: 1.1rem 1rem 1.2rem; }
+  .mg-side { align-items: stretch; }
+  .mg-cta { justify-content: space-between; }
+  .mg-blurb { -webkit-line-clamp: 4; font-size: .88rem; }
+  .mg-dots { position: absolute; left: 0; right: 0; bottom: .6rem; z-index: 4; display: flex; justify-content: center; gap: .4rem; }
+  .mg-dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, .3); transition: width .3s, background .3s; }
+  .mg-dots i.on { width: 18px; border-radius: 3px; background: var(--glow); }
+}
+@media (prefers-reduced-motion: reduce) { .mg-info > * > *, .mg-info::before { animation: none; } }
+/* The gallery lives in a dialog inside the hero; the hero's offscreen pause must not freeze its text */
+.off .mg-wrap *, .hero.off .mg-wrap *, .hero.off .mg-wrap *::before { animation-play-state: running !important; }

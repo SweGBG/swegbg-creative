@@ -20,6 +20,7 @@ import "@/styles/base.css";
 import "@/styles/hero.css";
 import "@/styles/sections.css";
 import "@/styles/work.css";
+import "@/styles/morph.css";
 import "@/styles/contact.css";
 import "@/styles/home.css";
 

@@ -5,6 +5,7 @@ import { apps, projects, FEATURED_COUNT, type App, type Project } from "@/lib/si
 import { useLang } from "@/lib/LangContext";
 import { useContact } from "./ContactDialog";
 import type { Dict, Lang } from "@/lib/i18n";
+import MorphGallery from "./ui/morph-gallery";
 
 const host = (u: string) => new URL(u).host;
 
@@ -144,6 +145,60 @@ function Mini({ p, i, live, lang, w, cls = "" }: { p: Project; i: number; live: 
   );
 }
 
+/** The featured demos as a morphing gallery: screenshots dissolve into each other, the pitch sits in a panel below. */
+function Showcase({ cards, lang, w }: { cards: Project[]; lang: Lang; w: Dict["work"] }) {
+  const shown = cards.filter((p) => p.image);
+  const items = shown.map((p) => ({ src: p.image as string, alt: p.name }));
+  const [i, setI] = useState(0);
+  const p = shown[i];
+  if (!p) return null;
+  const ac = (p.theme ?? ["#0c0a09", "#f0b347"])[1];
+  return (
+    <div className="mg-wrap" style={{ ["--ac" as string]: ac }}>
+      <MorphGallery
+        items={items}
+        index={i}
+        onIndexChange={setI}
+        height="calc((min(980px, 100vw - 1.5rem) - 2 * clamp(1.1rem, 3vw, 2rem) - 2px) * 0.625)"
+        autoplay={6500}
+        duration={1400}
+        thumbnails={false}
+        labels={{ region: w.title, prev: w.prev, next: w.next, show: w.open }}
+      />
+      <div className="mg-info" key={p.name}>
+        <div className="mg-text">
+          <p className="mg-kind">{p.kind[lang]}</p>
+          <h3 className="mg-name">{p.name}</h3>
+          <p className="mg-blurb">{p.blurb[lang]}</p>
+          <ul className="mg-tags">
+            {p.tags.slice(0, 5).map((t) => (
+              <li key={t}>{t}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="mg-side">
+          <div className="mg-cta">
+            <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">
+              {w.visit} {p.name} <Arrow />
+            </a>
+            <small>{String(i + 1).padStart(2, "0")} / {String(shown.length).padStart(2, "0")}</small>
+          </div>
+          <ul className="mg-thumbs">
+            {shown.map((q, k) => (
+              <li key={q.name}>
+                <button type="button" className={k === i ? "on" : ""} aria-current={k === i} aria-label={`${w.open} ${q.name}`} onClick={() => setI(k)}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={q.image} alt="" width={72} height={45} loading="lazy" />
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /** How many featured projects get big cards on phones (the rest join the mini cards). */
 const MOBILE_BIG = 2;
 const SUITS = ["\u2660", "\u2665", "\u2666", "\u2663"]; // ♠ ♥ ♦ ♣
@@ -198,7 +253,6 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
     setCanLive(!matchMedia("(max-width: 760px), (pointer: coarse)").matches);
   }, []);
   const featured = projects.slice(0, FEATURED_COUNT);
-  const [pick, setPick] = useState(0);
   const rest = projects.slice(FEATURED_COUNT);
 
   useEffect(() => {
@@ -242,33 +296,18 @@ export default function WorkDialog({ open, onClose }: { open: boolean; onClose: 
 
         {featured.length ? (
           <>
-            {/* Desktop: the featured projects as a fanned hand of playing cards */}
-            <div className="d-only">
-              <Hand cards={featured} active={pick} onPick={setPick} w={w} lang={lang} />
-              <div className="projs proj-picked">
-                <Featured key={featured[pick].name} p={featured[pick]} lang={lang} w={w} />
-              </div>
-            </div>
-            {/* Phones: the classic layout – two big cards, the rest of the hand as mini cards below */}
-            <div className="projs m-only">
-              {featured.slice(0, MOBILE_BIG).map((p, i) => (
-                <Featured key={p.name} p={p} lang={lang} w={w} flip={i % 2 === 1} />
-              ))}
-            </div>
+            {/* PREVIEW: the featured demos in a morphing gallery (desktop and phones) */}
+            <Showcase cards={featured} lang={lang} w={w} />
           </>
         ) : null}
 
-        {rest.length || featured.length > MOBILE_BIG ? (
+        {rest.length ? (
           <>
             <div className="work-bar">
               <h3>{w.more}</h3>
-              <small className="work-count d-only">{rest.length}</small>
-              <small className="work-count m-only">{rest.length + Math.max(0, featured.length - MOBILE_BIG)}</small>
+              <small className="work-count">{rest.length}</small>
             </div>
             <div className="minis">
-              {featured.slice(MOBILE_BIG).map((p, i) => (
-                <Mini key={`m-${p.name}`} p={p} i={i} live={false} lang={lang} w={w} cls=" m-only" />
-              ))}
               {rest.map((p, i) => (
                 <Mini key={p.name} p={p} i={i} live={open && canLive} lang={lang} w={w} />
               ))}
