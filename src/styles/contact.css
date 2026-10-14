@@ -77,3 +77,14 @@ dialog.contact[open]::backdrop { animation: wback .4s ease both; }
   dialog.contact[open], .ct-hex, .ct-form > *, .ct-row > *, .ct-done *, .ct-msg.on { animation: none !important; }
   .ct-check circle, .ct-check path { stroke-dashoffset: 0; }
 }
+
+/* "Varför välja oss" popup: reuses the contact dialog shell + ownership columns */
+dialog.why { width: min(760px, calc(100% - 1.5rem)); }
+.why-gold { color: var(--glow); }
+.why-vs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+.why-vs .own-col { padding: 1.2rem 1.3rem; }
+.why-vs .own-col li { font-size: .92rem; }
+.why-motto { text-align: center; margin: 1.3rem 0 1.1rem; }
+.why-btns { justify-content: center; }
+@media (max-width: 640px) { .why-vs { grid-template-columns: 1fr; } }
+.why-btns .btn.ghost { border: 1px solid rgba(240, 179, 71, .5); }

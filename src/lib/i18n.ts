@@ -13,6 +13,7 @@ const sv = {
     talk: "Starta ett projekt",
     trust: ["Du pratar direkt med mig", "Du äger kod, domän och film", "Svar inom 24 timmar"],
   },
+  why: { more: "Se hela jämförelsen ↓" },
   marquee: {
     aria: "Verktyg och hantverk",
     a: ["Next.js", "TypeScript", "Supabase", "Resend", "Figma", "Tailwind", "MiniMax H3", "Vercel", "GitHub"],
@@ -163,6 +164,7 @@ const en: Dict = {
     talk: "Start a project",
     trust: ["You talk directly to me", "You own the code, domain and film", "Reply within 24 hours"],
   },
+  why: { more: "See the full comparison ↓" },
   marquee: {
     aria: "Tools and craft",
     a: ["Next.js", "TypeScript", "Supabase", "Resend", "Figma", "Tailwind", "MiniMax H3", "Vercel", "GitHub"],

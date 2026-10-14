@@ -2,6 +2,7 @@
 
 import { Fragment, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
+import WhyDialog from "./WhyDialog";
 import WorkDialog from "./WorkDialog";
 import HeroEmblem from "./HeroEmblem";
 import LangSwitch from "./LangSwitch";
@@ -71,9 +72,10 @@ export default function Hero() {
   const [work, setWork] = useState(false);
   const { t } = useLang();
   const openContact = useContact();
+  const [why, setWhy] = useState(false);
   const goWhy = (e: React.MouseEvent) => {
     e.preventDefault();
-    document.getElementById("agande")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setWhy(true);
   };
 
   useEffect(() => {
@@ -291,7 +293,7 @@ export default function Hero() {
             {t.hero.talk}
           </a>
         </div>
-        <a className="why-btn why-m" href="#agande" onClick={goWhy}>{t.nav.why} ↓</a>
+        <a className="why-btn why-m" href="#agande" onClick={goWhy}>{t.nav.why}</a>
         <ul className="trust">
           {t.hero.trust.map((x, i) => (
             <li key={x}>
@@ -302,6 +304,7 @@ export default function Hero() {
         </ul>
       </div>
       <WorkDialog open={work} onClose={() => setWork(false)} />
+      <WhyDialog open={why} onClose={() => setWhy(false)} />
     </header>
   );
 }
