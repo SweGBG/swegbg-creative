@@ -62,3 +62,26 @@
 @media (prefers-reduced-motion: reduce) { .mg-info > * > *, .mg-info::before { animation: none; } }
 /* The gallery lives in a dialog inside the hero; the hero's offscreen pause must not freeze its text */
 .off .mg-wrap *, .hero.off .mg-wrap *, .hero.off .mg-wrap *::before { animation-play-state: running !important; }
+
+/* Logo projects: the logo materializes on its own stage, inside the gallery */
+.mg-overlay { position: absolute; inset: 0; z-index: 3; pointer-events: none; display: grid; place-items: center; }
+.mg-logo { position: relative; height: 50%; aspect-ratio: 1; translate: 0 -3%; display: grid; place-items: center; }
+.mg-logo img { width: 100%; height: 100%; object-fit: contain; max-width: none;
+  -webkit-mask: radial-gradient(closest-side, #000 72%, transparent 100%); mask: radial-gradient(closest-side, #000 72%, transparent 100%);
+  animation: mgMat 1.8s .55s cubic-bezier(.2, .8, .2, 1) both, mgGlint 5s 2.6s ease-in-out infinite; }
+@keyframes mgMat {
+  0% { opacity: 0; scale: .82; filter: blur(18px) brightness(2.4) saturate(.4); }
+  45% { opacity: .85; filter: blur(5px) brightness(1.6) saturate(.9); }
+  100% { opacity: 1; scale: 1; filter: blur(0) brightness(1) saturate(1); } }
+@keyframes mgGlint { 0%, 100% { filter: drop-shadow(0 0 0 rgba(240, 179, 71, 0)); } 50% { filter: drop-shadow(0 0 18px rgba(240, 179, 71, .35)); } }
+.mg-logo::after { content: ""; position: absolute; inset: 8%; pointer-events: none; mix-blend-mode: screen;
+  background: linear-gradient(105deg, transparent 40%, rgba(255, 228, 170, .55) 50%, transparent 60%) 0 0 / 260% 100% no-repeat;
+  -webkit-mask: radial-gradient(closest-side, #000 60%, transparent 100%); mask: radial-gradient(closest-side, #000 60%, transparent 100%);
+  animation: mgSheen 1.6s 1.9s ease-in-out both; }
+@keyframes mgSheen { from { background-position: 140% 0; } to { background-position: -140% 0; } }
+.mg-dust { position: absolute; inset: 0; display: grid; place-items: center; }
+.mg-dust i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #ffd98a; box-shadow: 0 0 10px 3px rgba(240, 179, 71, .7); opacity: 0;
+  animation: mgDust 1.3s calc(.35s + var(--dl)) cubic-bezier(.3, 0, .2, 1) both; }
+@keyframes mgDust { 0% { opacity: 0; translate: var(--x) var(--y); } 25% { opacity: 1; } 90% { opacity: .9; } 100% { opacity: 0; translate: 0 0; scale: .3; } }
+@media (max-width: 759.98px) { .mg-logo { height: 58%; } }
+@media (prefers-reduced-motion: reduce) { .mg-logo img, .mg-logo::after, .mg-dust i { animation: none; } .mg-dust { display: none; } }

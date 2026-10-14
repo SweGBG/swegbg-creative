@@ -145,10 +145,18 @@ function Mini({ p, i, live, lang, w, cls = "" }: { p: Project; i: number; live: 
   );
 }
 
+/** Gold dust that gathers into a materializing logo: start offset x/y and delay. */
+const DUST: [string, string, string][] = [
+  ["-180px", "-120px", "0s"], ["170px", "-140px", ".05s"], ["-220px", "40px", ".1s"], ["230px", "70px", ".02s"],
+  ["-90px", "170px", ".12s"], ["110px", "180px", ".08s"], ["-40px", "-200px", ".15s"], ["60px", "-190px", ".04s"],
+  ["-260px", "-30px", ".09s"], ["270px", "-20px", ".13s"], ["-150px", "150px", ".06s"], ["160px", "120px", ".11s"],
+];
+
 /** The featured demos as a morphing gallery: screenshots dissolve into each other, the pitch sits in a panel below. */
 function Showcase({ cards, lang, w }: { cards: Project[]; lang: Lang; w: Dict["work"] }) {
   const shown = cards.filter((p) => p.image);
-  const items = shown.map((p) => ({ src: p.image as string, alt: p.name }));
+  // A logo project shows its dark stage in the gallery; the logo itself materializes on top.
+  const items = shown.map((p) => ({ src: (p.logo ? p.stage : p.image) ?? (p.image as string), thumb: p.image, alt: p.name }));
   const [i, setI] = useState(0);
   const p = shown[i];
   if (!p) return null;
@@ -164,6 +172,21 @@ function Showcase({ cards, lang, w }: { cards: Project[]; lang: Lang; w: Dict["w
         duration={1400}
         thumbnails={false}
         labels={{ region: w.title, prev: w.prev, next: w.next, show: w.open }}
+        overlay={(k) => {
+          const q = shown[k];
+          if (!q?.logo) return null;
+          return (
+            <div className="mg-logo">
+              <span className="mg-dust" aria-hidden="true">
+                {DUST.map((d, n) => (
+                  <i key={n} style={{ ["--x" as string]: d[0], ["--y" as string]: d[1], ["--dl" as string]: d[2] }} />
+                ))}
+              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={q.logo} alt={q.name} />
+            </div>
+          );
+        }}
       />
       <div className="mg-info" key={p.name}>
         <div className="mg-text">

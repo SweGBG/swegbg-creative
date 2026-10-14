@@ -67,6 +67,10 @@ export type Project = {
    */
   image?: string;
   imageFit?: "shot" | "emblem";
+  /** Gallery: a logo that materializes on its own dark stage (used for "emblem" projects). */
+  logo?: string;
+  /** Gallery backdrop for the logo; defaults to the image. */
+  stage?: string;
   /** Card colours: [background, accent]. */
   theme?: [string, string];
 };
@@ -155,6 +159,8 @@ export const projects: Project[] = [
     },
     image: "/img/work-atilli.webp",
     imageFit: "emblem",
+    logo: "/img/work-atilli.webp",
+    stage: "/img/stage-atilli.webp",
     theme: ["#1a1512", "#b8956a"],
     liveUrl: "https://barberare.vercel.app",
     tags: ["Next.js", "Supabase", "Resend", "Adminpanel"],
