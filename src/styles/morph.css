@@ -85,3 +85,14 @@
 @keyframes mgDust { 0% { opacity: 0; translate: var(--x) var(--y); } 25% { opacity: 1; } 90% { opacity: .9; } 100% { opacity: 0; translate: 0 0; scale: .3; } }
 @media (max-width: 759.98px) { .mg-logo { height: 58%; } }
 @media (prefers-reduced-motion: reduce) { .mg-logo img, .mg-logo::after, .mg-dust i { animation: none; } .mg-dust { display: none; } }
+
+/* Click anywhere on the slide to open the demo */
+.mg-click { cursor: pointer; }
+.mg-hint { position: absolute; left: 50%; top: 50%; z-index: 4; display: inline-flex; align-items: center; gap: .45rem; padding: .6rem 1rem;
+  translate: -50% -50%; scale: .92; opacity: 0; pointer-events: none; border-radius: 999px;
+  font: 600 .78rem var(--mono); letter-spacing: .04em; color: #120c02; background: var(--ac, var(--glow));
+  box-shadow: 0 12px 40px -10px var(--ac, var(--glow)); transition: opacity .25s, scale .25s; }
+.mg-click:hover .mg-hint { opacity: 1; scale: 1; }
+.mg-click:hover .mg-canvas, .mg-click:hover .mg-fallback { filter: brightness(.82); }
+.mg-canvas, .mg-fallback { transition: opacity .4s ease, filter .3s; }
+@media (hover: none) { .mg-hint { display: none; } }

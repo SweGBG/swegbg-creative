@@ -55,6 +55,10 @@ export type MorphGalleryProps = {
   className?: string
   /** Content laid over the canvas for the active slide (title, text, buttons). */
   overlay?: (index: number) => React.ReactNode
+  /** Called when the slide itself is clicked or tapped (not a swipe, not a button). */
+  onSelect?: (index: number) => void
+  /** Text for the hover hint shown when onSelect is set. */
+  selectLabel?: string
   /** Accessible labels, so the gallery can follow the page language. */
   labels?: { region?: string; prev?: string; next?: string; show?: string }
 }
@@ -266,6 +270,8 @@ export default function MorphGallery({
   className = "",
   overlay,
   labels = {},
+  onSelect,
+  selectLabel,
 }: MorphGalleryProps) {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null)
   const [uncontrolled, setUncontrolled] = React.useState(() =>
@@ -539,9 +545,14 @@ export default function MorphGallery({
     if (startX === null) return
     const dx = e.clientX - startX
     if (Math.abs(dx) > 48) go(active + (dx < 0 ? 1 : -1))
+    // A plain click/tap on the picture (not on an arrow or a thumbnail) opens the slide
+    else if (Math.abs(dx) < 8 && onSelect && !(e.target as HTMLElement).closest("button, a")) onSelect(active)
   }
   const onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "ArrowLeft") {
+    if (e.key === "Enter" && onSelect && e.target === e.currentTarget) {
+      e.preventDefault()
+      onSelect(active)
+    } else if (e.key === "ArrowLeft") {
       e.preventDefault()
       go(active - 1)
     } else if (e.key === "ArrowRight") {
@@ -570,7 +581,7 @@ export default function MorphGallery({
 
   return (
     <section
-      className={"mg " + className}
+      className={"mg " + (onSelect ? "mg-click " : "") + className}
       style={{ height }}
       role="region"
       aria-roledescription="carousel"
@@ -594,6 +605,13 @@ export default function MorphGallery({
       )}
 
       <div className="mg-shade" aria-hidden="true" />
+
+      {onSelect && selectLabel ? (
+        <span className="mg-hint" aria-hidden="true">
+          {selectLabel}
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
+        </span>
+      ) : null}
 
       {overlay ? <div className="mg-overlay" key={active}>{overlay(active)}</div> : null}
 
