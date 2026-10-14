@@ -3,11 +3,14 @@ export type Lang = "sv" | "en";
 export type L = Record<Lang, string>;
 
 const sv = {
-  nav: { why: "Varför välja oss", start: "Starta ett projekt", switchTo: "Switch to English" },
+  nav: { why: "Varför välja oss", craft: "Hantverket", process: "Process", prices: "Priser", start: "Starta ett projekt", switchTo: "Switch to English" },
   hero: {
     kicker: "Digitalt hantverk · Göteborg",
     lines: ["Hemsidor byggda för hand.", "Inte ur en mall."],
     tagline: "Var kreativ med din passion",
+    flowT: "Så går det till",
+    flow: ["Du hör av dig", "Skiss i Figma", "Bygge i Next.js", "Live på din domän"],
+    flowDone: "Klart",
     lead: "Jag bygger hemsidor, bokningssystem och egna produktfilmer åt småföretag. Personligt, efter din budget, och allt du köper är ditt.",
     craft: "Se hantverket",
     talk: "Starta ett projekt",
@@ -180,11 +183,14 @@ const sv = {
 export type Dict = typeof sv;
 
 const en: Dict = {
-  nav: { why: "Why choose us", start: "Start a project", switchTo: "Byt till svenska" },
+  nav: { why: "Why choose us", craft: "The craft", process: "Process", prices: "Pricing", start: "Start a project", switchTo: "Byt till svenska" },
   hero: {
     kicker: "Digital craftsmanship · Gothenburg",
     lines: ["Websites built by hand.", "Not from a template."],
     tagline: "Be creative with your passion",
+    flowT: "How it works",
+    flow: ["You get in touch", "Sketch in Figma", "Built in Next.js", "Live on your domain"],
+    flowDone: "Done",
     lead: "I build websites, booking systems and original product films for small businesses. Personal, within your budget, and everything you buy is yours.",
     craft: "See the craft",
     talk: "Start a project",
