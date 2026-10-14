@@ -2,9 +2,10 @@
 
 import Reveal from "../Reveal";
 import SectionHead from "../SectionHead";
+import ProcessConstellation from "./ProcessConstellation";
 import { useLang } from "@/lib/LangContext";
 
-/** 03 How we work: a gold line runs through the four steps and lights each point in turn. */
+/** 03 How we work: a 3D constellation of the whole journey, then the four steps in text with a gold line that fills once. */
 export default function Process() {
   const { t } = useLang();
   const p = t.process;
@@ -12,10 +13,10 @@ export default function Process() {
     <section id="process" className="sec ship">
       <Reveal className="wrap">
         <SectionHead kicker={p.kicker} title={p.title} />
+        <ProcessConstellation />
         <ol className="pipe">
           <li className="pipe-line" aria-hidden="true">
             <span className="pipe-fill" />
-            <span className="pipe-pkg" />
           </li>
           {p.steps.map((s, i) => (
             <li key={s.t} className="pn" style={{ ["--i" as string]: i }}>
