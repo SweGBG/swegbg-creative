@@ -175,7 +175,6 @@ function Showcase({ cards, lang, w }: { cards: Project[]; lang: Lang; w: Dict["w
           const q = shown[k];
           if (q) window.open(q.liveUrl, "_blank", "noopener,noreferrer");
         }}
-        selectLabel={`${w.open} ${p.name}`}
         labels={{ region: w.title, prev: w.prev, next: w.next, show: w.open }}
         overlay={(k) => {
           const q = shown[k];

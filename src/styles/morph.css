@@ -93,6 +93,6 @@
   font: 600 .78rem var(--mono); letter-spacing: .04em; color: #120c02; background: var(--ac, var(--glow));
   box-shadow: 0 12px 40px -10px var(--ac, var(--glow)); transition: opacity .25s, scale .25s; }
 .mg-click:hover .mg-hint { opacity: 1; scale: 1; }
-.mg-click:hover .mg-canvas, .mg-click:hover .mg-fallback { filter: brightness(.82); }
+.mg-click:hover .mg-canvas, .mg-click:hover .mg-fallback { filter: brightness(1.06); }
 .mg-canvas, .mg-fallback { transition: opacity .4s ease, filter .3s; }
 @media (hover: none) { .mg-hint { display: none; } }
