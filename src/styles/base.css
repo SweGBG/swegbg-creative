@@ -4,6 +4,7 @@
   --ember: #c9922a; --glow: #f0b347; --gold: #c9922a; --deep: #060911; --sun: #f0b347; --violet: #4fc3f7; --cyan: #4fc3f7; --ok: #5eead4;
   --display: "Chakra Petch", "Trebuchet MS", system-ui, sans-serif;
   --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --script: "Great Vibes", "Brush Script MT", cursive;
   --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 }
 html { scroll-behavior: smooth; }

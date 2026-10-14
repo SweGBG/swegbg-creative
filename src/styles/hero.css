@@ -273,3 +273,10 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   .hero .lead { font-size: 1.02rem; margin-bottom: 1.5rem; }
   .trust { margin-top: 1.3rem; }
 }
+
+/* Hero: handwritten tagline under the headline, same gold as the kicker */
+.hero-tagline { margin: clamp(0px, .4svh, 4px) 0 0; font: 400 clamp(1.35rem, 2.3vw, 1.9rem)/1.1 var(--script); color: var(--glow); letter-spacing: .01em;
+  text-shadow: 0 0 14px rgba(6, 10, 44, .9), 0 0 26px rgba(240, 179, 71, .25); animation: tagIn 1.6s 2.5s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes tagIn { from { opacity: 0; filter: blur(6px); clip-path: inset(0 100% 0 0); } to { opacity: 1; filter: blur(0); clip-path: inset(0 -10% 0 0); } }
+@media (max-width: 640px) { .hero-tagline { font-size: 1.3rem; } }
+@media (prefers-reduced-motion: reduce) { .hero-tagline { animation: none; } }

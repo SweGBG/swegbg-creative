@@ -204,6 +204,7 @@ export default function Hero() {
               <div className="hx-cap">
                 <p className="hero-kicker"><span aria-hidden="true" />{t.hero.kicker}<span aria-hidden="true" /></p>
                 <Headline key={t.hero.lines.join()} lines={t.hero.lines} />
+                <p className="hero-tagline">{t.hero.tagline}</p>
               </div>
             </HeroEmblem>
           </div>

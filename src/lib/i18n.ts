@@ -7,6 +7,7 @@ const sv = {
   hero: {
     kicker: "Digitalt hantverk · Göteborg",
     lines: ["Hemsidor byggda för hand.", "Inte ur en mall."],
+    tagline: "Var kreativ med din passion",
     lead: "Jag bygger hemsidor, bokningssystem och egna produktfilmer åt småföretag. Personligt, efter din budget, och allt du köper är ditt.",
     craft: "Se hantverket",
     talk: "Starta ett projekt",
@@ -62,7 +63,12 @@ const sv = {
   own: {
     kicker: "05 — Ägande",
     title: ["Det du köper", "är ditt."],
-    sub: "Jag tror på det jag levererar. Därför hyr jag inte ut din sajt. Du äger den från dag ett, och kan ta den vart du vill.",
+    sub: "Hos Shopify, Wix och liknande plattformar hyr du din sajt. Slutar du betala försvinner den. Hos mig köper du den en gång, och den är din från dag ett.",
+    motto: "Din passion. Ditt företag. Din sida.",
+    rentT: "Hyra hos en plattform",
+    rent: ["Månadsavgift så länge sidan finns", "Pausar du företaget, försvinner sidan", "Designen låst till plattformens mallar"],
+    ownT: "Äga med SweGBG",
+    ownL: ["Ingen månadshyra, du betalar bara din domän", "Pausar du företaget finns sidan kvar, orörd", "Gör om designen när du vill, med vem du vill"],
     items: [
       { t: "Koden", d: "I ditt eget GitHub-konto." },
       { t: "Domänen", d: "Registrerad i ditt namn." },
@@ -73,11 +79,11 @@ const sv = {
   about: {
     kicker: "06 — Om mig",
     title: "Hantverkaren bakom.",
-    p1: "Jag heter Lennie Söderberg och driver SweGBG från Göteborg. Jag bygger varje sajt från grunden och lär mig nya verktyg hela tiden, från databaser till AI-film.",
+    p1: "Jag heter Lenn Coskå och driver SweGBG från Göteborg. Jag bygger varje sajt från grunden och lär mig nya verktyg hela tiden, från databaser till AI-film.",
     supportT: "Support dygnet runt.",
     support: "Krånglar något löser jag det. Och vill du bolla en ny idé, ett nytt företag eller ett dotterbolag till det du driver i dag, hör bara av dig. Möjligheterna är oändliga.",
     p3: "Hos mig finns ingen säljavdelning eller kundtjänst. När du anlitar SweGBG pratar du alltid direkt med den som bygger.",
-    sign: "— Lennie",
+    sign: "— Lenn",
   },
   faq: {
     kicker: "07 — Vanliga frågor",
@@ -151,6 +157,7 @@ const en: Dict = {
   hero: {
     kicker: "Digital craftsmanship · Gothenburg",
     lines: ["Websites built by hand.", "Not from a template."],
+    tagline: "Be creative with your passion",
     lead: "I build websites, booking systems and original product films for small businesses. Personal, within your budget, and everything you buy is yours.",
     craft: "See the craft",
     talk: "Start a project",
@@ -206,7 +213,12 @@ const en: Dict = {
   own: {
     kicker: "05 — Ownership",
     title: ["What you buy", "is yours."],
-    sub: "I believe in what I deliver. That is why I don't rent out your site. You own it from day one and can take it wherever you like.",
+    sub: "With Shopify, Wix and similar platforms you rent your site. Stop paying and it's gone. With me you buy it once, and it's yours from day one.",
+    motto: "Your passion. Your business. Your site.",
+    rentT: "Renting on a platform",
+    rent: ["A monthly fee for as long as the site exists", "Pause your business and the site disappears", "Design locked to the platform's templates"],
+    ownT: "Owning with SweGBG",
+    ownL: ["No monthly rent, you only pay for your domain", "Pause your business and the site stays, untouched", "Redesign whenever you like, with whoever you like"],
     items: [
       { t: "The code", d: "In your own GitHub account." },
       { t: "The domain", d: "Registered in your name." },
@@ -217,11 +229,11 @@ const en: Dict = {
   about: {
     kicker: "06 — About me",
     title: "The craftsman behind it.",
-    p1: "I'm Lennie Söderberg and I run SweGBG from Gothenburg. I build every site from scratch and keep learning new tools, from databases to AI film.",
+    p1: "I'm Lenn Coskå and I run SweGBG from Gothenburg. I build every site from scratch and keep learning new tools, from databases to AI film.",
     supportT: "Support around the clock.",
     support: "If something breaks, I fix it. And if you want to talk through a new idea, a new company or a subsidiary of the one you run today, just get in touch. The possibilities are endless.",
     p3: "There is no sales team or call centre. When you hire SweGBG, you always talk directly to the person building it.",
-    sign: "— Lennie",
+    sign: "— Lenn",
   },
   faq: {
     kicker: "07 — FAQ",

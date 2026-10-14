@@ -133,3 +133,18 @@
 .faq-item[open] .faq-icon::after { transform: rotate(0deg); }
 .faq-item p { margin: 0; padding: 0 1.25rem 1.25rem; color: var(--muted); max-width: 46rem; }
 @media (max-width: 560px) { .faq-item summary { padding: 1rem; } .faq-item p { padding: 0 1rem 1.1rem; } }
+
+/* Ownership: motto + renting vs owning */
+.own-motto { margin: 1.2rem 0 0; font: 400 clamp(1.6rem, 3vw, 2.2rem)/1.15 var(--script); color: var(--glow); }
+.own-vs { flex: 1 1 100%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.own-col { padding: 1.5rem 1.75rem; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); }
+.own-col b { display: block; margin-bottom: .9rem; font: 600 .78rem var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+.own-col ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .65rem; }
+.own-col li { position: relative; padding-left: 1.6rem; font-size: .98rem; line-height: 1.45; }
+.own-col li::before { position: absolute; left: 0; top: 0; font: 600 1rem/1.45 var(--mono); }
+.own-col.rent b, .own-col.rent li { color: var(--muted); }
+.own-col.rent li::before { content: "×"; color: #8a8f9c; }
+.own-col.mine { border-color: rgba(240, 179, 71, .45); box-shadow: 0 0 40px -18px rgba(240, 179, 71, .5); }
+.own-col.mine b { color: var(--glow); }
+.own-col.mine li::before { content: "✓"; color: var(--glow); }
+@media (max-width: 640px) { .own-vs { grid-template-columns: 1fr; } }

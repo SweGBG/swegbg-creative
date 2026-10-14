@@ -15,6 +15,7 @@ import "@fontsource/inter/600.css";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/500.css";
 import "@fontsource/ibm-plex-mono/600.css";
+import "@fontsource/great-vibes/400.css";
 import "@/styles/base.css";
 import "@/styles/hero.css";
 import "@/styles/sections.css";
@@ -36,8 +37,8 @@ export function buildMetadata(lang: Lang): Metadata {
     description: s.description,
     keywords: s.keywords,
     applicationName: "SweGBG",
-    authors: [{ name: "Lennie Söderberg", url: site.url }],
-    creator: "Lennie Söderberg",
+    authors: [{ name: "Lenn Coskå", url: site.url }],
+    creator: "Lenn Coskå",
     publisher: "SweGBG",
     category: "Web development",
     alternates: {

@@ -3,7 +3,7 @@
 import Reveal from "../Reveal";
 import { useLang } from "@/lib/LangContext";
 
-/** 05 Ownership: everything the client buys is theirs. */
+/** 05 Ownership: everything the client buys is theirs – renting on a platform vs owning. */
 export default function Ownership() {
   const { t } = useLang();
   const o = t.own;
@@ -16,6 +16,7 @@ export default function Ownership() {
             {o.title[0]} <span>{o.title[1]}</span>
           </h2>
           <p className="sub">{o.sub}</p>
+          <p className="own-motto">{o.motto}</p>
         </div>
         <div className="own-grid">
           {o.items.map((it) => (
@@ -24,6 +25,16 @@ export default function Ownership() {
               <span>{it.d}</span>
             </div>
           ))}
+        </div>
+        <div className="own-vs">
+          <div className="own-col rent">
+            <b>{o.rentT}</b>
+            <ul>{o.rent.map((x) => <li key={x}>{x}</li>)}</ul>
+          </div>
+          <div className="own-col mine">
+            <b>{o.ownT}</b>
+            <ul>{o.ownL.map((x) => <li key={x}>{x}</li>)}</ul>
+          </div>
         </div>
       </Reveal>
     </section>

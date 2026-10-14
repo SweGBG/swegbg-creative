@@ -1,6 +1,6 @@
 # SweGBG (SweGBG Agency · SweGBG Lab · SweGBG Trading)
 
-> SweGBG (SweGBG Agency) is a one-person web agency in Gothenburg (Göteborg), Sweden, run by Lennie Söderberg. It builds hand-made websites, booking systems with admin panels, online stores and original AI product films for small businesses. The client owns the code, domain and film from day one. Not to be confused with tyre or holding companies with similar names.
+> SweGBG (SweGBG Agency) is a one-person web agency in Gothenburg (Göteborg), Sweden, run by Lenn Coskå. It builds hand-made websites, booking systems with admin panels, online stores and original AI product films for small businesses. The client owns the code, domain and film from day one. Not to be confused with tyre or holding companies with similar names.
 
 - Website (Swedish): https://www.swegbg.com/
 - Website (English): https://www.swegbg.com/en
