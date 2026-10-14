@@ -328,9 +328,9 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 @media (min-width: 1280px) {
   .nav { position: relative; }
   .nav .why-btn:not(.why-m) { display: none; }
-  .seg { display: flex; gap: .55rem; position: absolute; left: 50%; top: 50%; translate: -50% -50%; }
-  .seg a { display: inline-flex; align-items: center; padding: .5rem 1rem; border: 1px solid rgba(240, 179, 71, .7); border-radius: 999px;
-    font: 600 .8rem/1 var(--mono); letter-spacing: .05em; color: var(--glow); text-decoration: none; background: rgba(240, 179, 71, .08);
+  .seg { display: flex; gap: .4rem; position: absolute; left: 50%; top: 50%; translate: -50% -50%; }
+  .seg a { display: inline-flex; align-items: center; padding: .38rem .75rem; border: 1px solid rgba(240, 179, 71, .65); border-radius: 999px;
+    font: 600 .7rem/1 var(--mono); letter-spacing: .05em; color: var(--glow); text-decoration: none; background: rgba(240, 179, 71, .08);
     box-shadow: 0 0 18px -6px rgba(240, 179, 71, .6); transition: background .3s, color .3s, box-shadow .3s; white-space: nowrap; }
   .seg a:hover { background: var(--glow); color: #120c02; box-shadow: 0 0 26px -4px rgba(240, 179, 71, .9); }
 }
