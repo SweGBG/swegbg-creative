@@ -19,6 +19,16 @@ const SUN = { dy: -8, sc: 1, anchor: 0.2539, horizon: 0.52 };
 const MOON = { dy: -25, sc: 0.55, anchor: 0.5924, maxY: 0.5, sideY: 0.4, sideX: 0.2 };
 const TINTS = ["#fff", "#fff", "#fff", "#ffe9c8", "#cfe0ff"];
 
+/** Floating tech labels in the aurora; m = also shown on phones. Kept away from the emblem in the middle. */
+const NODES = [
+  { t: "Node.js", x: "12%", y: "26%", d: "19s", dl: "0s", m: true },
+  { t: "Next.js", x: "80%", y: "19%", d: "23s", dl: "-6s", m: true },
+  { t: "TypeScript", x: "20%", y: "46%", d: "21s", dl: "-11s", m: false },
+  { t: "Supabase", x: "74%", y: "42%", d: "25s", dl: "-3s", m: false },
+  { t: "Custom built", x: "86%", y: "31%", d: "27s", dl: "-15s", m: false },
+  { t: "React", x: "6%", y: "37%", d: "22s", dl: "-8s", m: false },
+];
+
 function Headline({ lines }: { lines: string[] }) {
   let i = 0;
   return (
@@ -195,6 +205,14 @@ export default function Hero() {
   return (
     <header className="hero" ref={root}>
       <div className="hero-bg">
+        {/* Tech names drifting faintly in the northern lights */}
+        <div className="au-nodes" aria-hidden="true">
+          {NODES.map((n) => (
+            <span key={n.t} className={n.m ? "" : "nm"} style={{ left: n.x, top: n.y, ["--d" as string]: n.d, ["--dl" as string]: n.dl }}>
+              <i />{n.t}
+            </span>
+          ))}
+        </div>
         {site.heroScene === "aurora" ? (
           /* Northern lights over the archipelago with the SweGBG emblem; lights, water and emblem are animated in CSS */
           <div className="aurora">
@@ -302,12 +320,6 @@ export default function Hero() {
             </li>
           ))}
         </ul>
-        <p className="hero-stack" aria-label={`${t.hero.stackT}: ${t.hero.stack.join(", ")}`}>
-          <b>{t.hero.stackT}</b>
-          {t.hero.stack.map((s) => (
-            <span key={s}>{s}</span>
-          ))}
-        </p>
       </div>
       <WorkDialog open={work} onClose={() => setWork(false)} />
       <WhyDialog open={why} onClose={() => setWhy(false)} />

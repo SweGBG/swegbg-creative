@@ -12,8 +12,6 @@ const sv = {
     craft: "Se hantverket",
     talk: "Starta ett projekt",
     trust: ["Du pratar direkt med mig", "Du äger kod, domän och film", "Svar inom 24 timmar"],
-    stackT: "Custom built",
-    stack: ["Next.js", "Node.js", "TypeScript", "Supabase"],
   },
   why: { more: "Se hela jämförelsen ↓" },
   marquee: {
@@ -189,8 +187,6 @@ const en: Dict = {
     craft: "See the craft",
     talk: "Start a project",
     trust: ["You talk directly to me", "You own the code, domain and film", "Reply within 24 hours"],
-    stackT: "Custom built",
-    stack: ["Next.js", "Node.js", "TypeScript", "Supabase"],
   },
   why: { more: "See the full comparison ↓" },
   marquee: {
