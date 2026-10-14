@@ -53,11 +53,6 @@ export default function HeroEmblem({ children }: { children?: React.ReactNode })
             <textPath href="#hxTextPath" textLength="945" lengthAdjust="spacing">{RING_TEXT + RING_TEXT}</textPath>
           </text>
         </g>
-        {/* crown on the top point: the hexagon reads as a coat of arms */}
-        <g className="hx-crown">
-          <path pathLength={1} d="M185 75 L182 60 L192 67 L200 55 L208 67 L218 60 L215 75 Z" />
-          <circle cx="182" cy="59" r="2" /><circle cx="200" cy="54" r="2.2" /><circle cx="218" cy="59" r="2" />
-        </g>
         {/* shield: gilded hexagon, beaded inner border and rivets at the corners */}
         <polygon className="hx-hex outer" points={hex(122)} />
         <polygon className="hx-hex beads" points={hex(115)} />
@@ -68,8 +63,13 @@ export default function HeroEmblem({ children }: { children?: React.ReactNode })
             return <circle key={p} cx={x} cy={y} r="2.6" />;
           })}
         </g>
+        {/* crown inside the shield, above SG: the hexagon reads as a coat of arms */}
+        <g className="hx-crown" transform="translate(200 122) scale(.95) translate(-200 -64)">
+          <path pathLength={1} d="M185 75 L182 60 L192 67 L200 55 L208 67 L218 60 L215 75 Z" />
+          <circle cx="182" cy="59" r="2" /><circle cx="200" cy="54" r="2.2" /><circle cx="218" cy="59" r="2" />
+        </g>
         {/* SG monogram, same strokes as the wordmark */}
-        <g className="hx-mono" transform="translate(200 180) scale(3.5) translate(-19.5 -12)">
+        <g className="hx-mono" transform="translate(200 186) scale(3.4) translate(-19.5 -12)">
           <path pathLength={1} d="M13.1 4.5 A6.5 5 0 1 0 7.5 12 A6.5 5 0 1 1 1.9 19.5" />
           <path pathLength={1} d="M36.07 4.93 A10 10 0 1 0 39 12 H31" />
         </g>
