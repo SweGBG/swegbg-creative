@@ -323,45 +323,14 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   .au-nodes span:nth-child(1) { left: 5% !important; top: 15% !important; } .au-nodes span:nth-child(2) { left: auto !important; right: 9%; top: 17% !important; } }
 @media (prefers-reduced-motion: reduce) { .au-nodes span { animation: none; opacity: .3; } }
 
-/* ---------- Preview: segmented nav + glass "how it works" card ---------- */
+/* Wide screens: the four nav links as gold pills (same look as "Varför välja oss"), centred in the nav */
 .seg { display: none; }
-@media (min-width: 1100px) {
+@media (min-width: 1280px) {
+  .nav { position: relative; }
   .nav .why-btn:not(.why-m) { display: none; }
-  .seg { display: flex; }
-  .seg a { display: inline-flex; align-items: center; height: 34px; padding: 0 .9rem; font: 500 .7rem var(--mono); letter-spacing: .1em; text-transform: uppercase;
-    color: #eef1f7; text-decoration: none; background: rgba(6, 10, 30, .4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, .15); transition: background .2s, border-color .2s, color .2s; }
-  .seg a + a { border-left: 0; }
-  .seg a:first-child { border-radius: 3px 0 0 3px; color: var(--glow); }
-  .seg a:last-child { border-radius: 0 3px 3px 0; }
-  .seg a:hover { background: rgba(240, 179, 71, .12); border-color: rgba(240, 179, 71, .45); color: #fff; }
-  .nav .call { display: inline-flex; align-items: center; gap: .4rem; height: 34px; padding: 0 1rem; border: 1px solid var(--glow); border-radius: 3px;
-    background: linear-gradient(180deg, #f6c45f, #e0a033); color: #140d02; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .7rem; }
-  .nav .call:hover { color: #140d02; border-color: #ffd98a; filter: brightness(1.08); }
+  .seg { display: flex; gap: .55rem; position: absolute; left: 50%; top: 50%; translate: -50% -50%; }
+  .seg a { display: inline-flex; align-items: center; padding: .5rem 1rem; border: 1px solid rgba(240, 179, 71, .7); border-radius: 999px;
+    font: 600 .8rem/1 var(--mono); letter-spacing: .05em; color: var(--glow); text-decoration: none; background: rgba(240, 179, 71, .08);
+    box-shadow: 0 0 18px -6px rgba(240, 179, 71, .6); transition: background .3s, color .3s, box-shadow .3s; white-space: nowrap; }
+  .seg a:hover { background: var(--glow); color: #120c02; box-shadow: 0 0 26px -4px rgba(240, 179, 71, .9); }
 }
-.call-arrow { display: none; }
-@media (min-width: 1100px) { .call-arrow { display: block; } }
-
-.flow { display: none; }
-@media (min-width: 1180px) and (min-height: 720px) {
-  .flow { display: block; position: absolute; right: max(2rem, calc((100vw - 1380px) / 2 + 2rem)); bottom: 2.6rem; z-index: 4; width: 236px;
-    animation: rise 1.2s 1.6s cubic-bezier(.2, .8, .2, 1) both; }
-}
-.flow-t { display: flex; align-items: center; gap: .5rem; margin: 0 0 .55rem; font: 500 .68rem var(--mono); letter-spacing: .12em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
-.flow-t i { width: 6px; height: 6px; border-radius: 50%; background: var(--glow); box-shadow: 0 0 10px var(--glow); }
-.flow ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
-.flow li { position: relative; display: flex; align-items: center; gap: .55rem; padding: .55rem .7rem; border-radius: 3px;
-  font: 500 .72rem var(--mono); color: rgba(255, 255, 255, .55);
-  background: rgba(4, 7, 20, .55); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, .12);
-  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, .7); animation: flowLit 8s calc(2.4s + var(--k) * 1.2s) ease-in-out infinite; }
-.flow li + li::before { content: ""; position: absolute; left: 50%; top: -11px; width: 1px; height: 10px; background: rgba(255, 255, 255, .18); }
-.flow-ic { display: grid; place-items: center; width: 22px; height: 22px; flex: none; border-radius: 3px; background: rgba(255, 255, 255, .06); color: rgba(255, 255, 255, .6); }
-.flow-ok { margin-left: auto; padding: .15rem .4rem; border-radius: 2px; font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; color: #140d02; background: var(--glow);
-  opacity: 0; animation: flowOk 8s calc(2.4s + 3 * 1.2s) ease-in-out infinite; }
-@keyframes flowLit {
-  0%, 100% { color: rgba(255, 255, 255, .55); border-color: rgba(255, 255, 255, .12); }
-  6%, 55% { color: #fff; border-color: rgba(240, 179, 71, .6); box-shadow: 0 0 0 1px rgba(240, 179, 71, .15), 0 10px 30px -12px rgba(240, 179, 71, .45); }
-  70% { color: rgba(255, 255, 255, .55); border-color: rgba(255, 255, 255, .12); } }
-@keyframes flowOk { 0%, 3% { opacity: 0; } 8%, 50% { opacity: 1; } 62%, 100% { opacity: 0; } }
-.flow li:nth-child(n) .flow-ic { transition: color .3s; }
-@media (prefers-reduced-motion: reduce) { .flow li, .flow-ok { animation: none; } .flow-ok { opacity: 1; } }

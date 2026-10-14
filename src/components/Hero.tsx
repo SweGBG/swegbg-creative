@@ -19,17 +19,6 @@ const SUN = { dy: -8, sc: 1, anchor: 0.2539, horizon: 0.52 };
 const MOON = { dy: -25, sc: 0.55, anchor: 0.5924, maxY: 0.5, sideY: 0.4, sideX: 0.2 };
 const TINTS = ["#fff", "#fff", "#fff", "#ffe9c8", "#cfe0ff"];
 
-const fic = (d: React.ReactNode) => (
-  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">{d}</svg>
-);
-/** Icons for the flow card: message, pen, code, check. */
-const FLOW_ICONS = [
-  fic(<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />),
-  fic(<><path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /><path d="M2 2l7.586 7.586" /><circle cx="11" cy="11" r="2" /></>),
-  fic(<><path d="m16 18 6-6-6-6" /><path d="m8 6-6 6 6 6" /></>),
-  fic(<><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></>),
-];
-
 /** Floating tech labels in the aurora; m = also shown on phones. Kept away from the emblem in the middle. */
 const NODES = [
   { t: "Node.js", x: "12%", y: "26%", d: "19s", dl: "0s", m: true },
@@ -331,7 +320,7 @@ export default function Hero() {
         </a>
         <div className="nav-r">
           <a className="why-btn" href="#agande" onClick={goWhy}>{t.nav.why}</a>
-          {/* Wide screens: one segmented bar instead of loose links */}
+          {/* Wide screens: four gold pill links, centred in the nav */}
           <nav className="seg" aria-label="Meny">
             <a href="#agande" onClick={goWhy}>{t.nav.why}</a>
             <a href="#hantverket" onClick={(e) => { e.preventDefault(); setWork(true); }}>{t.nav.craft}</a>
@@ -341,7 +330,6 @@ export default function Hero() {
           <LangSwitch />
           <a className="call" href="#contact" onClick={(e) => { e.preventDefault(); openContact(); }}>
             {t.nav.start}
-            <svg className="call-arrow" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="m9 18 6-6-6-6" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" /></svg>
           </a>
         </div>
       </div>
@@ -373,19 +361,6 @@ export default function Hero() {
           ))}
         </ul>
       </div>
-      {/* Glass card: the four steps light up one after another (desktop only) */}
-      <aside className="flow" aria-label={t.hero.flowT}>
-        <p className="flow-t"><i />{t.hero.flowT}</p>
-        <ol>
-          {t.hero.flow.map((x, i) => (
-            <li key={x} style={{ ["--k" as string]: i }}>
-              <span className="flow-ic" aria-hidden="true">{FLOW_ICONS[i]}</span>
-              <span>{x}</span>
-              {i === t.hero.flow.length - 1 ? <b className="flow-ok">{t.hero.flowDone}</b> : null}
-            </li>
-          ))}
-        </ol>
-      </aside>
       <WorkDialog open={work} onClose={() => setWork(false)} />
       <WhyDialog open={why} onClose={() => setWhy(false)} />
     </header>
