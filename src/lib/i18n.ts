@@ -3,7 +3,7 @@ export type Lang = "sv" | "en";
 export type L = Record<Lang, string>;
 
 const sv = {
-  nav: { start: "Starta ett projekt", switchTo: "Switch to English" },
+  nav: { why: "Varför välja oss", start: "Starta ett projekt", switchTo: "Switch to English" },
   hero: {
     kicker: "Digitalt hantverk · Göteborg",
     lines: ["Hemsidor byggda för hand.", "Inte ur en mall."],
@@ -153,7 +153,7 @@ const sv = {
 export type Dict = typeof sv;
 
 const en: Dict = {
-  nav: { start: "Start a project", switchTo: "Byt till svenska" },
+  nav: { why: "Why choose us", start: "Start a project", switchTo: "Byt till svenska" },
   hero: {
     kicker: "Digital craftsmanship · Gothenburg",
     lines: ["Websites built by hand.", "Not from a template."],

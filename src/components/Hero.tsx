@@ -71,6 +71,10 @@ export default function Hero() {
   const [work, setWork] = useState(false);
   const { t } = useLang();
   const openContact = useContact();
+  const goWhy = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.getElementById("agande")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   useEffect(() => {
     const hero = root.current;
@@ -262,6 +266,7 @@ export default function Hero() {
           <AgencyMark className="logo-mark logo-agency" />
         </a>
         <div className="nav-r">
+          <a className="why-btn" href="#agande" onClick={goWhy}>{t.nav.why}</a>
           <LangSwitch />
           <a className="call" href="#contact" onClick={(e) => { e.preventDefault(); openContact(); }}>
             {t.nav.start}
@@ -286,6 +291,7 @@ export default function Hero() {
             {t.hero.talk}
           </a>
         </div>
+        <a className="why-btn why-m" href="#agande" onClick={goWhy}>{t.nav.why} ↓</a>
         <ul className="trust">
           {t.hero.trust.map((x, i) => (
             <li key={x}>

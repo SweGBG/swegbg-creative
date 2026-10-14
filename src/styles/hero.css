@@ -266,7 +266,7 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 
 /* Phones: emblem a bit higher and the caption tighter, so the headline never meets the lead text */
 @media (max-width: 640px) {
-  .hero { min-height: max(100svh, 780px); }
+  .hero { min-height: max(100svh, 920px); }
   .aurora { --sy: 20%; }
   .hero h1 { font-size: clamp(1.2rem, 5.6vw, 1.45rem); }
   .hero-body { padding-bottom: 3rem; }
@@ -280,3 +280,11 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 @keyframes tagIn { from { opacity: 0; filter: blur(6px); clip-path: inset(0 100% 0 0); } to { opacity: 1; filter: blur(0); clip-path: inset(0 -10% 0 0); } }
 @media (max-width: 640px) { .hero-tagline { font-size: 1.3rem; } }
 @media (prefers-reduced-motion: reduce) { .hero-tagline { animation: none; } }
+
+/* "Varför välja oss" CTA: gold pill in the nav (desktop), under the hero buttons on phones */
+.why-btn { display: inline-flex; align-items: center; padding: .5rem 1rem; border: 1px solid rgba(240, 179, 71, .7); border-radius: 999px;
+  font: 600 .8rem/1 var(--mono); letter-spacing: .05em; color: var(--glow); text-decoration: none; background: rgba(240, 179, 71, .08);
+  box-shadow: 0 0 18px -6px rgba(240, 179, 71, .6); transition: background .3s, color .3s, box-shadow .3s; }
+.why-btn:hover { background: var(--glow); color: #120c02; box-shadow: 0 0 26px -4px rgba(240, 179, 71, .9); }
+.why-m { display: none; margin: 1.1rem auto 0; animation: rise 1.2s 1.15s cubic-bezier(.2, .8, .2, 1) both; }
+@media (max-width: 760px) { .nav .why-btn:not(.why-m) { display: none; } .why-m { display: inline-flex; } }
