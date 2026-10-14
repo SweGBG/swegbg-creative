@@ -37,6 +37,22 @@ Next.js, TypeScript, React, Supabase, Resend, Vercel, Figma, Tailwind CSS, hand-
 - HiTekk (electronics e-commerce): https://hitekk.vercel.app
 - Stålco (B2B tool store): https://stalco-theta.vercel.app
 
+## Service and guide pages
+
+Swedish / English:
+- Billig hemsida / Affordable website: https://www.swegbg.com/billig-hemsida · https://www.swegbg.com/en/affordable-website
+- Hemsidor till salu / Websites for sale (ready-made concepts rebuilt with the client's name): https://www.swegbg.com/hemsidor-till-salu · https://www.swegbg.com/en/websites-for-sale
+- Bygga egen hemsida / Build your own website (guide): https://www.swegbg.com/bygga-egen-hemsida · https://www.swegbg.com/en/build-your-own-website
+- Webbyrå i Sverige / Web agency in Sweden: https://www.swegbg.com/webbyra-sverige · https://www.swegbg.com/en/web-agency-sweden
+- Webbyrå i Göteborg / Web agency in Gothenburg: https://www.swegbg.com/webbyra-goteborg · https://www.swegbg.com/en/web-agency-gothenburg
+- Hemsida för hantverkare / Website for tradespeople: https://www.swegbg.com/hemsida-hantverkare · https://www.swegbg.com/en/website-for-tradespeople
+- Bokningssystem / Booking system: https://www.swegbg.com/bokningssystem · https://www.swegbg.com/en/booking-system
+- Hemsida för restaurang / Restaurant website: https://www.swegbg.com/hemsida-restaurang · https://www.swegbg.com/en/restaurant-website
+- Dropshipping-butik / Dropshipping store: https://www.swegbg.com/dropshipping · https://www.swegbg.com/en/dropshipping-store
+- Vad kostar en hemsida? / How much does a website cost? (guide): https://www.swegbg.com/vad-kostar-en-hemsida · https://www.swegbg.com/en/website-cost
+- Digitalt hantverk / Digital craft: https://www.swegbg.com/digitalt-hantverk · https://www.swegbg.com/en/digital-craft
+- SweGBG Lab: https://www.swegbg.com/lab · https://www.swegbg.com/en/lab
+
 ## Common questions
 
 - How do I build a website? Either build it yourself in a site builder (monthly fee, you never own it) or hire someone. SweGBG: a call, a first draft with your own company, the build via a preview link, then launch on your domain and full handover.

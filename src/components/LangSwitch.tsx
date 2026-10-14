@@ -3,7 +3,7 @@
 import { useLang } from "@/lib/LangContext";
 import type { Lang } from "@/lib/i18n";
 
-function FlagSV() {
+export function FlagSV() {
   return (
     <svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true">
       <rect width="20" height="14" fill="#006AA7" />
@@ -13,7 +13,7 @@ function FlagSV() {
   );
 }
 
-function FlagEN() {
+export function FlagEN() {
   return (
     <svg viewBox="0 0 20 14" width="20" height="14" aria-hidden="true">
       <rect width="20" height="14" fill="#00247D" />
@@ -48,6 +48,25 @@ export default function LangSwitch() {
           <Flag />
           <span>{label}</span>
         </button>
+      ))}
+    </div>
+  );
+}
+
+/** Same pill as LangSwitch, but as links to the page's counterpart in the other language (search landing pages). */
+export function LangLinks({ lang, sv, en }: { lang: Lang; sv: string; en: string }) {
+  const opts = [
+    { id: "sv" as const, label: "SV", href: sv, Flag: FlagSV, name: "Svenska" },
+    { id: "en" as const, label: "EN", href: en, Flag: FlagEN, name: "English" },
+  ];
+  return (
+    <div className="lang" role="group" aria-label="Språk / Language" data-lang={lang}>
+      <span className="lang-thumb" aria-hidden="true" />
+      {opts.map(({ id, label, href, Flag, name }) => (
+        <a key={id} href={href} hrefLang={id === "sv" ? "sv-SE" : "en-US"} lang={id} aria-label={name} aria-current={lang === id ? "page" : undefined}>
+          <Flag />
+          <span>{label}</span>
+        </a>
       ))}
     </div>
   );

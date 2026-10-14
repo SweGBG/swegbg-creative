@@ -2,9 +2,21 @@ import { site, seo, projects, brandNames } from "@/lib/site";
 import { dict } from "@/lib/i18n";
 import type { Lang } from "@/lib/i18n";
 
+/** Renders one schema.org @graph as a JSON-LD script tag. */
+export function LdScript({ graph }: { graph: object }) {
+  return (
+    <script
+      type="application/ld+json"
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }}
+    />
+  );
+}
+
 /**
- * Structured data (schema.org) for Google, Bing and AI assistants.
- * One @graph: the agency, the person behind it, the website and this page.
+ * Structured data (schema.org) for Google, Bing and AI assistants, on every page:
+ * the agency, the person behind it and the website. Each page adds its own nodes
+ * (HomeJsonLd on the start page, LandingJsonLd on the search landing pages).
  * The disambiguating text keeps SweGBG apart from similarly named companies.
  */
 export default function JsonLd({ lang }: { lang: Lang }) {
@@ -88,6 +100,20 @@ export default function JsonLd({ lang }: { lang: Lang }) {
         inLanguage: ["sv-SE", "en-US"],
         publisher: { "@id": `${url}/#org` },
       },
+    ],
+  };
+
+  return <LdScript graph={graph} />;
+}
+
+/** Start page: the page itself, its FAQ and the demo list. */
+export function HomeJsonLd({ lang }: { lang: Lang }) {
+  const url = site.url;
+  const pageUrl = lang === "sv" ? `${url}/` : `${url}/en`;
+  const sv = lang === "sv";
+  const graph = {
+    "@context": "https://schema.org",
+    "@graph": [
       {
         "@type": "WebPage",
         "@id": `${pageUrl}#webpage`,
@@ -122,12 +148,5 @@ export default function JsonLd({ lang }: { lang: Lang }) {
       },
     ],
   };
-
-  return (
-    <script
-      type="application/ld+json"
-      // eslint-disable-next-line react/no-danger
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph).replace(/</g, "\\u003c") }}
-    />
-  );
+  return <LdScript graph={graph} />;
 }

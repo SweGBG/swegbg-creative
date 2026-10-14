@@ -1,5 +1,11 @@
 import HomePage from "@/components/HomePage";
+import { HomeJsonLd } from "@/components/JsonLd";
 
 export default function Page() {
-  return <HomePage />;
+  return (
+    <>
+      <HomeJsonLd lang="sv" />
+      <HomePage />
+    </>
+  );
 }

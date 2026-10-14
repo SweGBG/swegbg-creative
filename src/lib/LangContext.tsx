@@ -9,6 +9,8 @@ const LangContext = createContext<Ctx>({ lang: "sv", setLang: () => {}, t: dict.
 
 const KEY = "swegbg-lang";
 const pathFor = (l: Lang) => (l === "sv" ? "/" : "/en");
+/** Only the start page swaps language in place; the search landing pages link to their counterpart instead. */
+const onHome = () => ["/", "/en"].includes(window.location.pathname.replace(/(.)\/$/, "$1"));
 
 /**
  * The URL decides the language: "/" is Swedish, "/en" is English, so Google can
@@ -27,7 +29,7 @@ export function LangProvider({ children, initial = "sv" }: { children: ReactNode
 
   // Only on the Swedish start page: honour a saved English choice.
   useEffect(() => {
-    if (initial !== "sv") return;
+    if (initial !== "sv" || !onHome()) return;
     try {
       if (localStorage.getItem(KEY) === "en") {
         setLangState("en");
@@ -41,12 +43,12 @@ export function LangProvider({ children, initial = "sv" }: { children: ReactNode
   // Keep <html lang> in sync for screen readers and search engines.
   useEffect(() => {
     document.documentElement.lang = lang;
-    document.title = seo[lang].title;
+    if (onHome()) document.title = seo[lang].title;
   }, [lang]);
 
   const setLang = (l: Lang) => {
     setLangState(l);
-    syncUrl(l);
+    if (onHome()) syncUrl(l);
     try {
       localStorage.setItem(KEY, l);
     } catch {

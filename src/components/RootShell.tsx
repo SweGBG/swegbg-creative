@@ -23,6 +23,7 @@ import "@/styles/work.css";
 import "@/styles/morph.css";
 import "@/styles/contact.css";
 import "@/styles/home.css";
+import "@/styles/landing.css";
 
 /**
  * Metadata for one language version. "/" is Swedish, "/en" is English.

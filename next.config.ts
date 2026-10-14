@@ -1,4 +1,8 @@
 import type { NextConfig } from "next";
+import { landings } from "./src/lib/landing";
+
+// English landing pages must not be caught by the "/en/anything → /en" catch-all below.
+const enPages = landings.map((l) => l.en.slug).join("|");
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -7,7 +11,7 @@ const nextConfig: NextConfig = {
     return [
       { source: "/sv", destination: "/", permanent: true },
       { source: "/sv/:path*", destination: "/", permanent: true },
-      { source: "/en/:path+", destination: "/en", permanent: true },
+      { source: `/en/:path((?!(?:${enPages})/?$).+)`, destination: "/en", permanent: true },
       { source: "/se", destination: "/", permanent: true },
       // Old v2 pages (swegbg.com before the merge) → the matching section.
       { source: "/om", destination: "/#om", permanent: true },
@@ -23,6 +27,11 @@ const nextConfig: NextConfig = {
       { source: "/projekt", destination: "/#hantverket", permanent: true },
       { source: "/work", destination: "/en#hantverket", permanent: true },
       { source: "/faq", destination: "/#fragor", permanent: true },
+      // Common spellings of the search landing pages
+      { source: "/webbyra", destination: "/webbyra-sverige", permanent: true },
+      { source: "/bokning", destination: "/bokningssystem", permanent: true },
+      { source: "/dropshipping-butik", destination: "/dropshipping", permanent: true },
+      { source: "/swegbg-lab", destination: "/lab", permanent: true },
     ];
   },
 };
