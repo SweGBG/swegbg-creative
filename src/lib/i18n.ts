@@ -12,12 +12,14 @@ const sv = {
     craft: "Se hantverket",
     talk: "Starta ett projekt",
     trust: ["Du pratar direkt med mig", "Du äger kod, domän och film", "Svar inom 24 timmar"],
+    stackT: "Custom built",
+    stack: ["Next.js", "Node.js", "TypeScript", "Supabase"],
   },
   why: { more: "Se hela jämförelsen ↓" },
   marquee: {
     aria: "Verktyg och hantverk",
-    a: ["Next.js", "TypeScript", "Supabase", "Resend", "Figma", "Tailwind", "MiniMax H3", "Vercel", "GitHub"],
-    b: ["Bokningssystem", "Adminpaneler", "Egen AI-film", "Videoredigering", "CSS-animationer", "SEO/AEO", "Svenska och engelska", "Du äger allt"],
+    a: ["Next.js", "Node.js", "TypeScript", "Supabase", "Resend", "Figma", "Tailwind", "MiniMax H3", "Vercel", "GitHub"],
+    b: ["Custom built", "Bokningssystem", "Adminpaneler", "Egen AI-film", "Videoredigering", "CSS-animationer", "SEO/AEO", "Svenska och engelska", "Du äger allt"],
   },
   workshop: {
     kicker: "01 — Verkstaden",
@@ -187,12 +189,14 @@ const en: Dict = {
     craft: "See the craft",
     talk: "Start a project",
     trust: ["You talk directly to me", "You own the code, domain and film", "Reply within 24 hours"],
+    stackT: "Custom built",
+    stack: ["Next.js", "Node.js", "TypeScript", "Supabase"],
   },
   why: { more: "See the full comparison ↓" },
   marquee: {
     aria: "Tools and craft",
-    a: ["Next.js", "TypeScript", "Supabase", "Resend", "Figma", "Tailwind", "MiniMax H3", "Vercel", "GitHub"],
-    b: ["Booking systems", "Admin panels", "Original AI film", "Video editing", "CSS animation", "SEO/AEO", "Swedish and English", "You own everything"],
+    a: ["Next.js", "Node.js", "TypeScript", "Supabase", "Resend", "Figma", "Tailwind", "MiniMax H3", "Vercel", "GitHub"],
+    b: ["Custom built", "Booking systems", "Admin panels", "Original AI film", "Video editing", "CSS animation", "SEO/AEO", "Swedish and English", "You own everything"],
   },
   workshop: {
     kicker: "01 — The workshop",

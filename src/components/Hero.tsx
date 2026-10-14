@@ -302,6 +302,12 @@ export default function Hero() {
             </li>
           ))}
         </ul>
+        <p className="hero-stack" aria-label={`${t.hero.stackT}: ${t.hero.stack.join(", ")}`}>
+          <b>{t.hero.stackT}</b>
+          {t.hero.stack.map((s) => (
+            <span key={s}>{s}</span>
+          ))}
+        </p>
       </div>
       <WorkDialog open={work} onClose={() => setWork(false)} />
       <WhyDialog open={why} onClose={() => setWhy(false)} />

@@ -266,7 +266,7 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 
 /* Phones: emblem a bit higher and the caption tighter, so the headline never meets the lead text */
 @media (max-width: 640px) {
-  .hero { min-height: max(100svh, 920px); }
+  .hero { min-height: max(100svh, 1020px); }
   .aurora { --sy: 20%; }
   .hero h1 { font-size: clamp(1.2rem, 5.6vw, 1.45rem); }
   .hero-body { padding-bottom: 3rem; }
@@ -288,3 +288,14 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 .why-btn:hover { background: var(--glow); color: #120c02; box-shadow: 0 0 26px -4px rgba(240, 179, 71, .9); }
 .why-m { display: none; margin: 1.1rem auto 0; animation: rise 1.2s 1.15s cubic-bezier(.2, .8, .2, 1) both; }
 @media (max-width: 760px) { .nav .why-btn:not(.why-m) { display: none; } .why-m { display: inline-flex; } }
+
+/* "Custom built" stack strip under the trust row */
+.hero-stack { margin: 1.4rem auto 0; display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .45rem; padding: .45rem .55rem .45rem .5rem;
+  border: 1px solid rgba(240, 179, 71, .22); border-radius: 999px; background: rgba(6, 10, 30, .45); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  font: 500 .72rem/1 var(--mono); letter-spacing: .06em; animation: rise 1.2s 1.35s cubic-bezier(.2, .8, .2, 1) both; }
+.hero-stack b { padding: .38rem .7rem; border-radius: 999px; background: linear-gradient(135deg, #f0b347, #c9922a); color: #140d02; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; }
+.hero-stack span { padding: .38rem .6rem; border-radius: 999px; color: #e6e9f1; border: 1px solid rgba(255, 255, 255, .1); background: rgba(255, 255, 255, .03); }
+@media (max-width: 640px) { .hero-stack { margin-top: 1rem; font-size: .64rem; gap: .3rem; padding: .35rem; border-radius: 14px; } .hero-stack b, .hero-stack span { padding: .32rem .5rem; } }
+
+/* Crisper backdrop: the sky is now 3x and the engraving 2x, with a touch of contrast */
+.au-img { filter: contrast(1.06) saturate(1.06); }
