@@ -386,17 +386,21 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   35% { opacity: 1; }
   100% { opacity: 1; transform: none; filter: blur(0) brightness(1) drop-shadow(0 0 18px rgba(240, 179, 71, .35)); }
 }
-/* the logo is revealed in two stages: the crest, shield and banner grow out from the middle,
-   then the ring and its text are drawn clockwise from the top */
-.hb-img { display: block; width: 100%; height: 100%;
-  -webkit-mask-image: radial-gradient(circle closest-side, #000 calc(var(--hbr) - 10%), transparent var(--hbr)), conic-gradient(from 0deg, #000 var(--hba), transparent calc(var(--hba) + 5deg));
-  mask-image: radial-gradient(circle closest-side, #000 calc(var(--hbr) - 10%), transparent var(--hbr)), conic-gradient(from 0deg, #000 var(--hba), transparent calc(var(--hba) + 5deg));
-  animation: hbdraw 3.6s .5s cubic-bezier(.45, 0, .25, 1) both; }
-@keyframes hbdraw {
-  0% { --hbr: 0%; --hba: 0deg; }
-  42% { --hbr: 80%; --hba: 0deg; }
-  100% { --hbr: 80%; --hba: 365deg; }
-}
+/* the logo is revealed in two stages: the crest and shield grow out from the middle (inner layer),
+   then the outer ring and its text are drawn clockwise from the top (ring layer, which then turns slowly) */
+.hb-img { display: block; width: 100%; height: 100%; clip-path: circle(33.4% at 50% 50%);
+  -webkit-mask-image: radial-gradient(circle closest-side, #000 calc(var(--hbr) - 10%), transparent var(--hbr));
+  mask-image: radial-gradient(circle closest-side, #000 calc(var(--hbr) - 10%), transparent var(--hbr));
+  animation: hbgrow 1.5s .5s cubic-bezier(.45, 0, .25, 1) both; }
+@keyframes hbgrow { from { --hbr: 0%; } to { --hbr: 80%; } }
+.hb-ringwrap { position: absolute; inset: 0; animation: hxspin 110s 4.1s linear infinite reverse; }
+.hb-ring { display: block; width: 100%; height: 100%;
+  -webkit-mask-image: radial-gradient(circle closest-side, transparent 66%, #000 67.4%), conic-gradient(from 0deg, #000 var(--hba), transparent calc(var(--hba) + 5deg));
+  -webkit-mask-composite: source-in;
+  mask-image: radial-gradient(circle closest-side, transparent 66%, #000 67.4%), conic-gradient(from 0deg, #000 var(--hba), transparent calc(var(--hba) + 5deg));
+  mask-composite: intersect;
+  animation: hbring 2.1s 2s cubic-bezier(.45, 0, .25, 1) both; }
+@keyframes hbring { from { --hba: 0deg; } to { --hba: 365deg; } }
 /* the old emblem's banner on top of the image (uses .hx-ribbon / .rb-* / .hx-word from above) */
 .hb-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .hb-hexpatch { stroke: url(#hxGold); stroke-width: 3; stroke-linejoin: round; animation: fadeIn .8s 2.3s both; }
@@ -410,9 +414,10 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 /* gloss only on the gold of the logo */
 .hb-sheen { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
   -webkit-mask: url(/img/swegbg-badge.webp) center / 100% 100% no-repeat; mask: url(/img/swegbg-badge.webp) center / 100% 100% no-repeat; }
-.hb-sheen { background: linear-gradient(105deg, transparent 38%, rgba(255, 244, 214, .5) 48%, transparent 58%) 0 0 / 300% 100%; animation: hxgloss 8s 4.6s ease-in-out infinite; }
+.hb-sheen { clip-path: circle(33.4% at 50% 50%); background: linear-gradient(105deg, transparent 38%, rgba(255, 244, 214, .5) 48%, transparent 58%) 0 0 / 300% 100%; animation: hxgloss 8s 4.6s ease-in-out infinite; }
 @media (max-width: 760px), (pointer: coarse) { .hb-sheen { display: none; } .hb { filter: none; } }
 @media (prefers-reduced-motion: reduce) {
   .hb-orbit, .hb-sheen { animation: none; } .hb-orbit { opacity: .9; }
   .hb-img { animation: none; -webkit-mask-image: none; mask-image: none; }
+  .hb-ringwrap { animation: none; } .hb-ring { animation: none; --hba: 365deg; }
 }

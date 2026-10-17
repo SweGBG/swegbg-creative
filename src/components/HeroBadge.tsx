@@ -3,7 +3,7 @@
   the round logo, gold on transparent so it sits in the sky like the old emblem. It materializes out of gold dust (blurred and overexposed -> sharp),
   drawn in two stages (crest grows from the middle, then the ring is drawn clockwise). The banner is the old
   emblem's SVG banner (cut out of the image): it unfurls from the centre and SWEGBG AGENCY draws itself letter
-  by letter, exactly like before. Then a light circles the outer ring, a gloss crosses the gold now and then and
+  by letter, exactly like before. The outer ring with its text turns slowly (like the old ring text). Then a light circles the outer ring, a gloss crosses the gold now and then and
   sparks twinkle around it. The badge itself stays still (no floating). Wrapper classes (.hx, .hx-halo, .hx-dust, .hx-sparks, .hx-cap)
   are shared with HeroEmblem so position and size still come from --sx, --sy and --sd.
 */
@@ -40,6 +40,11 @@ export default function HeroBadge({ children }: { children?: React.ReactNode }) 
               <div className="hb">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="hb-img" src="/img/swegbg-badge.webp" alt="SweGBG Agency" width={900} height={900} decoding="async" fetchPriority="high" />
+          {/* the outer ring with its text, same image masked to the ring, turning slowly like the old ring text */}
+          <div className="hb-ringwrap" aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="hb-ring" src="/img/swegbg-badge.webp" alt="" width={900} height={900} decoding="async" />
+          </div>
           <svg className="hb-svg" viewBox="0 0 400 400" fill="none" aria-hidden="true">
             <defs>
               <linearGradient id="hxGold" x1="0" y1="0" x2="1" y2="1">
