@@ -93,7 +93,7 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   text-shadow: 0 0 18px var(--shd), 0 0 8px var(--shd); animation: rise 1.2s .8s cubic-bezier(.2, .8, .2, 1) both; }
 /* Billigare | Bättre | Modern teknik: Chakra Petch in gold, thin fading lines at both ends */
 .pillars { margin: 0 0 1.7rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .5rem 0;
-  font: 600 clamp(.95rem, 1.5vw, 1.12rem)/1 var(--display); letter-spacing: .3em; text-transform: uppercase; color: var(--glow);
+  font: 600 clamp(.76rem, 1.1vw, .9rem)/1 var(--display); letter-spacing: .26em; text-transform: uppercase; color: var(--glow);
   text-shadow: 0 0 14px var(--shd), 0 0 8px var(--shd); animation: rise 1.2s .95s cubic-bezier(.2, .8, .2, 1) both; }
 .pl-item { padding: 0 1.05rem; }
 .pl-item + .pl-item { border-left: 1px solid rgba(240, 179, 71, .4); }
@@ -113,6 +113,16 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 .btn.ghost { border: 1px solid rgba(233, 228, 216, .4); color: var(--ink); text-shadow: 0 0 10px var(--shd); background: rgba(6, 9, 17, .25); backdrop-filter: blur(4px); }
 .btn:hover { transform: translateY(-2px); }
 .btn.ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+/* Modern hero CTAs: pill shape, soft gold gradient, calm glow pulse, arrow that nudges on hover */
+.btns .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 1.9rem; border-radius: 999px; font-size: .88rem; letter-spacing: .04em; }
+.btns .btn::after { content: "\2192"; margin-left: .7rem; font-family: var(--display); font-weight: 600; transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
+.btns .btn:hover::after { transform: translateX(5px); }
+.btns .btn.main { background: linear-gradient(135deg, #f8cb6b, var(--glow) 55%, #e39a26); box-shadow: 0 6px 22px rgba(240, 179, 71, .22); animation: ctaGlow 4.2s ease-in-out 2.4s infinite; }
+.btns .btn.main:hover { box-shadow: 0 10px 32px rgba(240, 179, 71, .5); animation: none; }
+.btns .btn.ghost { border-color: rgba(240, 179, 71, .45); }
+.btns .btn.ghost:hover { border-color: var(--glow); color: var(--glow); background: rgba(240, 179, 71, .1); }
+@keyframes ctaGlow { 0%, 100% { box-shadow: 0 6px 22px rgba(240, 179, 71, .2); } 50% { box-shadow: 0 8px 34px rgba(240, 179, 71, .5); } }
+@media (prefers-reduced-motion: reduce) { .btns .btn.main { animation: none; } .btns .btn::after { transition: none; } }
 @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
 /* Save work: pause decorative animation while scrolling and when the hero is off screen */
@@ -296,7 +306,8 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   .hero h1 { font-size: clamp(1.2rem, 5.6vw, 1.45rem); }
   .hero-body { padding-bottom: 3rem; }
   .hero .lead { font-size: 1.02rem; margin-bottom: 1.5rem; }
-  .pillars { font-size: .78rem; letter-spacing: .16em; margin-bottom: 1.4rem; }
+  .pillars { font-size: .68rem; letter-spacing: .14em; margin-bottom: 1.4rem; }
+  .btns .btn { min-height: 48px; padding: 0 1.5rem; }
   .pl-item { padding: 0 .6rem; }
   .pl-line { width: 22px; margin-right: .2rem; }
   .pl-line.r { margin-left: .2rem; margin-right: 0; }
