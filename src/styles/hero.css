@@ -377,23 +377,43 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   .lab-m { display: flex; width: max-content; margin: .9rem auto 0; animation: rise 1.2s 1.3s cubic-bezier(.2, .8, .2, 1) both; }
 }
 
-/* ---------- Round logo badge (HeroBadge): medal that materializes, with an orbiting light dot ---------- */
-.hb-float { position: absolute; inset: 0; animation: hbfloat 8s 3.2s ease-in-out infinite; }
+/* ---------- Round logo badge (HeroBadge): gold on the sky, draws itself in, orbiting light, glints ---------- */
+@property --hbr { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
+@property --hba { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+.hb-float { position: absolute; inset: 0; animation: hbfloat 8s 4s ease-in-out infinite; }
 @keyframes hbfloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-.hb { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: #070b15;
-  box-shadow: 0 0 0 1px rgba(240, 179, 71, .28), 0 0 42px rgba(240, 179, 71, .28), 0 14px 50px rgba(0, 0, 0, .55);
-  animation: hxmat 2.4s .5s cubic-bezier(.22, 1, .36, 1) both; }
-.hb-img { display: block; width: 100%; height: 100%; object-fit: cover; }
-/* a thin light dot that circles the outer ring of the logo */
+.hb { position: absolute; inset: 0; filter: drop-shadow(0 0 18px rgba(240, 179, 71, .35)); animation: hbin 1.9s .4s cubic-bezier(.22, 1, .36, 1) both; }
+@keyframes hbin {
+  0% { opacity: 0; transform: scale(1.06); filter: blur(10px) brightness(2.4) drop-shadow(0 0 18px rgba(240, 179, 71, .35)); }
+  35% { opacity: 1; }
+  100% { opacity: 1; transform: none; filter: blur(0) brightness(1) drop-shadow(0 0 18px rgba(240, 179, 71, .35)); }
+}
+/* the logo is revealed in two stages: the crest, shield and banner grow out from the middle,
+   then the ring and its text are drawn clockwise from the top */
+.hb-img { display: block; width: 100%; height: 100%;
+  -webkit-mask-image: radial-gradient(circle closest-side, #000 calc(var(--hbr) - 10%), transparent var(--hbr)), conic-gradient(from 0deg, #000 var(--hba), transparent calc(var(--hba) + 5deg));
+  mask-image: radial-gradient(circle closest-side, #000 calc(var(--hbr) - 10%), transparent var(--hbr)), conic-gradient(from 0deg, #000 var(--hba), transparent calc(var(--hba) + 5deg));
+  animation: hbdraw 3.6s .5s cubic-bezier(.45, 0, .25, 1) both; }
+@keyframes hbdraw {
+  0% { --hbr: 0%; --hba: 0deg; }
+  42% { --hbr: 80%; --hba: 0deg; }
+  100% { --hbr: 80%; --hba: 365deg; }
+}
+/* a light that circles the outer ring, with a long tail */
 .hb-orbit { position: absolute; inset: 0; border-radius: 50%;
-  background: conic-gradient(from 0deg, transparent 0 86%, rgba(255, 226, 163, .1) 90%, rgba(255, 240, 200, .95) 99.4%, transparent 100%);
+  background: conic-gradient(from 0deg, transparent 0 66%, rgba(255, 226, 163, .12) 78%, rgba(255, 240, 200, 1) 99.4%, transparent 100%);
   -webkit-mask: radial-gradient(circle closest-side, transparent 89.2%, #000 90%, #000 92%, transparent 92.8%);
   mask: radial-gradient(circle closest-side, transparent 89.2%, #000 90%, #000 92%, transparent 92.8%);
-  opacity: 0; animation: hbfade 1.2s 3s ease-out forwards, hxspin 14s 3s linear infinite; }
-@keyframes hbfade { to { opacity: .95; } }
-/* gloss that crosses the disc now and then */
-.hb-sheen { position: absolute; inset: 0; border-radius: 50%; mix-blend-mode: screen; pointer-events: none;
-  background: linear-gradient(105deg, transparent 38%, rgba(255, 244, 214, .22) 48%, transparent 58%) 0 0 / 300% 100%;
-  animation: hxgloss 8s 4s ease-in-out infinite; }
-@media (max-width: 760px), (pointer: coarse) { .hb-sheen { display: none; } .hb { box-shadow: 0 0 0 1px rgba(240, 179, 71, .28), 0 0 26px rgba(240, 179, 71, .22); } }
-@media (prefers-reduced-motion: reduce) { .hb-float, .hb-orbit, .hb-sheen { animation: none; } .hb-orbit { opacity: .9; } }
+  opacity: 0; animation: hbfade 1s 4.1s ease-out forwards, hxspin 12s 4.1s linear infinite; }
+@keyframes hbfade { to { opacity: 1; } }
+/* glints only on the gold of the logo: one across the whole badge, one just on the banner */
+.hb-sheen, .hb-glint { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
+  -webkit-mask: url(/img/swegbg-badge.webp) center / 100% 100% no-repeat; mask: url(/img/swegbg-badge.webp) center / 100% 100% no-repeat; }
+.hb-sheen { background: linear-gradient(105deg, transparent 38%, rgba(255, 244, 214, .5) 48%, transparent 58%) 0 0 / 300% 100%; animation: hxgloss 8s 4.6s ease-in-out infinite; }
+.hb-glint { clip-path: inset(60% 7% 26% 7%); background: linear-gradient(100deg, transparent 40%, rgba(255, 250, 230, .95) 50%, transparent 60%) 0 0 / 260% 100% no-repeat; animation: hbglint 6s 6s ease-in-out infinite; }
+@keyframes hbglint { 0% { background-position: 125% 0; } 22%, 100% { background-position: -125% 0; } }
+@media (max-width: 760px), (pointer: coarse) { .hb-sheen { display: none; } .hb { filter: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .hb-float, .hb-orbit, .hb-sheen, .hb-glint { animation: none; } .hb-orbit { opacity: .9; } .hb-glint { display: none; }
+  .hb-img { animation: none; -webkit-mask-image: none; mask-image: none; }
+}

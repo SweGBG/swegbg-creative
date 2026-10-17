@@ -1,8 +1,9 @@
 /*
   SweGBG badge for the hero (replaces the SVG emblem, which is still in HeroEmblem.tsx if we want it back):
-  the round logo as a gilded medal. It materializes out of gold dust (blurred and overexposed -> sharp),
-  then a light dot orbits the outer ring, a gloss crosses the disc now and then, sparks twinkle around it
-  and the whole badge floats very slightly. Wrapper classes (.hx, .hx-halo, .hx-dust, .hx-sparks, .hx-cap)
+  the round logo, gold on transparent so it sits in the sky like the old emblem. It materializes out of gold dust (blurred and overexposed -> sharp),
+  drawn in two stages (crest and banner grow from the middle, then the ring is drawn clockwise). Then a light
+  circles the outer ring, a gloss crosses the gold now and then, the banner gets its own glint, sparks twinkle
+  around it and the whole badge floats very slightly. Wrapper classes (.hx, .hx-halo, .hx-dust, .hx-sparks, .hx-cap)
   are shared with HeroEmblem so position and size still come from --sx, --sy and --sd.
 */
 function rng(seed: number) {
@@ -34,6 +35,7 @@ export default function HeroBadge({ children }: { children?: React.ReactNode }) 
           <img className="hb-img" src="/img/swegbg-badge.webp" alt="SweGBG Agency" width={900} height={900} decoding="async" fetchPriority="high" />
           <span className="hb-orbit" aria-hidden="true" />
           <span className="hb-sheen" aria-hidden="true" />
+          <span className="hb-glint" aria-hidden="true" />
         </div>
       </div>
       <div className="hx-sparks" aria-hidden="true">
