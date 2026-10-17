@@ -336,6 +336,11 @@ export default function Hero() {
 
       <div className="wrap hero-body">
         <p className="lead">{t.hero.lead}</p>
+        <ul className="pillars" aria-label={t.hero.pillars.join(", ")}>
+          {t.hero.pillars.map((x) => (
+            <li key={x}>{x}</li>
+          ))}
+        </ul>
         <div className="btns">
           <a
             className="btn main"
