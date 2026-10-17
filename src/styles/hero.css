@@ -380,8 +380,6 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 /* ---------- Round logo badge (HeroBadge): gold on the sky, draws itself in, orbiting light, glints ---------- */
 @property --hbr { syntax: "<percentage>"; inherits: false; initial-value: 0%; }
 @property --hba { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
-.hb-float { position: absolute; inset: 0; animation: hbfloat 8s 4s ease-in-out infinite; }
-@keyframes hbfloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 .hb { position: absolute; inset: 0; filter: drop-shadow(0 0 18px rgba(240, 179, 71, .35)); animation: hbin 1.9s .4s cubic-bezier(.22, 1, .36, 1) both; }
 @keyframes hbin {
   0% { opacity: 0; transform: scale(1.06); filter: blur(10px) brightness(2.4) drop-shadow(0 0 18px rgba(240, 179, 71, .35)); }
@@ -399,6 +397,9 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   42% { --hbr: 80%; --hba: 0deg; }
   100% { --hbr: 80%; --hba: 365deg; }
 }
+/* the old emblem's banner on top of the image (uses .hx-ribbon / .rb-* / .hx-word from above) */
+.hb-svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.hb-hexpatch { stroke: url(#hxGold); stroke-width: 3; stroke-linejoin: round; animation: fadeIn .8s 2.3s both; }
 /* a light that circles the outer ring, with a long tail */
 .hb-orbit { position: absolute; inset: 0; border-radius: 50%;
   background: conic-gradient(from 0deg, transparent 0 66%, rgba(255, 226, 163, .12) 78%, rgba(255, 240, 200, 1) 99.4%, transparent 100%);
@@ -406,14 +407,12 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   mask: radial-gradient(circle closest-side, transparent 89.2%, #000 90%, #000 92%, transparent 92.8%);
   opacity: 0; animation: hbfade 1s 4.1s ease-out forwards, hxspin 12s 4.1s linear infinite; }
 @keyframes hbfade { to { opacity: 1; } }
-/* glints only on the gold of the logo: one across the whole badge, one just on the banner */
-.hb-sheen, .hb-glint { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
+/* gloss only on the gold of the logo */
+.hb-sheen { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen;
   -webkit-mask: url(/img/swegbg-badge.webp) center / 100% 100% no-repeat; mask: url(/img/swegbg-badge.webp) center / 100% 100% no-repeat; }
 .hb-sheen { background: linear-gradient(105deg, transparent 38%, rgba(255, 244, 214, .5) 48%, transparent 58%) 0 0 / 300% 100%; animation: hxgloss 8s 4.6s ease-in-out infinite; }
-.hb-glint { clip-path: inset(60% 7% 26% 7%); background: linear-gradient(100deg, transparent 40%, rgba(255, 250, 230, .95) 50%, transparent 60%) 0 0 / 260% 100% no-repeat; animation: hbglint 6s 6s ease-in-out infinite; }
-@keyframes hbglint { 0% { background-position: 125% 0; } 22%, 100% { background-position: -125% 0; } }
 @media (max-width: 760px), (pointer: coarse) { .hb-sheen { display: none; } .hb { filter: none; } }
 @media (prefers-reduced-motion: reduce) {
-  .hb-float, .hb-orbit, .hb-sheen, .hb-glint { animation: none; } .hb-orbit { opacity: .9; } .hb-glint { display: none; }
+  .hb-orbit, .hb-sheen { animation: none; } .hb-orbit { opacity: .9; }
   .hb-img { animation: none; -webkit-mask-image: none; mask-image: none; }
 }
