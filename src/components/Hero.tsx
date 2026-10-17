@@ -5,7 +5,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import WhyDialog from "./WhyDialog";
 import WorkDialog from "./WorkDialog";
-import HeroEmblem from "./HeroEmblem";
+import HeroBadge from "./HeroBadge";
 import LangSwitch from "./LangSwitch";
 import AgencyMark, { SwegbgMark } from "./AgencyMark";
 import { useLang } from "@/lib/LangContext";
@@ -258,13 +258,13 @@ export default function Hero() {
             <div className="au-rays" />
             <div className="au-water" />
             <div className="hx-engrave" aria-hidden="true" />
-            <HeroEmblem>
+            <HeroBadge>
               <div className="hx-cap">
                 <p className="hero-kicker"><span aria-hidden="true" />{t.hero.kicker}<span aria-hidden="true" /></p>
                 <Headline key={t.hero.lines.join()} lines={t.hero.lines} />
                 <p className="hero-tagline">{t.hero.tagline}</p>
               </div>
-            </HeroEmblem>
+            </HeroBadge>
           </div>
         ) : (
           <>

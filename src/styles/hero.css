@@ -376,3 +376,24 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   .nav .lab-btn { display: none; }
   .lab-m { display: flex; width: max-content; margin: .9rem auto 0; animation: rise 1.2s 1.3s cubic-bezier(.2, .8, .2, 1) both; }
 }
+
+/* ---------- Round logo badge (HeroBadge): medal that materializes, with an orbiting light dot ---------- */
+.hb-float { position: absolute; inset: 0; animation: hbfloat 8s 3.2s ease-in-out infinite; }
+@keyframes hbfloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.hb { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; background: #070b15;
+  box-shadow: 0 0 0 1px rgba(240, 179, 71, .28), 0 0 42px rgba(240, 179, 71, .28), 0 14px 50px rgba(0, 0, 0, .55);
+  animation: hxmat 2.4s .5s cubic-bezier(.22, 1, .36, 1) both; }
+.hb-img { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* a thin light dot that circles the outer ring of the logo */
+.hb-orbit { position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0 86%, rgba(255, 226, 163, .1) 90%, rgba(255, 240, 200, .95) 99.4%, transparent 100%);
+  -webkit-mask: radial-gradient(circle closest-side, transparent 89.2%, #000 90%, #000 92%, transparent 92.8%);
+  mask: radial-gradient(circle closest-side, transparent 89.2%, #000 90%, #000 92%, transparent 92.8%);
+  opacity: 0; animation: hbfade 1.2s 3s ease-out forwards, hxspin 14s 3s linear infinite; }
+@keyframes hbfade { to { opacity: .95; } }
+/* gloss that crosses the disc now and then */
+.hb-sheen { position: absolute; inset: 0; border-radius: 50%; mix-blend-mode: screen; pointer-events: none;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 244, 214, .22) 48%, transparent 58%) 0 0 / 300% 100%;
+  animation: hxgloss 8s 4s ease-in-out infinite; }
+@media (max-width: 760px), (pointer: coarse) { .hb-sheen { display: none; } .hb { box-shadow: 0 0 0 1px rgba(240, 179, 71, .28), 0 0 26px rgba(240, 179, 71, .22); } }
+@media (prefers-reduced-motion: reduce) { .hb-float, .hb-orbit, .hb-sheen { animation: none; } .hb-orbit { opacity: .9; } }
