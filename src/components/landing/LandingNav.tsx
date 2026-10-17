@@ -2,6 +2,7 @@
 
 import AgencyMark, { SwegbgMark } from "@/components/AgencyMark";
 import { LangLinks } from "@/components/LangSwitch";
+import LabButton from "@/components/LabButton";
 import { useContact } from "@/components/ContactDialog";
 import { useLang } from "@/lib/LangContext";
 import type { Lang } from "@/lib/i18n";
@@ -18,6 +19,7 @@ export default function LandingNav({ lang, sv, en }: { lang: Lang; sv: string; e
         <AgencyMark className="logo-mark logo-agency" />
       </a>
       <div className="nav-r">
+        <LabButton />
         <LangLinks lang={lang} sv={sv} en={en} />
         <a
           className="call"

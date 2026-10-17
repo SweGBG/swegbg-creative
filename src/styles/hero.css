@@ -351,9 +351,28 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 @media (min-width: 1280px) {
   .nav { position: relative; }
   .nav .why-btn:not(.why-m) { display: none; }
-  .seg { display: flex; gap: .4rem; position: absolute; left: 50%; top: 50%; translate: -50% -50%; }
+  .seg { display: flex; gap: .4rem; position: absolute; left: calc(50% - 2.5rem); top: 50%; translate: -50% -50%; }
   .seg a { display: inline-flex; align-items: center; padding: .38rem .75rem; border: 1px solid rgba(240, 179, 71, .65); border-radius: 999px;
     font: 600 .7rem/1 var(--mono); letter-spacing: .05em; color: var(--glow); text-decoration: none; background: rgba(240, 179, 71, .08);
     box-shadow: 0 0 18px -6px rgba(240, 179, 71, .6); transition: background .3s, color .3s, box-shadow .3s; white-space: nowrap; }
   .seg a:hover { background: var(--glow); color: #120c02; box-shadow: 0 0 26px -4px rgba(240, 179, 71, .9); }
+}
+
+/* SweGBG Lab button: hex badge + "Lab" + a live dot */
+.lab-btn { position: relative; display: inline-flex; align-items: center; gap: .45rem; padding: .3rem .75rem .3rem .3rem; border-radius: 999px; text-decoration: none;
+  border: 1px solid rgba(240, 179, 71, .45); background: rgba(6, 9, 17, .45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  font: 600 .74rem/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--glow); transition: border-color .3s, box-shadow .3s, background .3s; }
+.lab-btn:hover { border-color: var(--glow); background: rgba(240, 179, 71, .12); box-shadow: 0 0 24px -4px rgba(240, 179, 71, .8); }
+.lab-hex { display: grid; place-items: center; width: 22px; height: 24px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: linear-gradient(180deg, #ffe0a0, #f0b347 55%, #c4862b); }
+.lab-hex svg { width: 13px; height: 13px; fill: none; stroke: #1a1204; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.lab-dot { position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; border-radius: 50%; background: #5fd06b; box-shadow: 0 0 0 2px rgba(6, 9, 17, .9);
+  animation: labPing 2.4s ease-out infinite; }
+@keyframes labPing { 0% { box-shadow: 0 0 0 2px rgba(6, 9, 17, .9), 0 0 0 2px rgba(95, 208, 107, .6); } 70%, 100% { box-shadow: 0 0 0 2px rgba(6, 9, 17, .9), 0 0 0 10px rgba(95, 208, 107, 0); } }
+@media (prefers-reduced-motion: reduce) { .lab-dot { animation: none; } }
+/* phones: the nav has no room, so Lab moves into the hero under "Varför välja oss" */
+.lab-m { display: none; }
+@media (max-width: 560px) {
+  .nav .lab-btn { display: none; }
+  .lab-m { display: flex; width: max-content; margin: .9rem auto 0; animation: rise 1.2s 1.3s cubic-bezier(.2, .8, .2, 1) both; }
 }

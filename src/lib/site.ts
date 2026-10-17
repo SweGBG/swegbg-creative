@@ -12,6 +12,8 @@ export const site = {
   description:
     "Digitalt hantverk från Göteborg: hemsidor, bokningssystem och egna produktfilmer åt småföretag. Personligt, efter din budget, och allt du köper är ditt.",
   github: "https://github.com/SweGBG",
+  // SweGBG Lab: tools visitors can play with (own repo SweGBG/swegbg-lab)
+  lab: "https://lab.swegbg.com",
   // Google Företagsprofil (SweGBG Agency) – share link from the profile
   googleProfile: "https://share.google/HRvK4Jl1S8zhPHI3O",
 };

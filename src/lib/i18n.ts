@@ -3,7 +3,7 @@ export type Lang = "sv" | "en";
 export type L = Record<Lang, string>;
 
 const sv = {
-  nav: { why: "Varför välja oss", craft: "Hantverket", process: "Process", prices: "Priser", start: "Starta ett projekt", switchTo: "Switch to English" },
+  nav: { why: "Varför välja oss", craft: "Hantverket", process: "Process", prices: "Priser", start: "Starta ett projekt", switchTo: "Switch to English", lab: "Lab", labTry: "Prova SweGBG Lab", labTitle: "SweGBG Lab: prova våra verktyg med din egen logga" },
   hero: {
     kicker: "Digitalt hantverk · Göteborg",
     lines: ["Hemsidor byggda för hand.", "Inte ur en mall."],
@@ -181,7 +181,7 @@ const sv = {
 export type Dict = typeof sv;
 
 const en: Dict = {
-  nav: { why: "Why choose us", craft: "The craft", process: "Process", prices: "Pricing", start: "Start a project", switchTo: "Byt till svenska" },
+  nav: { why: "Why choose us", craft: "The craft", process: "Process", prices: "Pricing", start: "Start a project", switchTo: "Byt till svenska", lab: "Lab", labTry: "Try SweGBG Lab", labTitle: "SweGBG Lab: try our tools with your own logo" },
   hero: {
     kicker: "Digital craftsmanship · Gothenburg",
     lines: ["Websites built by hand.", "Not from a template."],

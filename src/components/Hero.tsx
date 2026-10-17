@@ -1,5 +1,6 @@
 "use client";
 
+import LabButton from "./LabButton";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { site } from "@/lib/site";
 import WhyDialog from "./WhyDialog";
@@ -327,6 +328,7 @@ export default function Hero() {
             <a href="#process">{t.nav.process}</a>
             <a href="#priser">{t.nav.prices}</a>
           </nav>
+          <LabButton />
           <LangSwitch />
           <a className="call" href="#contact" onClick={(e) => { e.preventDefault(); openContact(); }}>
             {t.nav.start}
@@ -359,6 +361,7 @@ export default function Hero() {
           </a>
         </div>
         <a className="why-btn why-m" href="#agande" onClick={goWhy}>{t.nav.why}</a>
+        <LabButton mobile />
         <ul className="trust">
           {t.hero.trust.map((x, i) => (
             <li key={x}>
