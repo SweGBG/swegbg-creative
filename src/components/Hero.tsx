@@ -336,11 +336,13 @@ export default function Hero() {
 
       <div className="wrap hero-body">
         <p className="lead">{t.hero.lead}</p>
-        <ul className="pillars" aria-label={t.hero.pillars.join(", ")}>
+        <div className="pillars" role="list" aria-label={t.hero.pillars.join(", ")}>
+          <span className="pl-line" aria-hidden="true" />
           {t.hero.pillars.map((x) => (
-            <li key={x}>{x}</li>
+            <span role="listitem" className="pl-item" key={x}>{x}</span>
           ))}
-        </ul>
+          <span className="pl-line r" aria-hidden="true" />
+        </div>
         <div className="btns">
           <a
             className="btn main"

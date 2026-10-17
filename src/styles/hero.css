@@ -91,12 +91,14 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
 @keyframes glitch2 { 0% { transform: translate(0, 0); clip-path: inset(70% 0 10% 0); } 25% { transform: translate(3px, -1px); clip-path: inset(5% 0 80% 0); } 50% { transform: translate(-3px, 1px); clip-path: inset(50% 0 20% 0); } 75% { transform: translate(2px, 0); clip-path: inset(15% 0 65% 0); } 100% { transform: translate(-2px, -1px); clip-path: inset(45% 0 35% 0); } }
 .lead { margin: 0 auto 2rem; max-width: 34ch; font-size: clamp(1.1rem, 2.4vw, 1.4rem); font-weight: 500; color: var(--ink);
   text-shadow: 0 0 18px var(--shd), 0 0 8px var(--shd); animation: rise 1.2s .8s cubic-bezier(.2, .8, .2, 1) both; }
-/* Billigare | Bättre | Modern teknik: gold mono row with thin dividers */
-.pillars { list-style: none; margin: 0 0 1.7rem; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .5rem 0;
-  font: 600 .86rem/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--glow);
+/* Billigare | Bättre | Modern teknik: Chakra Petch in gold, thin fading lines at both ends */
+.pillars { margin: 0 0 1.7rem; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .5rem 0;
+  font: 600 clamp(.95rem, 1.5vw, 1.12rem)/1 var(--display); letter-spacing: .3em; text-transform: uppercase; color: var(--glow);
   text-shadow: 0 0 14px var(--shd), 0 0 8px var(--shd); animation: rise 1.2s .95s cubic-bezier(.2, .8, .2, 1) both; }
-.pillars li { padding: 0 1.1rem; }
-.pillars li + li { border-left: 1px solid rgba(240, 179, 71, .45); }
+.pl-item { padding: 0 1.05rem; }
+.pl-item + .pl-item { border-left: 1px solid rgba(240, 179, 71, .4); }
+.pl-line { width: 46px; height: 1px; margin-right: .6rem; background: linear-gradient(90deg, transparent, var(--glow)); opacity: .75; }
+.pl-line.r { margin-right: 0; margin-left: .6rem; background: linear-gradient(90deg, var(--glow), transparent); }
 .btns { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; animation: rise 1.2s 1.05s cubic-bezier(.2, .8, .2, 1) both; }
 .trust { list-style: none; margin: 1.8rem 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem 1.75rem; font-size: .9rem; color: #dfe3ec;
   text-shadow: 0 0 10px var(--shd); animation: rise 1.2s 1.3s cubic-bezier(.2, .8, .2, 1) both; }
@@ -294,8 +296,10 @@ h1 .gl:hover::after { opacity: .7; animation: glitch2 .3s steps(2) infinite; }
   .hero h1 { font-size: clamp(1.2rem, 5.6vw, 1.45rem); }
   .hero-body { padding-bottom: 3rem; }
   .hero .lead { font-size: 1.02rem; margin-bottom: 1.5rem; }
-  .pillars { font-size: .74rem; letter-spacing: .1em; margin-bottom: 1.4rem; }
-  .pillars li { padding: 0 .7rem; }
+  .pillars { font-size: .78rem; letter-spacing: .16em; margin-bottom: 1.4rem; }
+  .pl-item { padding: 0 .6rem; }
+  .pl-line { width: 22px; margin-right: .2rem; }
+  .pl-line.r { margin-left: .2rem; margin-right: 0; }
   .trust { margin-top: 1.3rem; }
 }
 
