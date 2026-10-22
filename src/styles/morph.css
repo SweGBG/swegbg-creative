@@ -96,3 +96,91 @@
 .mg-click:hover .mg-canvas, .mg-click:hover .mg-fallback { filter: brightness(1.06); }
 .mg-canvas, .mg-fallback { transition: opacity .4s ease, filter .3s; }
 @media (hover: none) { .mg-hint { display: none; } }
+
+/* ── Brand reveal on the stage (Atilli Berg): emblem lands in gold, text rises beside it ──
+   Everything is sized in container units so the miniature hero scales with the gallery. */
+.rv { position: absolute; inset: 0; container-type: size; display: grid; grid-template-columns: 1.02fr 1fr; align-items: center;
+  gap: 3cqw; padding: 0 8cqw 0 6cqw; --gold: #c9a24b; --gold-hi: #f0d896; --ease: cubic-bezier(.22, 1, .36, 1); --ds: 1; }
+.rv-shade { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(50% 70% at 27% 52%, rgba(201, 162, 75, .12), transparent 70%),
+    linear-gradient(90deg, rgba(8, 7, 5, .25), rgba(8, 7, 5, .1) 40%, rgba(8, 7, 5, .55) 62%, rgba(8, 7, 5, .7));
+  animation: rvFade 1.2s .1s var(--ease) both; }
+@keyframes rvFade { from { opacity: 0; } }
+
+/* Emblem: dust gathers → materializes → lands with a bounce → gold ring + glow */
+.rv-emblem { position: relative; display: grid; place-items: center; animation: rvSettle .9s 1.45s cubic-bezier(.34, 1.56, .64, 1) both; }
+.rv-emblem img { position: relative; width: 100%; max-width: none; height: auto; filter: drop-shadow(0 1.5cqw 3cqw rgba(0, 0, 0, .6));
+  animation: rvMat 1.5s .2s var(--ease) both; }
+@keyframes rvMat {
+  0% { opacity: 0; transform: scale(1.1); filter: blur(2.4cqw) brightness(2) saturate(.2) drop-shadow(0 0 0 transparent); clip-path: circle(8% at 50% 50%); }
+  45% { opacity: 1; filter: blur(.8cqw) brightness(1.4) saturate(.6) drop-shadow(0 0 0 transparent); clip-path: circle(60% at 50% 50%); }
+  100% { opacity: 1; transform: none; filter: blur(0) brightness(1) saturate(1) drop-shadow(0 1.5cqw 3cqw rgba(0, 0, 0, .6)); clip-path: circle(100% at 50% 50%); } }
+@keyframes rvSettle { 0% { transform: scale(1.06) translateY(-1cqh); } 45% { transform: scale(.975) translateY(.4cqh); } 100% { transform: none; } }
+.rv-ring { position: absolute; left: 50%; top: 50%; width: 52%; aspect-ratio: 1.3; translate: -50% -50%; border-radius: 50%; pointer-events: none;
+  border: 1px solid rgba(240, 216, 150, .85); box-shadow: 0 0 2cqw rgba(201, 162, 75, .6), inset 0 0 1.2cqw rgba(201, 162, 75, .4); opacity: 0;
+  animation: rvRing 1.5s 1.5s cubic-bezier(.2, .7, .3, 1) both; }
+.rv-ring::before { content: ""; position: absolute; inset: -40%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(233, 205, 140, .35), rgba(201, 162, 75, .08) 60%, transparent); animation: rvFlash 1.6s ease-out both; }
+@keyframes rvRing { 0% { opacity: .9; transform: scale(.7); } 100% { opacity: 0; transform: scale(2.3); } }
+@keyframes rvFlash { 0% { opacity: 0; } 18% { opacity: 1; } 100% { opacity: 0; } }
+.rv-gloss { position: absolute; inset: 6% 4%; pointer-events: none; mix-blend-mode: soft-light;
+  -webkit-mask: radial-gradient(closest-side, #000 55%, transparent 100%); mask: radial-gradient(closest-side, #000 55%, transparent 100%);
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 244, 214, .55) 48%, transparent 58%) 0 0 / 300% 100% no-repeat;
+  animation: rvGloss 6s 2.4s ease-in-out infinite; }
+@keyframes rvGloss { 0% { background-position: 120% 0; } 35%, 100% { background-position: -120% 0; } }
+.rv-dust { position: absolute; inset: 0; display: grid; place-items: center; }
+.rv-dust i { position: absolute; width: .45cqw; height: .45cqw; min-width: 3px; min-height: 3px; border-radius: 50%; background: #ffe2a0;
+  box-shadow: 0 0 1cqw .3cqw rgba(240, 179, 71, .75); opacity: 0;
+  animation: rvDust 1.3s calc(.05s + var(--dl)) cubic-bezier(.3, 0, .2, 1) both; }
+@keyframes rvDust { 0% { opacity: 0; translate: calc(var(--x) * var(--ds)) calc(var(--y) * var(--ds)); } 25% { opacity: 1; } 90% { opacity: .9; }
+  100% { opacity: 0; translate: 0 0; scale: .3; } }
+
+/* Text: rises after the emblem has landed */
+.rv-text { position: relative; color: #ede3cb; }
+.rv-text > * { margin: 0; animation: rvRise .9s var(--ease) both; }
+.rv-eye { display: inline-flex; align-items: center; gap: 1.2cqw; font: 600 1.15cqw/1 var(--body); letter-spacing: .34em;
+  text-transform: uppercase; color: var(--gold); animation-delay: 1.85s !important; }
+.rv-eye i { width: 3cqw; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
+.rv-eye i:last-child { background: linear-gradient(270deg, transparent, var(--gold)); }
+.rv-title { margin-top: 1.8cqw !important; font: 500 5.4cqw/1 "Playfair Display", Georgia, serif; letter-spacing: .035em; text-transform: uppercase;
+  background: linear-gradient(100deg, #96712f 0%, #e9cd8c 28%, #c9a24b 44%, #fff1c8 50%, #c9a24b 56%, #e9cd8c 72%, #96712f 100%) 0 0 / 250% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 .4cqw 2cqw rgba(8, 7, 5, .85));
+  animation: rvRise .9s 2s var(--ease) both, rvSheen 7s 3s linear infinite !important; }
+@keyframes rvSheen { 0% { background-position: 100% 0; } 40%, 100% { background-position: -150% 0; } }
+.rv-sub { margin-top: 1cqw !important; font: 400 2.5cqw/1.1 "Playfair Display", Georgia, serif; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--gold); animation-delay: 2.15s !important; }
+.rv-lead { margin-top: 2cqw !important; max-width: 34cqw; font: 400 1.35cqw/1.7 var(--body); color: rgba(237, 227, 203, .78);
+  text-shadow: 0 .2cqw 1.5cqw rgba(8, 7, 5, .9); animation-delay: 2.3s !important; }
+.rv-btns { display: flex; gap: 1cqw; margin-top: 2.6cqw !important; animation-delay: 2.45s !important; }
+.rv-btns span { display: inline-flex; align-items: center; gap: .8cqw; height: 4.2cqw; padding: 0 2.1cqw; border-radius: 2px;
+  font: 700 1.05cqw/1 var(--body); letter-spacing: .2em; text-transform: uppercase; white-space: nowrap; }
+.rv-gold { position: relative; overflow: hidden; color: #0c0a07; background: linear-gradient(160deg, #e9cd8c, #c9a24b 45%, #96712f);
+  box-shadow: 0 1.2cqw 3cqw -1.2cqw rgba(201, 162, 75, .7), inset 0 1px 0 rgba(255, 255, 255, .45); }
+.rv-gold::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, .6) 50%, transparent 70%);
+  transform: translateX(-120%); animation: rvShine 1.2s 3.1s var(--ease) both; }
+@keyframes rvShine { to { transform: translateX(120%); } }
+.rv-gold b { font-weight: 400; }
+.rv-ghost { color: #ede3cb; border: 1px solid rgba(201, 162, 75, .6); }
+.rv-status { display: inline-flex; align-items: center; gap: .9cqw; margin-top: 2cqw !important; font: 400 1.1cqw/1 var(--body);
+  letter-spacing: .06em; color: #9a8e77; animation-delay: 2.6s !important; }
+.rv-status i { position: relative; width: .75cqw; height: .75cqw; border-radius: 50%; background: #e3c57b; }
+.rv-status i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: #e3c57b; animation: rvPing 2s 3s ease-out infinite; }
+@keyframes rvPing { to { transform: scale(3); opacity: 0; } }
+@keyframes rvRise { from { opacity: 0; transform: translateY(1.6cqw); filter: blur(.6cqw); } }
+
+/* Small stages (phones): emblem on top, name + buttons below */
+@container (max-width: 560px) {
+  .rv { grid-template-columns: 1fr 1.1fr; gap: 2cqw; padding: 0 15cqw 0 9cqw; --ds: .45; }
+  .rv-eye { font-size: 2.3cqw; gap: 1.6cqw; letter-spacing: .26em; }
+  .rv-eye i { width: 4cqw; }
+  .rv-title { font-size: 6.4cqw; margin-top: 2.4cqw !important; }
+  .rv-sub { font-size: 3.6cqw; margin-top: 1.4cqw !important; }
+  .rv-lead, .rv-status { display: none; }
+  .rv-btns { margin-top: 3.4cqw !important; gap: 1.6cqw; }
+  .rv-btns span { height: 7cqw; padding: 0 2.6cqw; font-size: 2cqw; letter-spacing: .14em; }
+  .rv-ghost { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv *, .rv *::before, .rv *::after, .rv-emblem, .rv-shade { animation: none !important; }
+  .rv-dust, .rv-ring { display: none; }
+}

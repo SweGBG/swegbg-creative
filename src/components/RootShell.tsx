@@ -16,6 +16,9 @@ import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/500.css";
 import "@fontsource/ibm-plex-mono/600.css";
 import "@fontsource/great-vibes/400.css";
+// Serif for client brand reveals in the gallery (e.g. Atilli Berg) — only downloaded when used
+import "@fontsource/playfair-display/400.css";
+import "@fontsource/playfair-display/500.css";
 import "@/styles/base.css";
 import "@/styles/hero.css";
 import "@/styles/sections.css";

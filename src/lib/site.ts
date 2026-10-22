@@ -73,6 +73,19 @@ export type Project = {
   logo?: string;
   /** Gallery backdrop for the logo; defaults to the image. */
   stage?: string;
+  /**
+   * Gallery "brand reveal": the site's own hero rebuilt live on the stage — the emblem gathers out of
+   * gold dust and lands, then name, tagline and buttons rise in beside it (like the real site).
+   */
+  reveal?: {
+    emblem: string;
+    eyebrow: L;
+    title: string;
+    sub: L;
+    lead: L;
+    cta: { sv: [string, string]; en: [string, string] };
+    status: L;
+  };
   /** Card colours: [background, accent]. */
   theme?: [string, string];
 };
@@ -156,16 +169,27 @@ export const projects: Project[] = [
     name: "Atilli Berg",
     kind: { sv: "Konceptsajt – barberare", en: "Concept site – barber" },
     blurb: {
-      sv: "Komplett bokningssystem för frisör och barberare: onlinebokning, adminpanel, kundregister, schema och automatiska påminnelser via mejl. Databas i Supabase, utskick via Resend. Passar alla verksamheter som tar emot tidsbokningar.",
-      en: "Complete booking system for hairdressers and barbers: online booking, admin panel, client records, scheduling and automatic email reminders. Database in Supabase, emails via Resend. Fits any business that takes appointments.",
+      sv: "Komplett bokningssystem för frisör och barberare. Heron är en egenproducerad AI-film (MiniMax H3) som spolas med scrollen, och i slutet landar loggan i guld – en brand reveal i ren CSS. Bakom finns onlinebokning, adminpanel, kundregister, schema och automatiska påminnelser via mejl (Supabase + Resend). Passar alla verksamheter som tar emot tidsbokningar.",
+      en: "Complete booking system for hairdressers and barbers. The hero is a self-produced AI film (MiniMax H3) scrubbed by your scroll, ending with the logo landing in gold – a brand reveal in pure CSS. Behind it: online booking, admin panel, client records, scheduling and automatic email reminders (Supabase + Resend). Fits any business that takes appointments.",
     },
     image: "/img/work-atilli.webp",
-    imageFit: "emblem",
-    logo: "/img/work-atilli.webp",
+    imageFit: "shot",
     stage: "/img/stage-atilli.webp",
+    reveal: {
+      emblem: "/img/emblem-atilli.webp",
+      eyebrow: { sv: "Välkommen till", en: "Welcome to" },
+      title: "Atilli Berg",
+      sub: { sv: "Frisör & Barberare", en: "Hairdresser & Barber" },
+      lead: {
+        sv: "Scrollstyrd film, logga som landar i guld och onlinebokning dygnet runt.",
+        en: "Scroll-driven film, a logo that lands in gold and online booking around the clock.",
+      },
+      cta: { sv: ["Boka din tid", "Våra tjänster"], en: ["Book a time", "Our services"] },
+      status: { sv: "Öppet för bokning · Göteborg", en: "Open for booking · Gothenburg" },
+    },
     theme: ["#1a1512", "#b8956a"],
     liveUrl: "https://barberare.vercel.app",
-    tags: ["Next.js", "Supabase", "Resend", "Adminpanel"],
+    tags: ["Next.js", "Egenproducerad AI-film", "CSS-animation", "Supabase", "Adminpanel"],
     group: "demo",
   },
   {

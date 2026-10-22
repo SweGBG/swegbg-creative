@@ -152,11 +152,42 @@ const DUST: [string, string, string][] = [
   ["-260px", "-30px", ".09s"], ["270px", "-20px", ".13s"], ["-150px", "150px", ".06s"], ["160px", "120px", ".11s"],
 ];
 
+/** Brand reveal on the gallery stage: the client's hero in miniature, emblem left and text right. Scales with the stage (container units). */
+function Reveal({ r, lang }: { r: NonNullable<Project["reveal"]>; lang: Lang }) {
+  return (
+    <div className="rv">
+      <span className="rv-shade" aria-hidden="true" />
+      <div className="rv-emblem">
+        <span className="rv-dust" aria-hidden="true">
+          {DUST.map((d, n) => (
+            <i key={n} style={{ ["--x" as string]: d[0], ["--y" as string]: d[1], ["--dl" as string]: d[2] }} />
+          ))}
+        </span>
+        <span className="rv-ring" aria-hidden="true" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={r.emblem} alt="" />
+        <span className="rv-gloss" aria-hidden="true" />
+      </div>
+      <div className="rv-text" aria-hidden="true">
+        <p className="rv-eye"><i />{r.eyebrow[lang]}<i /></p>
+        <p className="rv-title">{r.title}</p>
+        <p className="rv-sub">{r.sub[lang]}</p>
+        <p className="rv-lead">{r.lead[lang]}</p>
+        <p className="rv-btns">
+          <span className="rv-gold">{r.cta[lang][0]} <b>→</b></span>
+          <span className="rv-ghost">{r.cta[lang][1]}</span>
+        </p>
+        <p className="rv-status"><i />{r.status[lang]}</p>
+      </div>
+    </div>
+  );
+}
+
 /** The featured demos as a morphing gallery: screenshots dissolve into each other, the pitch sits in a panel below. */
 function Showcase({ cards, lang, w }: { cards: Project[]; lang: Lang; w: Dict["work"] }) {
   const shown = cards.filter((p) => p.image);
   // A logo project shows its dark stage in the gallery; the logo itself materializes on top.
-  const items = shown.map((p) => ({ src: (p.logo ? p.stage : p.image) ?? (p.image as string), thumb: p.image, alt: p.name }));
+  const items = shown.map((p) => ({ src: (p.logo || p.reveal ? p.stage : p.image) ?? (p.image as string), thumb: p.image, alt: p.name }));
   const [i, setI] = useState(0);
   const p = shown[i];
   if (!p) return null;
@@ -178,6 +209,7 @@ function Showcase({ cards, lang, w }: { cards: Project[]; lang: Lang; w: Dict["w
         labels={{ region: w.title, prev: w.prev, next: w.next, show: w.open }}
         overlay={(k) => {
           const q = shown[k];
+          if (q?.reveal) return <Reveal r={q.reveal} lang={lang} />;
           if (!q?.logo) return null;
           return (
             <div className="mg-logo">
