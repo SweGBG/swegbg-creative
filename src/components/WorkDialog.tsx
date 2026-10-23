@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { apps, projects, FEATURED_COUNT, type App, type Project } from "@/lib/site";
 import { useLang } from "@/lib/LangContext";
 import { useContact } from "./ContactDialog";
@@ -92,19 +92,46 @@ function AppCard({ a, lang, w }: { a: App; lang: Lang; w: Dict["work"] }) {
   );
 }
 
+/** True once the element has scrolled into view (so a mini card's reveal plays when you actually see it). */
+function useSeen<T extends Element>() {
+  const ref = useRef<T>(null);
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || on) return;
+    if (!("IntersectionObserver" in window)) return setOn(true);
+    const io = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        setOn(true);
+        io.disconnect();
+      }
+    }, { threshold: 0.45 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [on]);
+  return { ref, on };
+}
+
 /** Mini card: a tiny browser window with the site inside. */
 function Mini({ p, i, live, lang, w, cls = "" }: { p: Project; i: number; live: boolean; lang: Lang; w: Dict["work"]; cls?: string }) {
   const [bg, ac] = p.theme ?? ["#0d1320", "#f0b347"];
-  const fit = p.image ? p.imageFit ?? "shot" : "live";
+  const fit = p.reveal && p.stage ? "reveal" : p.image ? p.imageFit ?? "shot" : "live";
+  const seen = useSeen<HTMLAnchorElement>();
   return (
     <article className={`mini${cls}`} style={{ ["--bg" as string]: bg, ["--ac" as string]: ac, ["--i" as string]: i }}>
-      <a className="mini-frame" href={p.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${w.open} ${p.name} (${host(p.liveUrl)})`}>
+      <a ref={seen.ref} className="mini-frame" href={p.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${w.open} ${p.name} (${host(p.liveUrl)})`}>
         <span className="mini-bar" aria-hidden="true">
           <i /><i /><i />
           <span>{host(p.liveUrl)}</span>
         </span>
         <span className={`mini-view ${fit}`}>
-          {fit === "live" ? (
+          {fit === "reveal" ? (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img className="brv-bg" src={p.stage} alt="" loading="lazy" />
+              {seen.on && p.reveal ? <Reveal r={p.reveal} lang={lang} /> : null}
+            </>
+          ) : fit === "live" ? (
             <>
               <span className="mini-ph" aria-hidden="true">{p.name.charAt(0)}</span>
               {live ? (
@@ -155,7 +182,7 @@ const DUST: [string, string, string][] = [
 /** Brand reveal on the gallery stage: the client's hero in miniature, emblem left and text right. Scales with the stage (container units). */
 function Reveal({ r, lang }: { r: NonNullable<Project["reveal"]>; lang: Lang }) {
   return (
-    <div className="brv">
+    <div className="brv" style={r.vars as CSSProperties | undefined}>
       <span className="brv-shade" aria-hidden="true" />
       <div className="brv-emblem">
         <span className="brv-dust" aria-hidden="true">

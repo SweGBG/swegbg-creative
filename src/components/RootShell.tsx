@@ -19,6 +19,14 @@ import "@fontsource/great-vibes/400.css";
 // Serif for client brand reveals in the gallery (e.g. Atilli Berg) — only downloaded when used
 import "@fontsource/playfair-display/400.css";
 import "@fontsource/playfair-display/500.css";
+// Each demo's own display font for its brand reveal in the gallery — fetched only when that card is shown
+import "@fontsource/bagel-fat-one/400";
+import "@fontsource/cormorant-garamond/500";
+import "@fontsource/fraunces/600";
+import "@fontsource/big-shoulders-display/800";
+import "@fontsource/barlow-condensed/700";
+import "@fontsource/unbounded/700";
+import "@fontsource/archivo/800";
 import "@/styles/base.css";
 import "@/styles/hero.css";
 import "@/styles/sections.css";
