@@ -155,29 +155,29 @@ const DUST: [string, string, string][] = [
 /** Brand reveal on the gallery stage: the client's hero in miniature, emblem left and text right. Scales with the stage (container units). */
 function Reveal({ r, lang }: { r: NonNullable<Project["reveal"]>; lang: Lang }) {
   return (
-    <div className="rv">
-      <span className="rv-shade" aria-hidden="true" />
-      <div className="rv-emblem">
-        <span className="rv-dust" aria-hidden="true">
+    <div className="brv">
+      <span className="brv-shade" aria-hidden="true" />
+      <div className="brv-emblem">
+        <span className="brv-dust" aria-hidden="true">
           {DUST.map((d, n) => (
             <i key={n} style={{ ["--x" as string]: d[0], ["--y" as string]: d[1], ["--dl" as string]: d[2] }} />
           ))}
         </span>
-        <span className="rv-ring" aria-hidden="true" />
+        <span className="brv-ring" aria-hidden="true" />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={r.emblem} alt="" />
-        <span className="rv-gloss" aria-hidden="true" />
+        <span className="brv-gloss" aria-hidden="true" />
       </div>
-      <div className="rv-text" aria-hidden="true">
-        <p className="rv-eye"><i />{r.eyebrow[lang]}<i /></p>
-        <p className="rv-title">{r.title}</p>
-        <p className="rv-sub">{r.sub[lang]}</p>
-        <p className="rv-lead">{r.lead[lang]}</p>
-        <p className="rv-btns">
-          <span className="rv-gold">{r.cta[lang][0]} <b>→</b></span>
-          <span className="rv-ghost">{r.cta[lang][1]}</span>
+      <div className="brv-text" aria-hidden="true">
+        <p className="brv-eye"><i />{r.eyebrow[lang]}<i /></p>
+        <p className="brv-title">{r.title}</p>
+        <p className="brv-sub">{r.sub[lang]}</p>
+        <p className="brv-lead">{r.lead[lang]}</p>
+        <p className="brv-btns">
+          <span className="brv-gold">{r.cta[lang][0]} <b>→</b></span>
+          <span className="brv-ghost">{r.cta[lang][1]}</span>
         </p>
-        <p className="rv-status"><i />{r.status[lang]}</p>
+        <p className="brv-status"><i />{r.status[lang]}</p>
       </div>
     </div>
   );
