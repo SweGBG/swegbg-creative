@@ -27,6 +27,12 @@ export default function Footer() {
           <a href={`mailto:${site.email}`}>{site.email}</a>
         </span>
       </div>
+      {/* Small business card corner: save the contact straight to the phone, or grab the printable card */}
+      <div className="wrap foot-card">
+        <span>{lang === "sv" ? "Visitkort" : "Business card"}</span>
+        <a href="/lenn-swegbg.vcf" download="Lenn-SweGBG.vcf">{lang === "sv" ? "Spara kontakt" : "Save contact"}</a>
+        <a href="/swegbg-visitkort.pdf" download>{lang === "sv" ? "Ladda ner (PDF)" : "Download (PDF)"}</a>
+      </div>
     </footer>
   );
 }

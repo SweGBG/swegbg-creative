@@ -110,6 +110,9 @@
 .foot-brand { font: 700 1rem var(--display); letter-spacing: .08em; color: var(--fg); }
 .foot-brand b { color: var(--glow); }
 .foot-links { display: flex; flex-wrap: wrap; gap: 0 1.5rem; font-family: var(--mono); }
+.foot-card { display: flex; flex-wrap: wrap; align-items: center; gap: 0 1.1rem; margin-top: .6rem; font: 500 .74rem var(--mono); letter-spacing: .06em; color: #5f6f99; }
+.foot-card a { color: #8fa0c8; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+.foot-card a:hover { color: var(--glow); }
 
 @media (prefers-reduced-motion: reduce) {
   .rv:not([data-in]) .ws-card, .rv:not([data-in]) .steps4 li { opacity: 1; }
