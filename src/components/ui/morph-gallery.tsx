@@ -316,6 +316,26 @@ export default function MorphGallery({
     previous.current = active
   }, [active])
 
+  // The overlay (logo, brand text) follows the picture, not the click: the old one
+  // fades out at once and the new one mounts halfway through the dissolve, so a new
+  // brand never sits on top of the previous demo's picture.
+  const [ov, setOv] = React.useState(active)
+  const [ovOut, setOvOut] = React.useState(false)
+  React.useEffect(() => {
+    if (ov === active) return
+    if (reduced) {
+      setOv(active)
+      setOvOut(false)
+      return
+    }
+    setOvOut(true)
+    const id = window.setTimeout(() => {
+      setOv(active)
+      setOvOut(false)
+    }, Math.round(duration * 0.5))
+    return () => window.clearTimeout(id)
+  }, [active, ov, duration, reduced])
+
   // Rebuilding on the source list is the point: new images, new textures.
   const sources = items.map((i) => i.src).join("|")
 
@@ -613,7 +633,7 @@ export default function MorphGallery({
         </span>
       ) : null}
 
-      {overlay ? <div className="mg-overlay" key={active}>{overlay(active)}</div> : null}
+      {overlay ? <div className={"mg-overlay" + (ovOut ? " out" : "")} key={ov}>{overlay(ov)}</div> : null}
 
       {arrows && items.length > 1 && (
         <>

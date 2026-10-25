@@ -251,35 +251,44 @@ function Showcase({ cards, lang, w }: { cards: Project[]; lang: Lang; w: Dict["w
           );
         }}
       />
-      <div className="mg-info" key={p.name}>
-        <div className="mg-text">
-          <p className="mg-kind">{p.kind[lang]}</p>
-          <h3 className="mg-name">{p.name}</h3>
-          <p className="mg-blurb">{p.blurb[lang]}</p>
-          <ul className="mg-tags">
-            {p.tags.slice(0, 5).map((t) => (
-              <li key={t}>{t}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="mg-side">
-          <div className="mg-cta">
-            <a href={p.liveUrl} target="_blank" rel="noopener noreferrer">
-              {w.visit} {p.name} <Arrow />
-            </a>
-            <small>{String(i + 1).padStart(2, "0")} / {String(shown.length).padStart(2, "0")}</small>
-          </div>
-          <ul className="mg-thumbs">
-            {shown.map((q, k) => (
-              <li key={q.name}>
-                <button type="button" className={k === i ? "on" : ""} aria-current={k === i} aria-label={`${w.open} ${q.name}`} onClick={() => setI(k)}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={q.image} alt="" width={72} height={45} loading="lazy" />
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* Every demo's panel sits in the same grid cell; the inactive ones are invisible but still
+          take up room, so the panel is always as tall as the tallest one and nothing below it jumps. */}
+      <div className="mg-infos">
+        {shown.map((q, k) => {
+          const on = k === i;
+          return (
+            <div className={on ? "mg-info" : "mg-info mg-ghost"} key={(on ? "on-" : "ghost-") + q.name} aria-hidden={!on} inert={!on}>
+              <div className="mg-text">
+                <p className="mg-kind">{q.kind[lang]}</p>
+                <h3 className="mg-name">{q.name}</h3>
+                <p className="mg-blurb">{q.blurb[lang]}</p>
+                <ul className="mg-tags">
+                  {q.tags.slice(0, 5).map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mg-side">
+                <div className="mg-cta">
+                  <a href={q.liveUrl} target="_blank" rel="noopener noreferrer">
+                    {w.visit} {q.name} <Arrow />
+                  </a>
+                  <small>{String(k + 1).padStart(2, "0")} / {String(shown.length).padStart(2, "0")}</small>
+                </div>
+                <ul className="mg-thumbs">
+                  {shown.map((t, n) => (
+                    <li key={t.name}>
+                      <button type="button" className={n === i ? "on" : ""} aria-current={n === i} aria-label={`${w.open} ${t.name}`} onClick={() => setI(n)}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={t.image} alt="" width={72} height={45} loading="lazy" />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
