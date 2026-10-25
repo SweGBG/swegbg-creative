@@ -50,8 +50,8 @@ export function buildMetadata(lang: Lang): Metadata {
     description: s.description,
     keywords: s.keywords,
     applicationName: "SweGBG",
-    authors: [{ name: "Lenn Coskå", url: site.url }],
-    creator: "Lenn Coskå",
+    authors: [{ name: "Lenn", url: site.url }],
+    creator: "Lenn",
     publisher: "SweGBG",
     category: "Web development",
     alternates: {

@@ -1333,7 +1333,7 @@ export const landings: Landing[] = [
         },
         {
           q: "Vem står bakom SweGBG?",
-          a: "Lenn Coskå, som driver SweGBG från Göteborg och bygger varje sajt själv.",
+          a: "Lenn, som driver SweGBG från Göteborg och bygger varje sajt själv.",
         },
       ],
       cta: { h: "Har du en passion? Vi bygger den.", p: "Berätta om ditt företag så får du ett första utkast med ditt eget namn." },
@@ -1388,7 +1388,7 @@ export const landings: Landing[] = [
         },
         {
           q: "Who is behind SweGBG?",
-          a: "Lenn Coskå, who runs SweGBG from Gothenburg and builds every site himself.",
+          a: "Lenn, who runs SweGBG from Gothenburg and builds every site himself.",
         },
       ],
       cta: { h: "Got a passion? Let's build it.", p: "Tell me about your business and you'll get a first draft with your own name." },

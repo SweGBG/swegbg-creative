@@ -164,7 +164,7 @@ export function autosvar({ namn, foretag, typ, meddelande, lang }: Input) {
         <tr><td style="padding:22px 32px 32px;border-top:1px solid #1f2a44">
           <p style="margin:0 0 14px;font:400 14px/1.6 ${BODY};color:${C.muted}">${t.reply}</p>
           <p style="margin:0;font:400 15px/1.6 ${BODY};color:${C.fg}">${t.regards}<br>
-            <span style="font:600 15px/1.6 ${DISPLAY};color:${C.fg}">Lenn Coskå</span><br>
+            <span style="font:600 15px/1.6 ${DISPLAY};color:${C.fg}">Lennie Söderberg</span><br>
             <span style="color:${C.muted}">SweGBG Trading &middot; Göteborg</span></p>
         </td></tr>
 
@@ -192,7 +192,7 @@ export function autosvar({ namn, foretag, typ, meddelande, lang }: Input) {
     `${t.message}:\n${meddelande}\n\n` +
     `${t.nextTitle}:\n` +
     t.steps.map(([a, b], i) => `${i + 1}. ${a} — ${b}`).join("\n") +
-    `\n\n${t.reply}\n\n${t.regards}\nLenn Coskå\nSweGBG Trading · Göteborg\nhttps://www.swegbg.com`;
+    `\n\n${t.reply}\n\n${t.regards}\nLennie Söderberg\nSweGBG Trading · Göteborg\nhttps://www.swegbg.com`;
 
   return { subject: t.subject, html, text };
 }

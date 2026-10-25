@@ -105,7 +105,7 @@ const sv = {
   about: {
     kicker: "06 — Om mig",
     title: "Hantverkaren bakom.",
-    p1: "Jag heter Lenn Coskå och driver SweGBG från Göteborg. Jag bygger varje sajt från grunden och lär mig nya verktyg hela tiden, från databaser till AI-film.",
+    p1: "Jag heter Lenn och driver SweGBG från Göteborg. Jag bygger varje sajt från grunden och lär mig nya verktyg hela tiden, från databaser till AI-film.",
     supportT: "Support dygnet runt.",
     support: "Krånglar något löser jag det. Och vill du bolla en ny idé, ett nytt företag eller ett dotterbolag till det du driver i dag, hör bara av dig. Möjligheterna är oändliga.",
     p3: "Hos mig finns ingen säljavdelning eller kundtjänst. När du anlitar SweGBG pratar du alltid direkt med den som bygger.",
@@ -283,7 +283,7 @@ const en: Dict = {
   about: {
     kicker: "06 — About me",
     title: "The craftsman behind it.",
-    p1: "I'm Lenn Coskå and I run SweGBG from Gothenburg. I build every site from scratch and keep learning new tools, from databases to AI film.",
+    p1: "I'm Lenn and I run SweGBG from Gothenburg. I build every site from scratch and keep learning new tools, from databases to AI film.",
     supportT: "Support around the clock.",
     support: "If something breaks, I fix it. And if you want to talk through a new idea, a new company or a subsidiary of the one you run today, just get in touch. The possibilities are endless.",
     p3: "There is no sales team or call centre. When you hire SweGBG, you always talk directly to the person building it.",

@@ -85,7 +85,7 @@ export default function JsonLd({ lang }: { lang: Lang }) {
       {
         "@type": "Person",
         "@id": `${url}/#lennie`,
-        name: "Lenn Coskå",
+        name: "Lenn",
         jobTitle: sv ? "Webbutvecklare och grundare" : "Web developer and founder",
         worksFor: { "@id": `${url}/#org` },
         homeLocation: { "@type": "City", name: "Göteborg" },
