@@ -25,7 +25,18 @@ export default function Workshop() {
         <div className="ws-grid">
           {w.cards.map((c, i) => (
             <article key={c.t} className="ws-card" style={{ ["--i" as string]: i }}>
-              <div className="ws-top">{ICONS[i]}</div>
+              <span className="ws-frame" aria-hidden="true" />
+              <span className="ws-corner tl" aria-hidden="true" />
+              <span className="ws-corner tr" aria-hidden="true" />
+              <span className="ws-corner bl" aria-hidden="true" />
+              <span className="ws-corner br" aria-hidden="true" />
+              <span className="ws-no" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              <div className="ws-top">
+                <span className="ws-hex" aria-hidden="true">
+                  <svg viewBox="0 0 100 100"><polygon points="50,3 91,26.5 91,73.5 50,97 9,73.5 9,26.5" /></svg>
+                </span>
+                {ICONS[i]}
+              </div>
               <h3>{c.t}</h3>
               <p>{c.d}</p>
               <ul>
